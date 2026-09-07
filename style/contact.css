@@ -1,0 +1,743 @@
+/* ========================================= */
+/* CONTACT.CSS - TRANG LIÊN HỆ POKÉMON HUB */
+/* ========================================= */
+
+
+/* ===== KHUNG CHÍNH CỦA TRANG ===== */
+
+/* Khu vực chính chứa toàn bộ nội dung trang liên hệ */
+.contact-page {
+    /* Tạo khoảng cách phía trên và phía dưới */
+    padding: 40px 0 70px;
+}
+
+
+/* ===== PHẦN TIÊU ĐỀ ===== */
+
+/* Khung chứa tiêu đề của trang */
+.contact-heading {
+    /* Căn giữa nội dung */
+    text-align: center;
+
+    /* Tạo khoảng cách với phần nội dung bên dưới */
+    margin-bottom: 30px;
+}
+
+/* Tiêu đề chính */
+.contact-heading h1 {
+    /* Thiết lập kích thước chữ linh hoạt */
+    font-size: clamp(30px, 5vw, 46px);
+
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Thiết lập màu chữ */
+    color: #1f2937;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 10px;
+}
+
+/* Icon trong tiêu đề */
+.contact-heading h1 i {
+    /* Đặt màu xanh Pokémon */
+    color: #2a75bb;
+}
+
+/* Phần mô tả dưới tiêu đề */
+.contact-heading p {
+    /* Đặt màu chữ xám */
+    color: #64748b;
+
+    /* Thiết lập kích thước chữ */
+    font-size: 16px;
+
+    /* Tạo khoảng cách giữa các dòng */
+    line-height: 1.6;
+
+    /* Xóa margin mặc định */
+    margin: 0;
+}
+
+
+/* ========================================= */
+/* KHUNG NỘI DUNG CHÍNH */
+/* ========================================= */
+
+/* Khung chứa phần thông tin và form */
+.contact-wrapper {
+    /* Sử dụng Grid */
+    display: grid;
+
+    /* Chia thành hai cột */
+    grid-template-columns: 1fr 1fr;
+
+    /* Tạo khoảng cách giữa hai phần */
+    gap: 25px;
+
+    /* Căn các phần tử theo chiều dọc */
+    align-items: stretch;
+}
+
+
+/* ========================================= */
+/* PHẦN THÔNG TIN LIÊN HỆ */
+/* ========================================= */
+
+/* Khung thông tin bên trái */
+.contact-info {
+    /* Màu nền trắng */
+    background: #ffffff;
+
+    /* Thêm đường viền */
+    border: 1px solid #e2e8f0;
+
+    /* Bo tròn góc */
+    border-radius: 20px;
+
+    /* Khoảng cách bên trong */
+    padding: 30px;
+
+    /* Tạo bóng nhẹ */
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* ===== HEADER CỦA PHẦN THÔNG TIN ===== */
+
+/* Khung chứa icon và tiêu đề */
+.contact-info-header {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn các phần tử theo chiều dọc */
+    align-items: center;
+
+    /* Tạo khoảng cách giữa icon và nội dung */
+    gap: 15px;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 25px;
+}
+
+/* Khung icon chính */
+.contact-icon {
+    /* Thiết lập chiều rộng */
+    width: 55px;
+
+    /* Thiết lập chiều cao */
+    height: 55px;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn giữa theo chiều ngang */
+    justify-content: center;
+
+    /* Căn giữa theo chiều dọc */
+    align-items: center;
+
+    /* Ngăn icon bị co */
+    flex-shrink: 0;
+
+    /* Đặt nền xanh nhạt */
+    background: #eaf4ff;
+
+    /* Bo tròn thành hình tròn */
+    border-radius: 50%;
+
+    /* Đặt màu icon */
+    color: #2a75bb;
+
+    /* Thiết lập kích thước icon */
+    font-size: 24px;
+}
+
+/* Tiêu đề trong phần thông tin */
+.contact-info-header h2 {
+    /* Xóa margin mặc định */
+    margin: 0 0 5px;
+
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Đặt màu chữ */
+    color: #1f2937;
+
+    /* Thiết lập kích thước chữ */
+    font-size: 22px;
+}
+
+/* Mô tả trong phần thông tin */
+.contact-info-header p {
+    /* Xóa margin mặc định */
+    margin: 0;
+
+    /* Đặt màu chữ */
+    color: #64748b;
+
+    /* Thiết lập kích thước chữ */
+    font-size: 14px;
+
+    /* Tạo khoảng cách dòng */
+    line-height: 1.5;
+}
+
+
+/* ========================================= */
+/* DANH SÁCH THÔNG TIN */
+/* ========================================= */
+
+/* Khung chứa danh sách thông tin */
+.contact-info-list {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Xếp theo chiều dọc */
+    flex-direction: column;
+
+    /* Tạo khoảng cách giữa các mục */
+    gap: 15px;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 25px;
+}
+
+/* Một mục thông tin */
+.contact-info-item {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn giữa theo chiều dọc */
+    align-items: center;
+
+    /* Tạo khoảng cách */
+    gap: 15px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 15px;
+
+    /* Đặt nền xám nhạt */
+    background: #f8fafc;
+
+    /* Thêm đường viền */
+    border: 1px solid #e2e8f0;
+
+    /* Bo tròn góc */
+    border-radius: 15px;
+
+    /* Tạo hiệu ứng chuyển động */
+    transition: 0.2s ease;
+}
+
+/* Hiệu ứng khi di chuột vào */
+.contact-info-item:hover {
+    /* Đổi màu viền */
+    border-color: #2a75bb;
+
+    /* Đổi màu nền */
+    background: #f1f8ff;
+
+    /* Di chuyển nhẹ */
+    transform: translateX(3px);
+}
+
+
+/* ===== ICON CỦA TỪNG MỤC ===== */
+
+/* Khung chứa icon */
+.info-item-icon {
+    /* Thiết lập chiều rộng */
+    width: 45px;
+
+    /* Thiết lập chiều cao */
+    height: 45px;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn giữa ngang */
+    justify-content: center;
+
+    /* Căn giữa dọc */
+    align-items: center;
+
+    /* Ngăn icon bị co lại */
+    flex-shrink: 0;
+
+    /* Đặt nền xanh nhạt */
+    background: #eaf4ff;
+
+    /* Bo tròn thành hình tròn */
+    border-radius: 50%;
+
+    /* Đặt màu icon */
+    color: #2a75bb;
+
+    /* Thiết lập kích thước icon */
+    font-size: 20px;
+}
+
+
+/* ===== NỘI DUNG CỦA MỖI MỤC ===== */
+
+/* Phần tiêu đề nhỏ */
+.contact-info-item span {
+    /* Hiển thị trên một dòng riêng */
+    display: block;
+
+    /* Thiết lập màu chữ */
+    color: #64748b;
+
+    /* Thiết lập kích thước chữ */
+    font-size: 13px;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 3px;
+}
+
+/* Nội dung chính */
+.contact-info-item strong {
+    /* Hiển thị trên một dòng riêng */
+    display: block;
+
+    /* Đặt màu chữ */
+    color: #334155;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Thiết lập kích thước chữ */
+    font-size: 15px;
+}
+
+
+/* ========================================= */
+/* PHẦN GỢI Ý */
+/* ========================================= */
+
+/* Khung lời nhắn */
+.contact-tip {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn phần tử theo phía trên */
+    align-items: flex-start;
+
+    /* Tạo khoảng cách */
+    gap: 12px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 15px;
+
+    /* Đặt màu nền vàng nhạt */
+    background: #fffbeb;
+
+    /* Thêm đường viền */
+    border: 1px solid #fde68a;
+
+    /* Bo tròn góc */
+    border-radius: 15px;
+}
+
+/* Icon bóng đèn */
+.contact-tip i {
+    /* Đặt màu vàng */
+    color: #f59e0b;
+
+    /* Thiết lập kích thước */
+    font-size: 20px;
+
+    /* Ngăn icon bị co */
+    flex-shrink: 0;
+}
+
+/* Nội dung lời nhắn */
+.contact-tip p {
+    /* Xóa margin mặc định */
+    margin: 0;
+
+    /* Đặt màu chữ */
+    color: #92400e;
+
+    /* Thiết lập kích thước chữ */
+    font-size: 14px;
+
+    /* Tạo khoảng cách dòng */
+    line-height: 1.6;
+}
+
+
+/* ========================================= */
+/* FORM LIÊN HỆ */
+/* ========================================= */
+
+/* Khung chứa form */
+.contact-form-card {
+    /* Đặt nền trắng */
+    background: #ffffff;
+
+    /* Thêm đường viền */
+    border: 1px solid #e2e8f0;
+
+    /* Bo tròn góc */
+    border-radius: 20px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 30px;
+
+    /* Tạo bóng */
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* Tiêu đề form */
+.contact-form-card h2 {
+    /* Xóa margin phía trên */
+    margin-top: 0;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 8px;
+
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Đặt màu chữ */
+    color: #1f2937;
+}
+
+/* Mô tả form */
+.contact-form-description {
+    /* Đặt màu chữ */
+    color: #64748b;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 25px;
+}
+
+
+/* ========================================= */
+/* CÁC NHÓM INPUT */
+/* ========================================= */
+
+/* Khung chứa từng nhóm nhập dữ liệu */
+.contact-form-card .form-group {
+    /* Tạo khoảng cách giữa các nhóm */
+    margin-bottom: 20px;
+}
+
+/* Label của form */
+.contact-form-card .form-group label {
+    /* Hiển thị thành block */
+    display: block;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Đặt màu chữ */
+    color: #334155;
+
+    /* Tạo khoảng cách với ô nhập */
+    margin-bottom: 8px;
+}
+
+/* Icon trong label */
+.contact-form-card .form-group label i {
+    /* Đặt màu xanh */
+    color: #2a75bb;
+
+    /* Tạo khoảng cách bên phải */
+    margin-right: 5px;
+}
+
+
+/* ========================================= */
+/* INPUT, SELECT VÀ TEXTAREA */
+/* ========================================= */
+
+/* Áp dụng giao diện cho input, select và textarea */
+.contact-form-card .form-control,
+.contact-form-card .form-select {
+    /* Tạo đường viền */
+    border: 1px solid #dbe5ef;
+
+    /* Bo tròn góc */
+    border-radius: 12px;
+
+    /* Đặt màu nền */
+    background: #f8fafc;
+
+    /* Đặt màu chữ */
+    color: #334155;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 12px 14px;
+
+    /* Tạo hiệu ứng chuyển đổi */
+    transition: 0.2s ease;
+}
+
+/* Thiết lập chiều cao textarea */
+.contact-form-card textarea {
+    /* Không cho phép kéo ngang */
+    resize: vertical;
+
+    /* Thiết lập chiều cao tối thiểu */
+    min-height: 140px;
+}
+
+/* Khi click vào input */
+.contact-form-card .form-control:focus,
+.contact-form-card .form-select:focus {
+    /* Đổi màu viền */
+    border-color: #2a75bb;
+
+    /* Đặt nền trắng */
+    background: #ffffff;
+
+    /* Tạo viền sáng */
+    box-shadow: 0 0 0 3px rgba(42, 117, 187, 0.12);
+}
+
+
+/* ========================================= */
+/* NÚT GỬI */
+/* ========================================= */
+
+/* Nút gửi liên hệ */
+.contact-submit-btn {
+    /* Chiếm toàn bộ chiều rộng */
+    width: 100%;
+
+    /* Xóa đường viền */
+    border: none;
+
+    /* Đặt màu nền */
+    background: #2a75bb;
+
+    /* Đặt màu chữ */
+    color: #ffffff;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 13px 20px;
+
+    /* Bo tròn góc */
+    border-radius: 12px;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Đặt kích thước chữ */
+    font-size: 16px;
+
+    /* Hiển thị con trỏ */
+    cursor: pointer;
+
+    /* Tạo hiệu ứng */
+    transition: 0.25s ease;
+}
+
+/* Icon trong nút */
+.contact-submit-btn i {
+    /* Tạo khoảng cách bên phải */
+    margin-right: 7px;
+}
+
+/* Khi di chuột vào nút */
+.contact-submit-btn:hover {
+    /* Đổi màu nền */
+    background: #1f5f99;
+
+    /* Nâng nút lên */
+    transform: translateY(-2px);
+
+    /* Tạo bóng */
+    box-shadow: 0 8px 20px rgba(42, 117, 187, 0.25);
+}
+
+/* Khi nhấn nút */
+.contact-submit-btn:active {
+    /* Đưa nút về vị trí cũ */
+    transform: translateY(0);
+}
+
+
+/* ========================================= */
+/* MODAL THÀNH CÔNG */
+/* ========================================= */
+
+/* Khung modal */
+.contact-modal {
+    /* Xóa đường viền */
+    border: none;
+
+    /* Bo tròn góc */
+    border-radius: 20px;
+
+    /* Ẩn nội dung tràn */
+    overflow: hidden;
+}
+
+/* Icon thành công */
+.contact-success-icon {
+    /* Thiết lập chiều rộng */
+    width: 70px;
+
+    /* Thiết lập chiều cao */
+    height: 70px;
+
+    /* Căn giữa icon */
+    display: flex;
+
+    /* Căn giữa ngang */
+    justify-content: center;
+
+    /* Căn giữa dọc */
+    align-items: center;
+
+    /* Căn giữa khung */
+    margin: 0 auto 20px;
+
+    /* Đặt nền xanh nhạt */
+    background: #dcfce7;
+
+    /* Đặt màu xanh lá */
+    color: #16a34a;
+
+    /* Bo tròn */
+    border-radius: 50%;
+
+    /* Đặt kích thước icon */
+    font-size: 32px;
+}
+
+/* Tiêu đề modal */
+.contact-modal h3 {
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Đặt màu chữ */
+    color: #1f2937;
+}
+
+/* Nội dung modal */
+.contact-modal p {
+    /* Đặt màu chữ */
+    color: #64748b;
+
+    /* Tạo khoảng cách dòng */
+    line-height: 1.6;
+}
+
+/* Nút modal */
+.contact-modal-btn {
+    /* Xóa viền */
+    border: none;
+
+    /* Đặt nền xanh */
+    background: #2a75bb;
+
+    /* Đặt màu chữ trắng */
+    color: #ffffff;
+
+    /* Tạo khoảng cách */
+    padding: 10px 25px;
+
+    /* Bo tròn góc */
+    border-radius: 10px;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Hiển thị con trỏ */
+    cursor: pointer;
+}
+
+
+/* ========================================= */
+/* RESPONSIVE - TABLET */
+/* ========================================= */
+
+@media (max-width: 768px) {
+
+    /* Chuyển bố cục thành một cột */
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    /* Giảm khoảng cách của trang */
+    .contact-page {
+        padding: 30px 0 50px;
+    }
+
+    /* Giảm padding phần thông tin */
+    .contact-info {
+        padding: 25px;
+    }
+
+    /* Giảm padding form */
+    .contact-form-card {
+        padding: 25px;
+    }
+}
+
+
+/* ========================================= */
+/* RESPONSIVE - MOBILE */
+/* ========================================= */
+
+@media (max-width: 480px) {
+
+    /* Giảm kích thước tiêu đề */
+    .contact-heading h1 {
+        font-size: 30px;
+    }
+
+    /* Giảm padding phần thông tin */
+    .contact-info {
+        padding: 20px 15px;
+
+        /* Giảm độ bo góc */
+        border-radius: 15px;
+    }
+
+    /* Giảm padding form */
+    .contact-form-card {
+        padding: 20px 15px;
+
+        /* Giảm độ bo góc */
+        border-radius: 15px;
+    }
+
+    /* Điều chỉnh header */
+    .contact-info-header {
+        align-items: flex-start;
+    }
+
+    /* Giảm kích thước icon chính */
+    .contact-icon {
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 20px;
+    }
+
+    /* Giảm padding mục thông tin */
+    .contact-info-item {
+        padding: 12px;
+    }
+
+    /* Giảm kích thước icon */
+    .info-item-icon {
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 18px;
+    }
+
+    /* Điều chỉnh nút gửi */
+    .contact-submit-btn {
+        padding: 12px 15px;
+    }
+}

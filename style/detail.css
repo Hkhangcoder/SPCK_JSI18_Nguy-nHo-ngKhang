@@ -1,0 +1,831 @@
+/* ========================================= */
+/* DETAIL.CSS - TRANG CHI TIẾT POKÉMON      */
+/* File này dùng cho detail.html + detail.js */
+/* Navbar và Footer vẫn dùng main.css        */
+/* ========================================= */
+
+
+/* KHUNG NỘI DUNG CHÍNH                     */
+/* Khung <main> chứa toàn bộ nội dung trang detail */
+.pokemon-detail-main {
+    padding: 45px 0 70px; /* Tạo khoảng cách trên 45px và dưới 70px */
+    min-height: 600px; /* Đảm bảo phần nội dung có chiều cao tối thiểu */
+}
+
+/* KHUNG CHỨA DETAIL                        */
+/* Section được detail.js dùng để render toàn bộ nội dung */
+.pokemon-detail-container {
+    width: min(1200px, calc(100% - 30px)); /* Tối đa 1200px và chừa 15px mỗi bên */
+    margin: 0 auto; /* Căn section ra giữa màn hình */
+}
+
+/* NÚT QUAY LẠI POKÉDEX                     */
+/* Nút "Quay lại Pokédex" trong detail.html */
+.pokemon-detail-back {
+    display: inline-flex; /* Cho phép căn icon và chữ bằng Flexbox */
+    align-items: center; /* Căn icon và chữ theo chiều dọc */
+    gap: 8px; /* Tạo khoảng cách giữa icon và chữ */
+    margin-bottom: 28px; /* Tạo khoảng cách với phần card bên dưới */
+    padding: 10px 16px; /* Tạo khoảng trống bên trong nút */
+    background: #ffffff; /* Màu nền trắng */
+    border: 1px solid #dbe3ee; /* Viền màu xám nhạt */
+    border-radius: 12px; /* Bo tròn các góc */
+    color: #475569; /* Màu chữ */
+    text-decoration: none; /* Bỏ gạch chân của thẻ a */
+    font-weight: 700; /* Làm chữ đậm */
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease; /* Tạo hiệu ứng chuyển động */
+}
+/* Khi rê chuột vào nút quay lại */
+.pokemon-detail-back:hover {
+    transform: translateX(-4px); /* Di chuyển nút sang trái 4px */
+    border-color: #2a75bb; /* Đổi màu viền */
+    color: #2a75bb; /* Đổi màu chữ */
+    box-shadow: 0 5px 15px rgba(42, 117, 187, 0.1); /* Tạo bóng nhẹ */
+}
+
+/* LOADING                                  */
+/* Khung loading khi đang lấy dữ liệu Pokémon */
+.pokemon-detail-loading {
+    padding: 80px 20px; /* Tạo khoảng cách bên trong */
+    text-align: center; /* Căn chữ ra giữa */
+    color: #64748b; /* Màu chữ xám */
+    font-size: 17px; /* Kích thước chữ */
+    font-weight: 600; /* Độ đậm chữ */
+}
+
+/* KHUNG CARD CHÍNH + TRƯỚC / SAU           */
+/* Khung chứa card Pokémon và hai nút trước/sau */
+.pokemon-detail-wrapper {
+    display: grid; /* Sử dụng CSS Grid */
+    grid-template-columns: 100px minmax(0, 1fr) 100px; /* Cột trái 100px, giữa co giãn, phải 100px */
+    align-items: center; /* Căn các phần tử theo chiều dọc */
+    gap: 20px; /* Khoảng cách giữa các cột */
+    margin-bottom: 35px; /* Khoảng cách với phần nội dung bên dưới */
+}
+
+/* NÚT POKÉMON TRƯỚC / SAU                 */
+/* Khung chứa nút trước/sau */
+.pokemon-detail-nav {
+    display: flex; /* Sử dụng Flexbox */
+    flex-direction: column; /* Xếp nút và chữ theo chiều dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+    gap: 8px; /* Khoảng cách giữa nút và chữ */
+}
+/* Nút mũi tên chuyển Pokémon */
+.pokemon-detail-nav-button {
+    width: 50px; /* Chiều rộng nút */
+    height: 50px; /* Chiều cao nút */
+    display: flex; /* Sử dụng Flexbox */
+    align-items: center; /* Căn icon theo chiều dọc */
+    justify-content: center; /* Căn icon theo chiều ngang */
+    border: 1px solid #dbe3ee; /* Viền nút */
+    border-radius: 50%; /* Biến nút thành hình tròn */
+    background: #ffffff; /* Nền trắng */
+    color: #2a75bb; /* Màu icon */
+    font-size: 20px; /* Kích thước icon */
+    cursor: pointer; /* Hiển thị con trỏ dạng bàn tay */
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08); /* Tạo bóng nhẹ */
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease; /* Hiệu ứng */
+}
+/* Khi rê chuột vào nút trước/sau */
+.pokemon-detail-nav-button:hover {
+    transform: scale(1.08); /* Phóng to nhẹ */
+    background: #2a75bb; /* Đổi nền thành xanh */
+    color: #ffffff; /* Đổi icon thành trắng */
+    box-shadow: 0 8px 20px rgba(42, 117, 187, 0.22); /* Tăng bóng */
+}
+/* Chữ "Trước" và "Tiếp theo" */
+.pokemon-detail-nav-text {
+    color: #64748b; /* Màu chữ xám */
+    font-size: 13px; /* Kích thước chữ */
+    font-weight: 700; /* Làm chữ đậm */
+    line-height: 1.4; /* Khoảng cách giữa các dòng */
+    text-align: center; /* Căn giữa chữ */
+}
+
+/* CARD POKÉMON CHÍNH                      */
+/* Card lớn chứa thông tin chính của Pokémon */
+.pokemon-detail-main-card {
+    position: relative; /* Làm mốc cho các phần tử con nếu cần */
+    background: #ffffff; /* Nền trắng */
+    border: 1px solid #e5edf5; /* Viền xám nhạt */
+    border-radius: 28px; /* Bo tròn card */
+    padding: 35px; /* Khoảng cách bên trong card */
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08); /* Tạo bóng card */
+}
+
+/* PHẦN TRÊN CỦA CARD                      */
+/* Khung chứa ảnh, tên và thông tin Pokémon */
+.pokemon-detail-top {
+    display: grid; /* Sử dụng Grid */
+    grid-template-columns: 260px minmax(200px, 1fr) minmax(250px, 1fr); /* Chia thành 3 cột */
+    align-items: center; /* Căn các cột theo chiều dọc */
+    gap: 30px; /* Khoảng cách giữa các cột */
+}
+
+/* KHUNG ẢNH POKÉMON                       */
+/* Khung chứa ảnh Pokémon */
+.pokemon-detail-image-box {
+    position: relative; /* Làm mốc cho pseudo-element */
+    width: 100%; /* Chiếm toàn bộ chiều rộng cột */
+    height: 260px; /* Chiều cao khung ảnh */
+    display: flex; /* Dùng Flexbox */
+    align-items: center; /* Căn ảnh theo chiều dọc */
+    justify-content: center; /* Căn ảnh theo chiều ngang */
+    overflow: hidden; /* Ẩn phần trang trí vượt ra ngoài */
+    border-radius: 24px; /* Bo tròn khung ảnh */
+    background: linear-gradient(135deg, #eaf5ff 0%, #d8ebff 100%); /* Tạo nền xanh nhạt */
+}
+/* Hình tròn trang trí góc trên */
+.pokemon-detail-image-box::before {
+    content: ""; /* Bắt buộc để pseudo-element hiển thị */
+    position: absolute; /* Đặt tự do trong khung */
+    width: 180px; /* Chiều rộng hình tròn */
+    height: 180px; /* Chiều cao hình tròn */
+    border-radius: 50%; /* Biến thành hình tròn */
+    background: rgba(255, 255, 255, 0.4); /* Màu trắng trong suốt */
+    top: -70px; /* Đẩy lên phía trên */
+    left: -50px; /* Đẩy sang trái */
+}
+/* Hình tròn trang trí góc dưới */
+.pokemon-detail-image-box::after {
+    content: ""; /* Bắt buộc để pseudo-element hiển thị */
+    position: absolute; /* Đặt tự do trong khung */
+    width: 160px; /* Chiều rộng hình tròn */
+    height: 160px; /* Chiều cao hình tròn */
+    border-radius: 50%; /* Biến thành hình tròn */
+    background: rgba(42, 117, 187, 0.08); /* Màu xanh trong suốt */
+    right: -60px; /* Đẩy sang phải */
+    bottom: -70px; /* Đẩy xuống dưới */
+}
+/* Ảnh Pokémon bên trong khung */
+.pokemon-detail-image-box img {
+    position: relative; /* Cho phép sử dụng z-index */
+    z-index: 2; /* Đưa ảnh lên trên hình trang trí */
+    width: 90%; /* Ảnh chiếm 90% chiều rộng */
+    height: 90%; /* Ảnh chiếm 90% chiều cao */
+    object-fit: contain; /* Giữ nguyên tỷ lệ ảnh */
+    transition: transform 0.35s ease; /* Tạo hiệu ứng phóng to */
+}
+/* Khi rê chuột vào ảnh Pokémon */
+.pokemon-detail-image-box:hover img {
+    transform: scale(1.08); /* Phóng ảnh lên 8% */
+}
+
+/* ID POKÉMON                              */
+/* Dòng hiển thị số ID */
+.pokemon-detail-id {
+    margin: 0 0 5px; /* Bỏ margin trên và tạo 5px bên dưới */
+    color: #94a3b8; /* Màu xám */
+    font-size: 18px; /* Kích thước chữ */
+    font-weight: 800; /* Chữ đậm */
+}
+
+/* TÊN POKÉMON                             */
+/* Tên Pokémon */
+.pokemon-detail-name {
+    margin: 0 0 16px; /* Bỏ margin trên và tạo khoảng cách dưới */
+    color: #1e293b; /* Màu chữ chính */
+    font-size: clamp(32px, 4vw, 48px); /* Kích thước responsive */
+    font-weight: 800; /* Chữ đậm */
+    line-height: 1.1; /* Khoảng cách dòng */
+}
+
+/* CÁC HỆ POKÉMON                          */
+/* Khung chứa các badge hệ */
+.pokemon-detail-types {
+    display: flex; /* Dùng Flexbox */
+    flex-wrap: wrap; /* Cho phép xuống dòng */
+    gap: 8px; /* Khoảng cách giữa các hệ */
+}
+/* Badge hiển thị từng hệ */
+.pokemon-detail-type {
+    display: inline-flex; /* Cho phép căn nội dung */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    padding: 8px 14px; /* Khoảng cách bên trong */
+    border-radius: 999px; /* Bo tròn thành dạng pill */
+    background: #eef6ff; /* Nền xanh nhạt */
+    border: 1px solid #d5e9ff; /* Viền xanh nhạt */
+    color: #2a75bb; /* Màu chữ xanh */
+    font-size: 13px; /* Kích thước chữ */
+    font-weight: 800; /* Chữ đậm */
+    text-transform: capitalize; /* Viết hoa chữ đầu */
+}
+
+/* PHẦN SUMMARY                            */
+/* Khung Category + thông tin */
+.pokemon-detail-summary {
+    display: flex; /* Dùng Flexbox */
+    flex-direction: column; /* Xếp theo chiều dọc */
+    gap: 18px; /* Khoảng cách giữa các phần */
+}
+
+/* CATEGORY                                */
+/* Khung Category */
+.pokemon-detail-category {
+    padding-bottom: 18px; /* Tạo khoảng cách phía dưới */
+    border-bottom: 1px solid #e8edf3; /* Tạo đường kẻ */
+}
+/* Tiêu đề Category */
+.pokemon-detail-category-title {
+    display: flex; /* Dùng Flexbox */
+    align-items: center; /* Căn icon và chữ */
+    gap: 7px; /* Khoảng cách icon và chữ */
+    margin-bottom: 6px; /* Khoảng cách với nội dung */
+    color: #64748b; /* Màu xám */
+    font-size: 13px; /* Kích thước chữ */
+    font-weight: 700; /* Chữ đậm */
+}
+/* Icon Category */
+.pokemon-detail-category-title i {
+    color: #2a75bb; /* Màu xanh cho icon */
+}
+/* Giá trị Category */
+.pokemon-detail-category-value {
+    color: #1e293b; /* Màu chữ */
+    font-size: 18px; /* Kích thước chữ */
+    font-weight: 800; /* Chữ đậm */
+}
+
+/* GRID THÔNG TIN CƠ BẢN                  */
+/* Grid chứa chiều cao, cân nặng, giới tính, EXP */
+.pokemon-detail-info-grid {
+    display: grid; /* Dùng CSS Grid */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Chia thành 2 cột */
+    gap: 12px; /* Khoảng cách giữa các ô */
+}
+/* Một ô thông tin */
+.pokemon-detail-info-item {
+    padding: 14px; /* Khoảng cách bên trong */
+    background: #f8fafc; /* Nền xám rất nhạt */
+    border: 1px solid #e8eef5; /* Viền */
+    border-radius: 14px; /* Bo góc */
+}
+/* Nhãn thông tin */
+.pokemon-detail-info-label {
+    display: block; /* Cho nhãn thành một dòng riêng */
+    margin-bottom: 5px; /* Khoảng cách với giá trị */
+    color: #64748b; /* Màu xám */
+    font-size: 12px; /* Chữ nhỏ */
+    font-weight: 700; /* Chữ đậm */
+}
+/* Giá trị thông tin */
+.pokemon-detail-info-value {
+    display: block; /* Cho giá trị thành block */
+    color: #1e293b; /* Màu chữ */
+    font-size: 15px; /* Kích thước chữ */
+    font-weight: 800; /* Chữ đậm */
+}
+
+/* GIỚI TÍNH                               */
+/* Khung hiển thị nam và nữ */
+.pokemon-detail-gender {
+    display: flex; /* Dùng Flexbox */
+    flex-wrap: wrap; /* Cho phép xuống dòng */
+    gap: 8px; /* Khoảng cách */
+}
+/* Màu giới tính nam */
+.gender-male {
+    color: #2878b8; /* Màu xanh */
+}
+/* Màu giới tính nữ */
+.gender-female {
+    color: #e0528a; /* Màu hồng */
+}
+
+/* NÚT BỘ SƯU TẬP + YÊU THÍCH             */
+/* Khung chứa hai nút */
+.pokemon-detail-actions {
+    display: flex; /* Dùng Flexbox */
+    justify-content: center; /* Căn hai nút ra giữa */
+    gap: 14px; /* Khoảng cách giữa hai nút */
+    margin-top: 30px; /* Khoảng cách với phần trên */
+    padding-top: 25px; /* Khoảng cách bên trên đường kẻ */
+    border-top: 1px solid #e8edf3; /* Đường kẻ phân cách */
+}
+/* CSS chung cho hai nút */
+.pokemon-detail-btn {
+    display: inline-flex; /* Dùng Flexbox */
+    align-items: center; /* Căn icon và chữ */
+    justify-content: center; /* Căn nội dung ra giữa */
+    gap: 8px; /* Khoảng cách icon và chữ */
+    min-width: 170px; /* Chiều rộng tối thiểu */
+    padding: 11px 20px; /* Khoảng cách bên trong */
+    border-radius: 12px; /* Bo góc */
+    font-size: 14px; /* Kích thước chữ */
+    font-weight: 800; /* Chữ đậm */
+    cursor: pointer; /* Con trỏ bàn tay */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; /* Hiệu ứng */
+}
+/* Khi hover cả hai nút */
+.pokemon-detail-btn:hover {
+    transform: translateY(-2px); /* Đẩy nút lên 2px */
+}
+/* Nút Bộ sưu tập */
+.pokemon-detail-btn.collection {
+    background: #eef6ff; /* Nền xanh nhạt */
+    border: 1px solid #cfe5fb; /* Viền xanh */
+    color: #2a75bb; /* Chữ xanh */
+}
+/* Khi hover nút Bộ sưu tập */
+.pokemon-detail-btn.collection:hover {
+    background: #dceeff; /* Nền xanh đậm hơn */
+    box-shadow: 0 7px 18px rgba(42, 117, 187, 0.15); /* Tạo bóng */
+}
+/* Nút Yêu thích */
+.pokemon-detail-btn.favorite {
+    background: #fff1f2; /* Nền đỏ nhạt */
+    border: 1px solid #fecdd3; /* Viền đỏ nhạt */
+    color: #e53935; /* Chữ đỏ */
+}
+/* Khi hover nút Yêu thích */
+.pokemon-detail-btn.favorite:hover {
+    background: #ffe4e6; /* Nền đỏ đậm hơn */
+    box-shadow: 0 7px 18px rgba(229, 57, 53, 0.12); /* Tạo bóng */
+}
+
+/* PHẦN NỘI DUNG 2 CỘT                   */
+/* Khung chứa cột Chỉ số và cột Kỹ năng */
+.pokemon-detail-content {
+    display: grid; /* Dùng Grid */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Chia thành 2 cột bằng nhau */
+    gap: 25px; /* Khoảng cách giữa hai card */
+    margin-bottom: 25px; /* Khoảng cách với card tiến hóa */
+}
+/* Một card nội dung */
+.pokemon-detail-column {
+    padding: 28px; /* Khoảng cách bên trong card */
+    background: #ffffff; /* Nền trắng */
+    border: 1px solid #e5edf5; /* Viền */
+    border-radius: 22px; /* Bo góc */
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06); /* Bóng nhẹ */
+}
+
+/* TIÊU ĐỀ CÁC SECTION                    */
+/* Tiêu đề Chỉ số, Kỹ năng, Dạng, Tiến hóa */
+.pokemon-detail-section-title {
+    display: flex; /* Dùng Flexbox */
+    align-items: center; /* Căn icon và chữ */
+    gap: 9px; /* Khoảng cách icon và chữ */
+    margin: 0 0 20px; /* Bỏ margin trên và tạo 20px dưới */
+    color: #1e293b; /* Màu chữ */
+    font-size: 21px; /* Kích thước */
+    font-weight: 800; /* Chữ đậm */
+}
+/* Icon trong tiêu đề */
+.pokemon-detail-section-title i {
+    color: #2a75bb; /* Màu xanh */
+}
+
+/* DANH SÁCH CHỈ SỐ                       */
+/* Khung chứa tất cả các chỉ số */
+.pokemon-detail-stat-list {
+    display: flex; /* Dùng Flexbox */
+    flex-direction: column; /* Xếp các chỉ số theo chiều dọc */
+    gap: 15px; /* Khoảng cách giữa các chỉ số */
+}
+/* Một dòng chỉ số */
+.pokemon-detail-stat {
+    display: grid; /* Dùng Grid */
+    grid-template-columns: 125px minmax(0, 1fr) 45px; /* Tên, thanh, số */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 12px; /* Khoảng cách giữa các phần */
+}
+/* Tên chỉ số */
+.pokemon-detail-stat-name {
+    font-size: 13px; /* Kích thước chữ */
+    font-weight: 800; /* Chữ đậm */
+}
+/* Phần nền của thanh chỉ số */
+.pokemon-detail-stat-bar {
+    height: 10px; /* Chiều cao thanh */
+    overflow: hidden; /* Ẩn phần vượt quá */
+    background: #e8eef5; /* Màu nền thanh */
+    border-radius: 999px; /* Bo tròn thanh */
+}
+/* Phần màu của thanh chỉ số */
+.pokemon-detail-stat-fill {
+    height: 100%; /* Cao bằng thanh cha */
+    border-radius: inherit; /* Kế thừa bo góc */
+    transition: width 0.5s ease; /* Tạo hiệu ứng khi thanh thay đổi */
+}
+/* Số điểm chỉ số */
+.pokemon-detail-stat-value {
+    color: #1e293b; /* Màu số */
+    font-size: 14px; /* Kích thước số */
+    font-weight: 800; /* Chữ đậm */
+    text-align: right; /* Căn số sang phải */
+}
+/* Dòng tổng chỉ số */
+.pokemon-detail-total {
+    margin: 20px 0 0; /* Tạo khoảng cách phía trên */
+    padding-top: 15px; /* Khoảng cách với đường kẻ */
+    border-top: 1px solid #e8edf3; /* Đường kẻ */
+    color: #64748b; /* Màu chữ */
+    font-size: 14px; /* Kích thước chữ */
+}
+/* Số tổng */
+.pokemon-detail-total strong {
+    color: #1e293b; /* Màu số */
+    font-size: 17px; /* Kích thước số */
+}
+
+/* KHẢ NĂNG ẨN                             */
+/* Khung khả năng ẩn */
+.pokemon-detail-hidden-ability {
+    margin-top: 30px; /* Khoảng cách với phần chỉ số */
+    padding-top: 25px; /* Khoảng cách phía trên */
+    border-top: 1px solid #e8edf3; /* Đường kẻ */
+}
+/* Tiêu đề Khả năng ẩn */
+.pokemon-detail-hidden-ability .pokemon-detail-section-title {
+    margin-bottom: 14px; /* Khoảng cách với nút ability */
+}
+
+/* KỸ NĂNG NỔI BẬT                        */
+/* Khung chứa các nút ability */
+.pokemon-detail-abilities {
+    display: flex; /* Dùng Flexbox */
+    flex-wrap: wrap; /* Cho phép xuống dòng */
+    gap: 10px; /* Khoảng cách giữa các nút */
+    margin-bottom: 30px; /* Khoảng cách với phần Dạng */
+}
+/* Nút Ability */
+.pokemon-detail-ability-button {
+    padding: 9px 14px; /* Khoảng cách bên trong */
+    background: #f8fafc; /* Nền xám nhạt */
+    border: 1px solid #dbe3ee; /* Viền */
+    border-radius: 10px; /* Bo góc */
+    color: #475569; /* Màu chữ */
+    font-size: 13px; /* Kích thước chữ */
+    font-weight: 700; /* Chữ đậm */
+    cursor: pointer; /* Con trỏ bàn tay */
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; /* Hiệu ứng */
+}
+/* Khi hover nút Ability */
+.pokemon-detail-ability-button:hover {
+    transform: translateY(-2px); /* Đẩy nút lên */
+    background: #eef6ff; /* Đổi nền */
+    border-color: #9cccf3; /* Đổi màu viền */
+    color: #2a75bb; /* Đổi màu chữ */
+}
+
+/* DẠNG / TRẠNG THÁI                      */
+/* Khung Dạng / Trạng thái */
+.pokemon-detail-forms {
+    padding-top: 25px; /* Tạo khoảng cách trên */
+    border-top: 1px solid #e8edf3; /* Đường kẻ */
+}
+/* Danh sách các dạng */
+.pokemon-detail-form-list {
+    display: flex; /* Dùng Flexbox */
+    flex-direction: column; /* Xếp dọc */
+    gap: 10px; /* Khoảng cách giữa các card */
+}
+/* Một card dạng Pokémon */
+.pokemon-detail-form-card {
+    display: flex; /* Dùng Flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 13px; /* Khoảng cách giữa ảnh và chữ */
+    padding: 10px 13px; /* Khoảng cách bên trong */
+    background: #f8fafc; /* Nền xám nhạt */
+    border: 1px solid #e5edf5; /* Viền */
+    border-radius: 14px; /* Bo góc */
+    cursor: pointer; /* Con trỏ bàn tay */
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease; /* Hiệu ứng */
+}
+/* Khi hover card dạng */
+.pokemon-detail-form-card:hover {
+    transform: translateX(4px); /* Đẩy card sang phải */
+    background: #ffffff; /* Đổi nền thành trắng */
+    border-color: #9cccf3; /* Đổi viền xanh */
+    box-shadow: 0 5px 15px rgba(42, 117, 187, 0.08); /* Tạo bóng */
+}
+/* Ảnh của dạng */
+.pokemon-detail-form-image {
+    width: 55px; /* Chiều rộng ảnh */
+    height: 55px; /* Chiều cao ảnh */
+    object-fit: contain; /* Giữ nguyên tỷ lệ ảnh */
+}
+/* Phần chứa tên và ID */
+.pokemon-detail-form-card > div {
+    flex: 1; /* Cho phần chữ chiếm phần còn lại */
+}
+/* Tên dạng */
+.pokemon-detail-form-name {
+    margin: 0 0 3px; /* Tạo 3px khoảng cách dưới */
+    color: #1e293b; /* Màu chữ */
+    font-size: 14px; /* Kích thước */
+    font-weight: 800; /* Chữ đậm */
+}
+/* ID dạng */
+.pokemon-detail-form-id {
+    margin: 0; /* Bỏ margin mặc định */
+    color: #94a3b8; /* Màu xám */
+    font-size: 12px; /* Chữ nhỏ */
+    font-weight: 700; /* Chữ đậm */
+}
+/* Icon mũi tên bên phải card */
+.pokemon-detail-form-card > i {
+    color: #94a3b8; /* Màu xám */
+    font-size: 15px; /* Kích thước icon */
+}
+
+/* CARD TIẾN HÓA                          */
+/* Khung lớn chứa phần tiến hóa */
+.pokemon-detail-evolution-box {
+    padding: 28px; /* Khoảng cách bên trong */
+    background: #ffffff; /* Nền trắng */
+    border: 1px solid #e5edf5; /* Viền */
+    border-radius: 22px; /* Bo góc */
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06); /* Bóng */
+}
+/* Danh sách các Pokémon tiến hóa */
+.pokemon-detail-evolution-list {
+    display: flex; /* Dùng Flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    flex-wrap: wrap; /* Cho phép xuống dòng */
+    gap: 15px; /* Khoảng cách giữa card và mũi tên */
+}
+/* Một card Pokémon tiến hóa */
+.pokemon-detail-evolution-card {
+    width: 150px; /* Chiều rộng card */
+    padding: 16px; /* Khoảng cách bên trong */
+    background: #f8fafc; /* Nền xám nhạt */
+    border: 1px solid #e5edf5; /* Viền */
+    border-radius: 18px; /* Bo góc */
+    text-align: center; /* Căn nội dung ra giữa */
+    cursor: pointer; /* Con trỏ bàn tay */
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease; /* Hiệu ứng */
+}
+/* Khi hover card tiến hóa */
+.pokemon-detail-evolution-card:hover {
+    transform: translateY(-5px); /* Đẩy card lên */
+    background: #ffffff; /* Đổi nền */
+    border-color: #9cccf3; /* Đổi viền */
+    box-shadow: 0 8px 20px rgba(42, 117, 187, 0.1); /* Tạo bóng */
+}
+/* Ảnh Pokémon tiến hóa */
+.pokemon-detail-evolution-image {
+    width: 100px; /* Chiều rộng ảnh */
+    height: 100px; /* Chiều cao ảnh */
+    object-fit: contain; /* Giữ nguyên tỷ lệ */
+}
+/* Tên Pokémon tiến hóa */
+.pokemon-detail-evolution-name {
+    margin: 8px 0 3px; /* Tạo khoảng cách */
+    color: #1e293b; /* Màu chữ */
+    font-size: 14px; /* Kích thước */
+    font-weight: 800; /* Chữ đậm */
+}
+/* ID Pokémon tiến hóa */
+.pokemon-detail-evolution-id {
+    margin: 0; /* Bỏ margin mặc định */
+    color: #94a3b8; /* Màu xám */
+    font-size: 12px; /* Kích thước */
+    font-weight: 700; /* Chữ đậm */
+}
+/* Mũi tên giữa các Pokémon */
+.pokemon-detail-evolution-arrow {
+    color: #94a3b8; /* Màu xám */
+    font-size: 24px; /* Kích thước icon */
+}
+
+/* MODAL CHI TIẾT ABILITY                  */
+/* Card bên trong Bootstrap Modal */
+.pokemon-ability-modal {
+    border: none; /* Bỏ viền mặc định */
+    border-radius: 20px; /* Bo góc modal */
+    overflow: hidden; /* Ẩn phần vượt ra ngoài */
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18); /* Tạo bóng */
+}
+/* Header của modal */
+.pokemon-ability-modal .modal-header {
+    padding: 18px 22px; /* Khoảng cách bên trong */
+    border-bottom: 1px solid #e8edf3; /* Đường kẻ */
+}
+/* Tiêu đề modal */
+.pokemon-ability-modal .modal-title {
+    color: #1e293b; /* Màu chữ */
+    font-size: 20px; /* Kích thước chữ */
+    font-weight: 800; /* Chữ đậm */
+}
+/* Body của modal */
+.pokemon-ability-modal .modal-body {
+    padding: 22px; /* Khoảng cách bên trong */
+    color: #64748b; /* Màu chữ */
+    line-height: 1.7; /* Khoảng cách dòng */
+}
+/* Một dòng thông tin trong modal */
+.pokemon-ability-modal-row {
+    margin-bottom: 16px; /* Khoảng cách dưới */
+    padding-bottom: 16px; /* Khoảng cách trước đường kẻ */
+    border-bottom: 1px solid #e8edf3; /* Đường kẻ */
+}
+/* Dòng cuối cùng không cần đường kẻ */
+.pokemon-ability-modal-row:last-child {
+    margin-bottom: 0; /* Bỏ khoảng cách dưới */
+    padding-bottom: 0; /* Bỏ padding dưới */
+    border-bottom: none; /* Bỏ đường kẻ */
+}
+/* Tiêu đề Tên/Mô tả */
+.pokemon-ability-modal-row strong {
+    display: block; /* Cho tiêu đề nằm riêng một dòng */
+    margin-bottom: 5px; /* Khoảng cách với nội dung */
+    color: #1e293b; /* Màu chữ */
+}
+
+/* LOGO NỀN TRANG                          */
+/* Logo Pokémon mờ ở phía sau */
+.bg-pokeball {
+    position: fixed; /* Cố định theo màn hình */
+    right: -100px; /* Đẩy sang phải */
+    bottom: 40px; /* Cách đáy 40px */
+    width: 300px; /* Chiều rộng logo */
+    opacity: 0.035; /* Làm logo rất mờ */
+    pointer-events: none; /* Không cho logo cản thao tác chuột */
+    z-index: -1; /* Đưa ra phía sau */
+}
+
+/* RESPONSIVE - MÀN HÌNH <= 1100PX         */
+@media (max-width: 1100px) {
+    /* Thu nhỏ khoảng dành cho nút trước/sau */
+    .pokemon-detail-wrapper {
+        grid-template-columns: 70px minmax(0, 1fr) 70px; /* Hai bên còn 70px */
+        gap: 12px; /* Giảm khoảng cách */
+    }
+    /* Chuyển card chính thành bố cục 2 cột */
+    .pokemon-detail-top {
+        grid-template-columns: 220px minmax(180px, 1fr); /* Ảnh + thông tin */
+        gap: 25px; /* Khoảng cách */
+    }
+    /* Summary chiếm toàn bộ chiều rộng */
+    .pokemon-detail-summary {
+        grid-column: 1 / -1; /* Bắt đầu từ cột 1 đến hết */
+    }
+    /* Giảm chiều cao khung ảnh */
+    .pokemon-detail-image-box {
+        height: 230px; /* Chiều cao mới */
+    }
+}
+
+/* RESPONSIVE - MÀN HÌNH <= 850PX          */
+@media (max-width: 850px) {
+    /* Chuyển wrapper thành một cột */
+    .pokemon-detail-wrapper {
+        grid-template-columns: 1fr; /* Chỉ còn một cột */
+        gap: 15px; /* Khoảng cách */
+    }
+    /* Nút trước/sau chuyển thành hàng ngang */
+    .pokemon-detail-nav {
+        flex-direction: row; /* Xếp ngang */
+    }
+    /* Đưa phần Pokémon trước xuống dưới */
+    .pokemon-detail-nav:first-child {
+        order: 2; /* Thứ tự hiển thị */
+    }
+    /* Đưa card chính lên đầu */
+    .pokemon-detail-main-card {
+        order: 1; /* Thứ tự hiển thị */
+    }
+    /* Đưa Pokémon sau xuống cuối */
+    .pokemon-detail-wrapper > .pokemon-detail-nav:last-child {
+        order: 3; /* Thứ tự hiển thị */
+    }
+    /* Thu nhỏ nút chuyển */
+    .pokemon-detail-nav-button {
+        width: 44px; /* Chiều rộng */
+        height: 44px; /* Chiều cao */
+    }
+    /* Hai card nội dung chuyển thành một cột */
+    .pokemon-detail-content {
+        grid-template-columns: 1fr; /* Một cột */
+    }
+    /* Phần trên card chính vẫn giữ 2 cột */
+    .pokemon-detail-top {
+        grid-template-columns: 220px minmax(0, 1fr); /* Ảnh + thông tin */
+    }
+}
+
+/* RESPONSIVE - MOBILE <= 576PX            */
+@media (max-width: 576px) {
+    /* Giảm khoảng cách phần main */
+    .pokemon-detail-main {
+        padding: 30px 0 45px; /* Giảm padding */
+    }
+    /* Nút quay lại nhỏ hơn */
+    .pokemon-detail-back {
+        margin-bottom: 20px; /* Giảm khoảng cách */
+        font-size: 14px; /* Giảm kích thước chữ */
+    }
+    /* Card chính nhỏ hơn */
+    .pokemon-detail-main-card {
+        padding: 20px; /* Giảm padding */
+        border-radius: 20px; /* Giảm độ bo góc */
+    }
+    /* Phần trên chuyển thành một cột */
+    .pokemon-detail-top {
+        grid-template-columns: 1fr; /* Một cột */
+        gap: 20px; /* Khoảng cách */
+    }
+    /* Khung ảnh */
+    .pokemon-detail-image-box {
+        height: 240px; /* Chiều cao phù hợp mobile */
+    }
+    /* Tên Pokémon */
+    .pokemon-detail-name {
+        font-size: 34px; /* Giảm kích thước */
+    }
+    /* Giảm khoảng cách summary */
+    .pokemon-detail-summary {
+        gap: 15px; /* Khoảng cách */
+    }
+    /* Grid thông tin thành một cột */
+    .pokemon-detail-info-grid {
+        grid-template-columns: 1fr; /* Một cột */
+    }
+    /* Hai nút hành động thành hàng dọc */
+    .pokemon-detail-actions {
+        flex-direction: column; /* Xếp dọc */
+    }
+    /* Hai nút chiếm toàn bộ chiều rộng */
+    .pokemon-detail-btn {
+        width: 100%; /* Chiếm 100% */
+    }
+    /* Card nội dung nhỏ hơn */
+    .pokemon-detail-column {
+        padding: 20px; /* Giảm padding */
+        border-radius: 18px; /* Giảm bo góc */
+    }
+    /* Tiêu đề section nhỏ hơn */
+    .pokemon-detail-section-title {
+        font-size: 19px; /* Giảm kích thước */
+    }
+    /* Dòng chỉ số nhỏ hơn */
+    .pokemon-detail-stat {
+        grid-template-columns: 95px minmax(0, 1fr) 35px; /* Thu nhỏ 3 cột */
+        gap: 8px; /* Giảm khoảng cách */
+    }
+    /* Tên chỉ số nhỏ hơn */
+    .pokemon-detail-stat-name {
+        font-size: 11px; /* Giảm kích thước chữ */
+    }
+    /* Số chỉ số nhỏ hơn */
+    .pokemon-detail-stat-value {
+        font-size: 12px; /* Giảm kích thước */
+    }
+    /* Card tiến hóa nhỏ hơn */
+    .pokemon-detail-evolution-box {
+        padding: 20px; /* Giảm padding */
+        border-radius: 18px; /* Giảm bo góc */
+    }
+    /* Tiến hóa chuyển thành hàng dọc */
+    .pokemon-detail-evolution-list {
+        flex-direction: column; /* Xếp dọc */
+    }
+    /* Xoay mũi tên sang hướng xuống */
+    .pokemon-detail-evolution-arrow {
+        transform: rotate(90deg); /* Xoay 90 độ */
+    }
+    /* Card tiến hóa nhỏ hơn */
+    .pokemon-detail-evolution-card {
+        width: 140px; /* Chiều rộng mới */
+    }
+    /* Ảnh form nhỏ hơn */
+    .pokemon-detail-form-image {
+        width: 50px; /* Chiều rộng */
+        height: 50px; /* Chiều cao */
+    }
+    /* Logo nền nhỏ hơn */
+    .bg-pokeball {
+        width: 200px; /* Giảm kích thước */
+        right: -80px; /* Đẩy sang phải */
+    }
+}
+
+/* RESPONSIVE - MOBILE RẤT NHỎ <= 380PX   */
+@media (max-width: 380px) {
+    /* Giảm padding card chính */
+    .pokemon-detail-main-card {
+        padding: 15px; /* Padding nhỏ hơn */
+    }
+    /* Giảm chiều cao ảnh */
+    .pokemon-detail-image-box {
+        height: 210px; /* Chiều cao mới */
+    }
+    /* Tên Pokémon nhỏ hơn */
+    .pokemon-detail-name {
+        font-size: 30px; /* Kích thước chữ */
+    }
+    /* Dòng stat nhỏ hơn */
+    .pokemon-detail-stat {
+        grid-template-columns: 80px minmax(0, 1fr) 30px; /* Thu nhỏ các cột */
+    }
+    /* Tên stat nhỏ hơn nữa */
+    .pokemon-detail-stat-name {
+        font-size: 10px; /* Kích thước chữ */
+    }
+}

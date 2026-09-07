@@ -1,0 +1,127 @@
+---------- Pokemon Hub ----------
+<--- FORM CHUNG ---> 
+1. Navbar (Header):
+  * Bên trái: 
+    - 1 hình logo (bóng bắt pokemon ở giữa có tên web) 
+    - Bấm vào hiện logo
+  * Bên phải: 
+    a. 1 hình bánh răng (cài đặt):
+      - Bấm vào có animation xoay tròn / hiện các tùy chọn:
+        + Hồ sơ
+        + Liên hệ
+        + Góp ý
+  * Bên giữa: 
+    b. Các tùy chọn còn lại:
+      - Trang chủ
+      - Giới thiệu web
+      - Danh sách
+      - Bộ sưu tập: Bấm vào hiện tùy chọn
+        + Tất cả
+        + Yêu thích
+        + Lọc hệ
+2. Footer (Như cũ):
+3. Main (Phần giữa):
+  - Có 1 hình ảnh là quả bóng bắt pokemon
+  - Hiện mờ mờ như background
+
+--- FORM CHI TIẾT ---
+1. Trang chủ:
+  - Main có nút bấm sang trang giới thiệu chủ web
+  - Có 1 thanh tìm kiếm ở giữa bên dưới navbar
+2. Giới thiệu web (như cũ):
+3. Danh sách:
+  - Có 1 thanh tìm kiếm ở giữa bên dưới navbar
+  * API Pokemon lấy trên mạng:
+    a. Theo hình card:
+      - 4 card 1 hàng ngang
+    b. Có nút "Chi tiết" / "Bắt Pokemon":
+      - Nút "Chi tiết":
+        + Bấm vào sẽ xuất hiện card ở cuối trang
+        + Gồm hình ảnh, tên, chỉ số cơ thể, thuộc tính, kỹ năng
+        + Có nút "Bắt Pokemon"
+      - Nút "Bắt Pokemon":
+        + Bấm vào hiện thông báo
+        + Xuất hiện card trong trang "Bộ sưu tập"
+4. Bộ sưu tập:
+  * a. Có 1 thanh tìm kiếm bên giữa ở dưới navbar
+    b. Có sẵn tất cả Pokemon đã bắt 
+    c. Có nút "Tất cả" / "Yêu thích" / "Lọc hệ":
+      - Nút "Tất cả":
+        + Bấm vào chuyển sang trang "Tất cả"
+      - Nút "Yêu thích":
+        + Bấm vào chuyển sang trang "Yêu thích"
+      # - Nút "Lọc hệ":
+      #   + Bấm vào chuyển sang trang "Lọc hệ"
+  * Làm card như trang "Danh sách":
+    - 4 card 1 hàng ngang
+    d. Card có nút "Chi tiết" / "Tiến hóa":
+      - Nút "Chi tiết":
+        + Bấm vào sẽ xuất hiện card ở cuối trang
+        + Gồm hình ảnh, tên, chỉ số cơ thể, thuộc tính, kỹ năng
+        + Có nút "Yêu thích"
+      - Nút "Tiến hóa":
+        + Bấm vào hiện thông báo
+        + Thày đổi thông tin card thành cấp bậc khác
+      - Nút "Yêu thích":
+        + Bấm vào hiện thông báo
+        + Xuất hiện card trong trang "Yêu thích"
+5. Tất cả:
+  - Tất cả các card đã bắt
+6. Yêu thích:
+  - Card "yêu thích" đã thêm
+# 7. Lọc hệ:
+#   - Có các nút thuộc tính như "Lôi, Phong, Thủy, ...":
+#     + Xuất hiện pokemon hệ tương ứng
+8. Hồ sơ:
+  - Có thông tin như: 
+    + Tên / Avatar
+    + Username / Email 
+    + Thời gian tham gia / Thời gian truy cập gần nhất
+    + Tổng số Pokemon / Số Pokemon yêu thích
+    + Nút đăng xuất
+9. Liên hệ: (Như cũ)
+10. Góp ý: (Như cũ)
+
+
+> Web Pokemon Hub 
+✔ Đăng ký   ✔ Đăng nhập   ✔ Đăng xuất
+✔ Xem toàn bộ Pokémon (API)   ✔ Xem chi tiết Pokémon
+✔ Xem tiến hóa   ✔ Bắt Pokémon
+✔ Bộ sưu tập 
+  ✔ Tất cả
+  ✔ Yêu thích
+  # ✔ Lọc theo hệ
+✔ Hồ sơ cá nhân   ✔ Liên hệ   ✔ Góp ý
+
+
+> Các trang trong Web
+login.html        (đăng nhập)
+register.html     (đăng ký)
+home.html         (trang chủ)
+poke-shop.html    (bán đồ liên quan đến Pokemon)
+poke-list.html    (danh sách Pokemon)
+collect.html      (bộ sưu tập) >>> Hiện "Tất cả" Pokemon 
+favorite.html     (yêu thích)
+# type.html         (lọc hệ)
+profile.html      (hồ sơ)
+contact.html      (liên hệ)
+feedback.html     (góp ý)
+intro-web.html    (giới thiệu web)
+intro-own.html    (giới thiệu chủ web)
+
+<--- Navbar --->
+[LOGO]  Trang chủ  Giới thiệu web  Pokelist  Pokeshop ▼  Bộ sưu tập ▼  ⚙️ ▼ 
+
+Pokeshop (Cửa hàng bán đồ liên quan đến Pokemon) ▼
+├─ Shop (Cửa hàng)
+└─ Storage (Kho đồ đã mua)
+
+Bộ sưu tập ▼     
+├─ Tất cả
+├─ Yêu thích
+# └─ Theo hệ   
+
+⚙️ (Cài đặt) ▼ 
+├─ Hồ sơ
+├─ Liên hệ
+└─ Góp ý

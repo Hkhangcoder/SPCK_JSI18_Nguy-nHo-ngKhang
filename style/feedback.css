@@ -1,0 +1,810 @@
+/* ========================================= */
+/* FEEDBACK.CSS - TRANG GÓP Ý POKÉMON HUB */
+/* ========================================= */
+
+
+/* ========================================= */
+/* KHUNG CHÍNH CỦA TRANG */
+/* ========================================= */
+
+/* Khu vực chính của trang góp ý */
+.feedback-page {
+    /* Tạo khoảng cách phía trên */
+    padding-top: 35px;
+
+    /* Tạo khoảng cách phía dưới */
+    padding-bottom: 70px;
+}
+
+
+/* ========================================= */
+/* PHẦN TIÊU ĐỀ */
+/* ========================================= */
+
+/* Khung chứa tiêu đề */
+.feedback-heading {
+    /* Căn giữa nội dung */
+    text-align: center;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 35px;
+}
+
+/* Tiêu đề chính */
+.feedback-heading h1 {
+    /* Thiết lập kích thước chữ */
+    font-size: clamp(32px, 5vw, 46px);
+
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Đặt màu chữ */
+    color: #1f2937;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 10px;
+}
+
+/* Icon trong tiêu đề */
+.feedback-heading h1 i {
+    /* Đặt màu xanh Pokémon */
+    color: #2a75bb;
+
+    /* Tạo khoảng cách bên phải */
+    margin-right: 8px;
+
+    /* Đảm bảo icon hiển thị đúng */
+    display: inline-block;
+}
+
+/* Đoạn mô tả dưới tiêu đề */
+.feedback-heading p {
+    /* Đặt màu chữ */
+    color: #64748b;
+
+    /* Thiết lập kích thước chữ */
+    font-size: 16px;
+
+    /* Xóa margin mặc định */
+    margin: 0;
+}
+
+
+/* ========================================= */
+/* KHUNG NỘI DUNG CHÍNH */
+/* ========================================= */
+
+/* Khung chứa phần giới thiệu và form */
+.feedback-wrapper {
+    /* Sử dụng CSS Grid */
+    display: grid;
+
+    /* Chia thành hai cột */
+    grid-template-columns: 1fr 1.5fr;
+
+    /* Tạo khoảng cách giữa hai phần */
+    gap: 30px;
+
+    /* Căn các phần tử ở phía trên */
+    align-items: start;
+}
+
+
+/* ========================================= */
+/* PHẦN GIỚI THIỆU */
+/* ========================================= */
+
+/* Card giới thiệu bên trái */
+.feedback-info {
+    /* Đặt nền trắng */
+    background: #ffffff;
+
+    /* Thêm đường viền */
+    border: 1px solid #dbe5ef;
+
+    /* Bo tròn góc */
+    border-radius: 20px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 28px;
+
+    /* Tạo bóng */
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* Phần đầu của card giới thiệu */
+.feedback-info-header {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn icon và nội dung */
+    align-items: center;
+
+    /* Tạo khoảng cách */
+    gap: 15px;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 25px;
+}
+
+
+/* ========================================= */
+/* ICON PHẦN GIỚI THIỆU */
+/* ========================================= */
+
+/* Khung chứa icon chính */
+.feedback-icon {
+    /* Đặt chiều rộng */
+    width: 52px;
+
+    /* Đặt chiều cao */
+    height: 52px;
+
+    /* Ngăn icon bị co */
+    flex-shrink: 0;
+
+    /* Căn giữa icon */
+    display: flex;
+
+    /* Căn giữa theo chiều ngang */
+    justify-content: center;
+
+    /* Căn giữa theo chiều dọc */
+    align-items: center;
+
+    /* Đặt nền xanh nhạt */
+    background: #eaf4ff;
+
+    /* Bo tròn */
+    border-radius: 14px;
+}
+
+/* Icon chính */
+.feedback-icon i {
+    /* Thiết lập kích thước icon */
+    font-size: 25px;
+
+    /* Đặt màu xanh */
+    color: #2a75bb;
+
+    /* Đặt chiều cao dòng */
+    line-height: 1;
+}
+
+
+/* ========================================= */
+/* TIÊU ĐỀ GIỚI THIỆU */
+/* ========================================= */
+
+/* Tiêu đề phần giới thiệu */
+.feedback-info-header h2 {
+    /* Đặt kích thước chữ */
+    font-size: 20px;
+
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Đặt màu */
+    color: #1f2937;
+
+    /* Xóa margin mặc định */
+    margin: 0 0 5px;
+}
+
+/* Mô tả phần giới thiệu */
+.feedback-info-header p {
+    /* Đặt màu */
+    color: #64748b;
+
+    /* Đặt kích thước chữ */
+    font-size: 14px;
+
+    /* Xóa margin */
+    margin: 0;
+}
+
+
+/* ========================================= */
+/* DANH SÁCH THÔNG TIN */
+/* ========================================= */
+
+/* Khung danh sách */
+.feedback-info-list {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Xếp các phần tử theo chiều dọc */
+    flex-direction: column;
+
+    /* Tạo khoảng cách */
+    gap: 15px;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 25px;
+}
+
+/* Mỗi mục thông tin */
+.feedback-info-item {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn giữa theo chiều dọc */
+    align-items: center;
+
+    /* Tạo khoảng cách */
+    gap: 12px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 14px;
+
+    /* Đặt nền */
+    background: #f8fafc;
+
+    /* Thêm đường viền */
+    border: 1px solid #e2e8f0;
+
+    /* Bo tròn góc */
+    border-radius: 14px;
+}
+
+
+/* ========================================= */
+/* ICON CỦA TỪNG MỤC */
+/* ========================================= */
+
+/* Khung chứa icon */
+.info-item-icon {
+    /* Đặt chiều rộng */
+    width: 42px;
+
+    /* Đặt chiều cao */
+    height: 42px;
+
+    /* Ngăn icon bị co */
+    flex-shrink: 0;
+
+    /* Căn giữa icon */
+    display: flex;
+
+    /* Căn giữa ngang */
+    justify-content: center;
+
+    /* Căn giữa dọc */
+    align-items: center;
+
+    /* Đặt nền */
+    background: #eaf4ff;
+
+    /* Bo tròn */
+    border-radius: 12px;
+}
+
+/* Icon bên trong */
+.info-item-icon i {
+    /* Đặt kích thước icon */
+    font-size: 19px;
+
+    /* Đặt màu */
+    color: #2a75bb;
+
+    /* Đặt chiều cao dòng */
+    line-height: 1;
+}
+
+/* Nhãn thông tin */
+.feedback-info-item span {
+    /* Hiển thị trên một dòng */
+    display: block;
+
+    /* Đặt kích thước chữ */
+    font-size: 13px;
+
+    /* Đặt màu */
+    color: #64748b;
+
+    /* Tạo khoảng cách */
+    margin-bottom: 3px;
+}
+
+/* Nội dung chính */
+.feedback-info-item strong {
+    /* Hiển thị dạng block */
+    display: block;
+
+    /* Đặt màu */
+    color: #334155;
+
+    /* Đặt kích thước chữ */
+    font-size: 14px;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+}
+
+
+/* ========================================= */
+/* PHẦN GỢI Ý */
+/* ========================================= */
+
+/* Khung tip */
+.feedback-tip {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn các phần tử */
+    align-items: flex-start;
+
+    /* Tạo khoảng cách */
+    gap: 10px;
+
+    /* Đặt nền vàng nhạt */
+    background: #fff8db;
+
+    /* Thêm đường viền */
+    border: 1px solid #f5e6a8;
+
+    /* Bo tròn góc */
+    border-radius: 14px;
+
+    /* Tạo padding */
+    padding: 15px;
+}
+
+/* Icon tip */
+.feedback-tip i {
+    /* Đặt màu vàng */
+    color: #d69e00;
+
+    /* Đặt kích thước */
+    font-size: 19px;
+
+    /* Ngăn icon bị co */
+    flex-shrink: 0;
+}
+
+/* Nội dung tip */
+.feedback-tip p {
+    /* Xóa margin */
+    margin: 0;
+
+    /* Đặt màu */
+    color: #665c32;
+
+    /* Đặt kích thước chữ */
+    font-size: 14px;
+
+    /* Đặt chiều cao dòng */
+    line-height: 1.6;
+}
+
+
+/* ========================================= */
+/* CARD FORM */
+/* ========================================= */
+
+/* Card chứa form */
+.feedback-form-card {
+    /* Đặt nền trắng */
+    background: #ffffff;
+
+    /* Thêm đường viền */
+    border: 1px solid #dbe5ef;
+
+    /* Bo tròn góc */
+    border-radius: 20px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 30px;
+
+    /* Tạo bóng */
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* Tiêu đề form */
+.feedback-form-card h2 {
+    /* Đặt màu */
+    color: #1f2937;
+
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Đặt kích thước */
+    font-size: 25px;
+
+    /* Xóa margin trên */
+    margin-top: 0;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 8px;
+}
+
+/* Mô tả form */
+.feedback-form-description {
+    /* Đặt màu */
+    color: #64748b;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 28px;
+}
+
+
+/* ========================================= */
+/* NHÓM CÁC Ô FORM */
+/* ========================================= */
+
+/* Mỗi nhóm nhập dữ liệu */
+.form-group {
+    /* Tạo khoảng cách giữa các phần */
+    margin-bottom: 24px;
+}
+
+/* Label trong form */
+.form-group label {
+    /* Hiển thị block */
+    display: block;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Đặt màu */
+    color: #334155;
+
+    /* Tạo khoảng cách với input */
+    margin-bottom: 9px;
+
+    /* Đặt kích thước chữ */
+    font-size: 15px;
+}
+
+/* Icon trong label */
+.form-group label i {
+    /* Đặt màu xanh */
+    color: #2a75bb;
+
+    /* Tạo khoảng cách */
+    margin-right: 5px;
+}
+
+
+/* ========================================= */
+/* INPUT VÀ TEXTAREA */
+/* ========================================= */
+
+/* Các ô nhập liệu */
+.form-group .form-control {
+    /* Chiếm toàn bộ chiều rộng */
+    width: 100%;
+
+    /* Tạo padding */
+    padding: 12px 14px;
+
+    /* Thêm đường viền */
+    border: 1px solid #dbe5ef;
+
+    /* Bo tròn góc */
+    border-radius: 12px;
+
+    /* Đặt kích thước chữ */
+    font-size: 15px;
+
+    /* Đặt màu chữ */
+    color: #334155;
+
+    /* Đặt nền */
+    background: #f8fafc;
+
+    /* Tạo hiệu ứng */
+    transition: all 0.2s ease;
+}
+
+/* Khi người dùng nhập vào ô */
+.form-group .form-control:focus {
+    /* Đổi màu viền */
+    border-color: #2a75bb;
+
+    /* Tạo bóng */
+    box-shadow: 0 0 0 3px rgba(42, 117, 187, 0.12);
+
+    /* Đổi nền */
+    background: #ffffff;
+
+    /* Xóa outline mặc định */
+    outline: none;
+}
+
+/* Ô textarea */
+#feedbackContent {
+    /* Đặt chiều cao tối thiểu */
+    min-height: 150px;
+
+    /* Chỉ cho phép thay đổi chiều cao */
+    resize: vertical;
+}
+
+
+/* ========================================= */
+/* ĐÁNH GIÁ SAO */
+/* ========================================= */
+
+/* Khung chứa các ngôi sao */
+.rating-box {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn các sao */
+    align-items: center;
+
+    /* Tạo khoảng cách */
+    gap: 8px;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 8px;
+}
+
+/* Nút sao */
+.star-btn {
+    /* Loại bỏ nền */
+    background: transparent;
+
+    /* Loại bỏ viền */
+    border: none;
+
+    /* Đặt padding */
+    padding: 3px;
+
+    /* Hiển thị con trỏ */
+    cursor: pointer;
+
+    /* Tạo hiệu ứng */
+    transition: transform 0.2s ease;
+}
+
+/* Icon sao */
+.star-btn i {
+    /* Đặt kích thước */
+    font-size: 28px;
+
+    /* Đặt màu xám */
+    color: #cbd5e1;
+
+    /* Tạo hiệu ứng */
+    transition: color 0.2s ease;
+}
+
+/* Khi rê chuột vào nút sao */
+.star-btn:hover {
+    /* Phóng to nhẹ */
+    transform: scale(1.15);
+}
+
+/* Sao được chọn */
+.star-btn.active i {
+    /* Đổi thành màu vàng */
+    color: #fbbf24;
+}
+
+/* Nội dung đánh giá */
+.rating-text {
+    /* Đặt màu */
+    color: #64748b;
+
+    /* Đặt kích thước */
+    font-size: 14px;
+
+    /* Xóa margin */
+    margin: 0;
+}
+
+
+/* ========================================= */
+/* NÚT GỬI */
+/* ========================================= */
+
+/* Nút gửi góp ý */
+.feedback-submit-btn {
+    /* Chiếm toàn bộ chiều rộng */
+    width: 100%;
+
+    /* Loại bỏ viền */
+    border: none;
+
+    /* Đặt nền xanh */
+    background: #2a75bb;
+
+    /* Đặt màu chữ */
+    color: #ffffff;
+
+    /* Tạo padding */
+    padding: 14px 20px;
+
+    /* Bo tròn góc */
+    border-radius: 12px;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Đặt kích thước chữ */
+    font-size: 16px;
+
+    /* Hiển thị con trỏ */
+    cursor: pointer;
+
+    /* Tạo hiệu ứng */
+    transition: all 0.25s ease;
+}
+
+/* Icon trong nút */
+.feedback-submit-btn i {
+    /* Tạo khoảng cách */
+    margin-right: 7px;
+}
+
+/* Khi rê chuột */
+.feedback-submit-btn:hover {
+    /* Đổi màu */
+    background: #1f5f99;
+
+    /* Nâng nút */
+    transform: translateY(-2px);
+
+    /* Tạo bóng */
+    box-shadow: 0 8px 20px rgba(42, 117, 187, 0.25);
+}
+
+/* Khi nhấn nút */
+.feedback-submit-btn:active {
+    /* Đưa nút về vị trí cũ */
+    transform: translateY(0);
+}
+
+
+/* ========================================= */
+/* MODAL THÀNH CÔNG */
+/* ========================================= */
+
+/* Khung modal */
+.feedback-modal {
+    /* Loại bỏ viền */
+    border: none;
+
+    /* Bo tròn */
+    border-radius: 20px;
+
+    /* Ẩn phần tràn */
+    overflow: hidden;
+}
+
+/* Icon thành công */
+.feedback-success-icon {
+    /* Đặt chiều rộng */
+    width: 65px;
+
+    /* Đặt chiều cao */
+    height: 65px;
+
+    /* Căn giữa */
+    display: flex;
+
+    /* Căn ngang */
+    justify-content: center;
+
+    /* Căn dọc */
+    align-items: center;
+
+    /* Căn giữa khối */
+    margin: 0 auto 18px;
+
+    /* Đặt nền xanh */
+    background: #dcfce7;
+
+    /* Bo tròn hoàn toàn */
+    border-radius: 50%;
+}
+
+/* Icon dấu tích */
+.feedback-success-icon i {
+    /* Đặt kích thước */
+    font-size: 32px;
+
+    /* Đặt màu xanh lá */
+    color: #16a34a;
+}
+
+/* Tiêu đề modal */
+.feedback-modal h3 {
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Đặt màu */
+    color: #1f2937;
+}
+
+/* Nội dung modal */
+.feedback-modal p {
+    /* Đặt màu */
+    color: #64748b;
+
+    /* Đặt chiều cao dòng */
+    line-height: 1.6;
+}
+
+/* Nút đóng modal */
+.feedback-modal-btn {
+    /* Loại bỏ viền */
+    border: none;
+
+    /* Đặt nền xanh */
+    background: #2a75bb;
+
+    /* Đặt màu chữ */
+    color: white;
+
+    /* Tạo padding */
+    padding: 10px 30px;
+
+    /* Bo tròn góc */
+    border-radius: 10px;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Hiển thị con trỏ */
+    cursor: pointer;
+
+    /* Tạo hiệu ứng */
+    transition: 0.2s ease;
+}
+
+/* Khi rê chuột vào nút */
+.feedback-modal-btn:hover {
+    /* Đổi màu nền */
+    background: #1f5f99;
+}
+
+
+/* ========================================= */
+/* RESPONSIVE - TABLET */
+/* ========================================= */
+
+@media (max-width: 992px) {
+
+    /* Chuyển hai cột thành một cột */
+    .feedback-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ========================================= */
+/* RESPONSIVE - MOBILE */
+/* ========================================= */
+
+@media (max-width: 576px) {
+
+    /* Giảm khoảng cách trang */
+    .feedback-page {
+        padding-top: 25px;
+        padding-bottom: 50px;
+    }
+
+    /* Giảm kích thước tiêu đề */
+    .feedback-heading h1 {
+        font-size: 30px;
+    }
+
+    /* Giảm padding card */
+    .feedback-info,
+    .feedback-form-card {
+        padding: 20px;
+    }
+
+    /* Giảm kích thước icon sao */
+    .star-btn i {
+        font-size: 24px;
+    }
+
+    /* Giảm khoảng cách giữa sao */
+    .rating-box {
+        gap: 5px;
+    }
+}

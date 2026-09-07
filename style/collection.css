@@ -1,0 +1,1204 @@
+/* ========================================= */
+/* COLLECTION.CSS */
+/* TRANG BỘ SƯU TẬP POKÉMON */
+/* ========================================= */
+
+
+/* ========================================= */
+/* KHUNG CHÍNH */
+/* ========================================= */
+
+/* Phần nội dung chính của Collection */
+.collection-page {
+    /* Tạo khoảng cách trên và dưới */
+    padding: 40px 0 60px;
+}
+
+
+/* ========================================= */
+/* TIÊU ĐỀ */
+/* ========================================= */
+
+/* Khung tiêu đề */
+.collection-heading {
+    /* Căn giữa nội dung */
+    text-align: center;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 30px;
+}
+
+
+/* Tiêu đề chính */
+.collection-heading h1 {
+    /* Kích thước chữ */
+    font-size: clamp(30px, 5vw, 46px);
+
+    /* Chữ đậm */
+    font-weight: 800;
+
+    /* Màu chữ */
+    color: #1f2937;
+
+    /* Khoảng cách dưới */
+    margin-bottom: 10px;
+}
+
+
+/* Icon trong tiêu đề */
+.collection-heading h1 i {
+    /* Màu xanh Pokémon */
+    color: #2a75bb;
+}
+
+
+/* Mô tả */
+.collection-heading p {
+    /* Màu chữ */
+    color: #64748b;
+
+    /* Kích thước chữ */
+    font-size: 16px;
+
+    /* Khoảng cách dòng */
+    line-height: 1.6;
+
+    /* Xóa margin mặc định */
+    margin: 0;
+}
+
+
+/* ========================================= */
+/* SỐ LƯỢNG POKÉMON */
+/* ========================================= */
+
+/* Khung số lượng */
+.collection-count-box {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn giữa dọc */
+    align-items: center;
+
+    /* Căn giữa ngang */
+    justify-content: center;
+
+    /* Khoảng cách giữa các phần tử */
+    gap: 10px;
+
+    /* Nền trắng */
+    background: #ffffff;
+
+    /* Viền */
+    border: 1px solid #e2e8f0;
+
+    /* Bo góc */
+    border-radius: 15px;
+
+    /* Khoảng cách bên trong */
+    padding: 15px;
+
+    /* Khoảng cách dưới */
+    margin-bottom: 20px;
+
+    /* Bóng nhẹ */
+    box-shadow:
+        0 6px 20px rgba(15, 23, 42, 0.06);
+
+    /* Màu chữ */
+    color: #64748b;
+
+    /* Chữ đậm */
+    font-weight: 600;
+}
+
+
+/* Icon và số lượng */
+.collection-count-box i,
+.collection-count-box strong {
+    /* Màu xanh */
+    color: #2a75bb;
+}
+
+
+/* ========================================= */
+/* TÌM KIẾM */
+/* ========================================= */
+
+/* Khung tìm kiếm */
+.collection-search-section {
+    /* Nền trắng */
+    background: #ffffff;
+
+    /* Viền */
+    border: 1px solid #e2e8f0;
+
+    /* Bo góc */
+    border-radius: 15px;
+
+    /* Khoảng cách bên trong */
+    padding: 18px;
+
+    /* Khoảng cách dưới */
+    margin-bottom: 20px;
+}
+
+
+/* Label tìm kiếm */
+.collection-search-section label {
+    /* Hiển thị riêng một dòng */
+    display: block;
+
+    /* Chữ đậm */
+    font-weight: 700;
+
+    /* Màu chữ */
+    color: #334155;
+
+    /* Khoảng cách dưới */
+    margin-bottom: 10px;
+}
+
+
+/* Icon trong label */
+.collection-search-section label i {
+    /* Màu xanh */
+    color: #2a75bb;
+
+    /* Khoảng cách bên phải */
+    margin-right: 6px;
+}
+
+
+/* Khung input */
+.collection-search-box {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn giữa dọc */
+    align-items: center;
+
+    /* Nền */
+    background: #f8fafc;
+
+    /* Viền */
+    border: 1px solid #dbe5ef;
+
+    /* Bo góc */
+    border-radius: 12px;
+
+    /* Khoảng cách ngang */
+    padding: 0 14px;
+
+    /* Chiều cao tối thiểu */
+    min-height: 50px;
+}
+
+
+/* Khi focus vào ô tìm kiếm */
+.collection-search-box:focus-within {
+    /* Đổi màu viền */
+    border-color: #2a75bb;
+
+    /* Tạo vòng sáng */
+    box-shadow:
+        0 0 0 3px rgba(42, 117, 187, 0.1);
+}
+
+
+/* Icon tìm kiếm */
+.collection-search-icon {
+    /* Màu xanh */
+    color: #2a75bb;
+
+    /* Khoảng cách phải */
+    margin-right: 10px;
+}
+
+
+/* Ô input */
+#collectionSearch {
+    /* Chiếm phần còn lại */
+    flex: 1;
+
+    /* Xóa viền */
+    border: none;
+
+    /* Xóa outline */
+    outline: none;
+
+    /* Nền trong suốt */
+    background: transparent;
+
+    /* Cỡ chữ */
+    font-size: 16px;
+
+    /* Cho phép co */
+    min-width: 0;
+}
+
+
+/* Nút xóa tìm kiếm */
+.clear-search-button {
+    /* Xóa viền */
+    border: none;
+
+    /* Nền trong suốt */
+    background: transparent;
+
+    /* Màu icon */
+    color: #94a3b8;
+
+    /* Hiển thị bàn tay */
+    cursor: pointer;
+}
+
+
+/* ========================================= */
+/* LỌC THEO HỆ */
+/* ========================================= */
+
+/* Khung filter */
+.collection-filter-section {
+    /* Nền trắng */
+    background: #ffffff;
+
+    /* Viền */
+    border: 1px solid #e2e8f0;
+
+    /* Bo góc */
+    border-radius: 15px;
+
+    /* Khoảng cách bên trong */
+    padding: 18px;
+
+    /* Khoảng cách dưới */
+    margin-bottom: 25px;
+}
+
+
+/* Tiêu đề filter */
+.collection-filter-title {
+    /* Chữ đậm */
+    font-weight: 700;
+
+    /* Màu */
+    color: #334155;
+
+    /* Khoảng cách dưới */
+    margin-bottom: 12px;
+}
+
+
+/* Icon filter */
+.collection-filter-title i {
+    /* Màu xanh */
+    color: #2a75bb;
+
+    /* Khoảng cách phải */
+    margin-right: 6px;
+}
+
+
+/* Danh sách filter */
+.collection-type-filters {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Cho phép xuống dòng */
+    flex-wrap: wrap;
+
+    /* Khoảng cách */
+    gap: 8px;
+}
+
+
+/* Nút hệ */
+.collection-type-filter {
+    /* Viền */
+    border: 1px solid #dbe5ef;
+
+    /* Nền trắng */
+    background: #ffffff;
+
+    /* Màu chữ */
+    color: #475569;
+
+    /* Khoảng cách */
+    padding: 8px 14px;
+
+    /* Bo tròn */
+    border-radius: 999px;
+
+    /* Chữ đậm */
+    font-weight: 700;
+
+    /* Con trỏ */
+    cursor: pointer;
+
+    /* Hiệu ứng */
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Hover nút hệ */
+.collection-type-filter:hover {
+    /* Đổi màu chữ */
+    color: #2a75bb;
+
+    /* Đổi viền */
+    border-color: #2a75bb;
+
+    /* Nhấc nhẹ */
+    transform: translateY(-2px);
+}
+
+
+/* Nút hệ đang chọn */
+.collection-type-filter.active {
+    /* Nền xanh */
+    background: #2a75bb;
+
+    /* Viền xanh */
+    border-color: #2a75bb;
+
+    /* Chữ trắng */
+    color: #ffffff;
+}
+
+
+/* ========================================= */
+/* THÔNG TIN DANH SÁCH */
+/* ========================================= */
+
+/* Header danh sách */
+.collection-list-header {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn giữa dọc */
+    align-items: center;
+
+    /* Đẩy hai bên */
+    justify-content: space-between;
+
+    /* Cho phép xuống dòng */
+    flex-wrap: wrap;
+
+    /* Khoảng cách dưới */
+    margin-bottom: 18px;
+}
+
+
+/* Tiêu đề danh sách */
+.collection-list-header h2 {
+    /* Xóa margin */
+    margin: 0 0 5px;
+
+    /* Kích thước */
+    font-size: 25px;
+
+    /* Chữ đậm */
+    font-weight: 800;
+
+    /* Màu */
+    color: #1f2937;
+}
+
+
+/* Mô tả danh sách */
+.collection-list-header p {
+    /* Xóa margin */
+    margin: 0;
+
+    /* Màu */
+    color: #64748b;
+
+    /* Cỡ chữ */
+    font-size: 14px;
+}
+
+
+/* Số lượng đang hiển thị */
+.collection-visible-count {
+    /* Nền trắng */
+    background: #ffffff;
+
+    /* Viền */
+    border: 1px solid #e2e8f0;
+
+    /* Bo tròn */
+    border-radius: 999px;
+
+    /* Khoảng cách */
+    padding: 7px 13px;
+
+    /* Màu chữ */
+    color: #64748b;
+
+    /* Chữ đậm */
+    font-weight: 600;
+}
+
+
+/* Con số */
+#collectionVisibleCount {
+    /* Màu xanh */
+    color: #2a75bb;
+
+    /* Chữ đậm */
+    font-weight: 800;
+}
+
+
+/* ========================================= */
+/* GRID POKÉMON */
+/* ========================================= */
+
+/* Danh sách card */
+#collectionList {
+    /* Sử dụng Grid */
+    display: grid;
+
+    /* Tự động chia cột */
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(210px, 1fr)
+        );
+
+    /* Khoảng cách card */
+    gap: 20px;
+
+    /* Khoảng cách với mép */
+    padding: 5px;
+}
+
+
+/* ========================================= */
+/* CARD POKÉMON */
+/* ========================================= */
+
+/* Card chính */
+.collection-pokemon-card {
+    /* Làm mốc cho ID */
+    position: relative;
+
+    /* Nền trắng */
+    background: #ffffff;
+
+    /* Viền */
+    border: 1px solid #e4ebf3;
+
+    /* Bo góc */
+    border-radius: 18px;
+
+    /* Ẩn phần tràn */
+    overflow: hidden;
+
+    /* Con trỏ */
+    cursor: pointer;
+
+    /* Bóng */
+    box-shadow:
+        0 8px 22px rgba(15, 23, 42, 0.07);
+
+    /* Hiệu ứng */
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+/* Hover card */
+.collection-pokemon-card:hover {
+    /* Đẩy card lên */
+    transform: translateY(-6px);
+
+    /* Đổi viền */
+    border-color: #f3b4b2;
+
+    /* Tăng bóng */
+    box-shadow:
+        0 18px 32px rgba(229, 57, 53, 0.14);
+}
+
+
+/* ========================================= */
+/* ID */
+/* ========================================= */
+
+/* ID Pokémon */
+.collection-card-id {
+    /* Đặt tuyệt đối */
+    position: absolute;
+
+    /* Khoảng cách trên */
+    top: 12px;
+
+    /* Khoảng cách trái */
+    left: 12px;
+
+    /* Đưa lên trên ảnh */
+    z-index: 2;
+
+    /* Nền trắng trong suốt */
+    background: rgba(255, 255, 255, 0.9);
+
+    /* Khoảng cách */
+    padding: 5px 9px;
+
+    /* Bo tròn */
+    border-radius: 999px;
+
+    /* Màu */
+    color: #64748b;
+
+    /* Cỡ chữ */
+    font-size: 12px;
+
+    /* Chữ đậm */
+    font-weight: 800;
+}
+
+
+/* ========================================= */
+/* ẢNH POKÉMON */
+/* ========================================= */
+
+/* Khung ảnh */
+.collection-card-image-box {
+    /* Chiều cao */
+    height: 185px;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn ngang */
+    justify-content: center;
+
+    /* Căn dọc */
+    align-items: center;
+
+    /* Làm mốc */
+    position: relative;
+
+    /* Ẩn phần tràn */
+    overflow: hidden;
+
+    /* Nền */
+    background:
+        linear-gradient(
+            135deg,
+            #f1f8ff 0%,
+            #e4f0fb 100%
+        );
+}
+
+
+/* Vòng tròn phía sau */
+.collection-card-image-box::before {
+    /* Tạo phần tử */
+    content: "";
+
+    /* Đặt tuyệt đối */
+    position: absolute;
+
+    /* Chiều rộng */
+    width: 145px;
+
+    /* Chiều cao */
+    height: 145px;
+
+    /* Hình tròn */
+    border-radius: 50%;
+
+    /* Nền trắng */
+    background: rgba(255, 255, 255, 0.6);
+
+    /* Nằm phía sau */
+    z-index: 0;
+}
+
+
+/* Ảnh Pokémon */
+.collection-card-image-box img {
+    /* Chiều rộng */
+    width: 145px;
+
+    /* Chiều cao */
+    height: 145px;
+
+    /* Giữ tỷ lệ */
+    object-fit: contain;
+
+    /* Làm mốc */
+    position: relative;
+
+    /* Nằm trên vòng tròn */
+    z-index: 1;
+
+    /* Hiệu ứng */
+    transition:
+        transform 0.3s ease;
+}
+
+
+/* Hover ảnh */
+.collection-pokemon-card:hover
+.collection-card-image-box img {
+    /* Phóng ảnh */
+    transform: scale(1.1);
+}
+
+
+/* ========================================= */
+/* TÊN POKÉMON */
+/* ========================================= */
+
+/* Tên Pokémon */
+.collection-pokemon-card h3 {
+    /* Xóa margin */
+    margin: 0;
+
+    /* Khoảng cách */
+    padding: 15px 17px 8px;
+
+    /* Màu */
+    color: #1f2937;
+
+    /* Cỡ chữ */
+    font-size: 21px;
+
+    /* Chữ đậm */
+    font-weight: 800;
+
+    /* Viết hoa */
+    text-transform: capitalize;
+
+    /* Không xuống dòng */
+    white-space: nowrap;
+
+    /* Ẩn chữ thừa */
+    overflow: hidden;
+
+    /* Hiện dấu ... */
+    text-overflow: ellipsis;
+}
+
+
+/* ========================================= */
+/* TYPE */
+/* ========================================= */
+
+/* Khung chứa hệ */
+.collection-card-types {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Cho phép xuống dòng */
+    flex-wrap: wrap;
+
+    /* Khoảng cách */
+    gap: 7px;
+
+    /* Khoảng cách */
+    padding: 0 17px 18px;
+}
+
+
+/* Badge hệ */
+.collection-card-type {
+    /* Hiển thị inline */
+    display: inline-block;
+
+    /* Khoảng cách */
+    padding: 6px 10px;
+
+    /* Bo tròn */
+    border-radius: 999px;
+
+    /* Nền mặc định */
+    background: #edf3f8;
+
+    /* Màu chữ */
+    color: #475569;
+
+    /* Cỡ chữ */
+    font-size: 12px;
+
+    /* Chữ đậm */
+    font-weight: 700;
+
+    /* Viết hoa */
+    text-transform: capitalize;
+
+    /* Không xuống dòng */
+    white-space: nowrap;
+}
+
+
+/* ========================================= */
+/* MÀU 18 HỆ */
+/* ========================================= */
+
+/* Normal */
+.type-normal {
+    background: #a8a77a;
+    color: white;
+}
+
+
+/* Fire */
+.type-fire {
+    background: #ee8130;
+    color: white;
+}
+
+
+/* Water */
+.type-water {
+    background: #6390f0;
+    color: white;
+}
+
+
+/* Electric */
+.type-electric {
+    background: #f7d02c;
+    color: #333;
+}
+
+
+/* Grass */
+.type-grass {
+    background: #7ac74c;
+    color: white;
+}
+
+
+/* Ice */
+.type-ice {
+    background: #96d9d6;
+    color: #333;
+}
+
+
+/* Fighting */
+.type-fighting {
+    background: #c22e28;
+    color: white;
+}
+
+
+/* Poison */
+.type-poison {
+    background: #a33ea1;
+    color: white;
+}
+
+
+/* Ground */
+.type-ground {
+    background: #e2bf65;
+    color: #333;
+}
+
+
+/* Flying */
+.type-flying {
+    background: #a98ff3;
+    color: white;
+}
+
+
+/* Psychic */
+.type-psychic {
+    background: #f95587;
+    color: white;
+}
+
+
+/* Bug */
+.type-bug {
+    background: #a6b91a;
+    color: white;
+}
+
+
+/* Rock */
+.type-rock {
+    background: #b6a136;
+    color: white;
+}
+
+
+/* Ghost */
+.type-ghost {
+    background: #735797;
+    color: white;
+}
+
+
+/* Dragon */
+.type-dragon {
+    background: #6f35fc;
+    color: white;
+}
+
+
+/* Dark */
+.type-dark {
+    background: #705746;
+    color: white;
+}
+
+
+/* Steel */
+.type-steel {
+    background: #b7b7ce;
+    color: #333;
+}
+
+
+/* Fairy */
+.type-fairy {
+    background: #d685ad;
+    color: white;
+}
+
+
+/* ========================================= */
+/* EMPTY STATE */
+/* ========================================= */
+
+/* Khung trạng thái trống */
+.collection-empty {
+    /* Chiếm toàn bộ grid */
+    grid-column: 1 / -1;
+
+    /* Căn giữa */
+    text-align: center;
+
+    /* Nền trắng */
+    background: #ffffff;
+
+    /* Viền nét đứt */
+    border: 1px dashed #cbd5e1;
+
+    /* Bo góc */
+    border-radius: 18px;
+
+    /* Khoảng cách */
+    padding: 40px 20px;
+
+    /* Màu */
+    color: #64748b;
+}
+
+
+/* Tiêu đề empty */
+.collection-empty h3 {
+    /* Màu */
+    color: #334155;
+
+    /* Khoảng cách */
+    margin-bottom: 8px;
+}
+
+
+/* Link Pokédex */
+.collection-empty a {
+    /* Hiển thị như nút */
+    display: inline-block;
+
+    /* Nền */
+    background: #2a75bb;
+
+    /* Chữ */
+    color: #ffffff;
+
+    /* Xóa gạch chân */
+    text-decoration: none;
+
+    /* Khoảng cách */
+    padding: 9px 16px;
+
+    /* Bo góc */
+    border-radius: 10px;
+
+    /* Chữ đậm */
+    font-weight: 700;
+}
+
+
+/* ========================================= */
+/* EMPTY STATE TRONG HTML */
+/* ========================================= */
+
+/* Khung empty state */
+.collection-empty-state {
+    /* Căn giữa */
+    text-align: center;
+
+    /* Khoảng cách */
+    padding: 40px 20px;
+
+    /* Nền */
+    background: #ffffff;
+
+    /* Bo góc */
+    border-radius: 18px;
+
+    /* Viền */
+    border: 1px dashed #cbd5e1;
+}
+
+
+/* Icon empty */
+.collection-empty-state > i {
+    /* Màu xanh */
+    color: #2a75bb;
+
+    /* Kích thước */
+    font-size: 40px;
+}
+
+
+/* ========================================= */
+/* PHÂN TRANG */
+/* ========================================= */
+
+/* Khung phân trang */
+.collection-pagination {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn giữa dọc */
+    align-items: center;
+
+    /* Căn giữa ngang */
+    justify-content: center;
+
+    /* Khoảng cách */
+    gap: 12px;
+
+    /* Khoảng cách phía trên */
+    margin-top: 30px;
+}
+
+
+/* Nút Previous và Next */
+#collectionPrevPage,
+#collectionNextPage {
+    /* Xóa viền */
+    border: none;
+
+    /* Nền xanh */
+    background: #2a75bb;
+
+    /* Chữ trắng */
+    color: #ffffff;
+
+    /* Khoảng cách */
+    padding: 10px 15px;
+
+    /* Bo góc */
+    border-radius: 10px;
+
+    /* Chữ đậm */
+    font-weight: 700;
+
+    /* Con trỏ */
+    cursor: pointer;
+}
+
+
+/* Nút bị disabled */
+#collectionPrevPage:disabled,
+#collectionNextPage:disabled {
+    /* Làm mờ */
+    opacity: 0.4;
+
+    /* Không cho click */
+    cursor: not-allowed;
+}
+
+
+/* Thông tin trang */
+#collectionPageInfo {
+    /* Nền */
+    background: #ffffff;
+
+    /* Viền */
+    border: 1px solid #e2e8f0;
+
+    /* Bo góc */
+    border-radius: 10px;
+
+    /* Khoảng cách */
+    padding: 10px 15px;
+
+    /* Chữ đậm */
+    font-weight: 700;
+
+    /* Màu */
+    color: #475569;
+}
+
+
+/* ========================================= */
+/* TABLET */
+/* ========================================= */
+
+@media (max-width: 768px) {
+
+    /* Giảm khoảng cách trang */
+    .collection-page {
+        padding: 30px 0 50px;
+    }
+
+    /* Giảm kích thước grid */
+    #collectionList {
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(180px, 1fr)
+            );
+
+        /* Giảm khoảng cách */
+        gap: 15px;
+    }
+
+    /* Giảm chiều cao ảnh */
+    .collection-card-image-box {
+        height: 160px;
+    }
+
+    /* Giảm kích thước Pokémon */
+    .collection-card-image-box img {
+        width: 125px;
+        height: 125px;
+    }
+
+    /* Giảm vòng tròn */
+    .collection-card-image-box::before {
+        width: 125px;
+        height: 125px;
+    }
+
+    /* Giảm tên */
+    .collection-pokemon-card h3 {
+        font-size: 19px;
+    }
+}
+
+
+/* ========================================= */
+/* MOBILE */
+/* ========================================= */
+
+@media (max-width: 480px) {
+
+    /* Giảm khoảng cách trang */
+    .collection-page {
+        padding: 25px 0 45px;
+    }
+
+    /* Grid 2 cột */
+    #collectionList {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        /* Khoảng cách */
+        gap: 12px;
+    }
+
+    /* Khung ảnh */
+    .collection-card-image-box {
+        height: 130px;
+    }
+
+    /* Ảnh Pokémon */
+    .collection-card-image-box img {
+        width: 105px;
+        height: 105px;
+    }
+
+    /* Vòng tròn */
+    .collection-card-image-box::before {
+        width: 105px;
+        height: 105px;
+    }
+
+    /* Tên Pokémon */
+    .collection-pokemon-card h3 {
+        font-size: 17px;
+        padding: 12px 13px 7px;
+    }
+
+    /* Khung hệ */
+    .collection-card-types {
+        padding: 0 13px 14px;
+        gap: 5px;
+    }
+
+    /* Badge hệ */
+    .collection-card-type {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
+
+    /* ID */
+    .collection-card-id {
+        top: 8px;
+        left: 8px;
+        font-size: 11px;
+    }
+
+    /* Header danh sách */
+    .collection-list-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    /* Nút hệ */
+    .collection-type-filter {
+        padding: 8px 13px;
+        font-size: 13px;
+    }
+}
+
+
+/* ========================================= */
+/* MÀN HÌNH RẤT NHỎ */
+/* ========================================= */
+
+@media (max-width: 360px) {
+
+    /* Chuyển thành 1 cột */
+    #collectionList {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tăng chiều cao ảnh */
+    .collection-card-image-box {
+        height: 180px;
+    }
+
+    /* Tăng kích thước Pokémon */
+    .collection-card-image-box img {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Tăng vòng tròn */
+    .collection-card-image-box::before {
+        width: 140px;
+        height: 140px;
+    }
+}
