@@ -3,11 +3,7 @@
 // Xử lý chức năng trang góp ý.
 // ======================================================
 
-
-// ======================================================
 // LẤY CÁC PHẦN TỬ HTML
-// ======================================================
-
 // Lấy form góp ý.
 const feedbackForm = document.querySelector("#feedbackForm");
 // Lấy tất cả nút đánh giá sao.

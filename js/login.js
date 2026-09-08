@@ -102,7 +102,7 @@ loginForm.addEventListener("submit", async function(event) {
         alert("Đăng nhập thành công!");
 
         // Chuyển Home
-        window.location.href = "./home.html";
+        window.location.href = "./index.html";
 
     } catch (error) {
 
