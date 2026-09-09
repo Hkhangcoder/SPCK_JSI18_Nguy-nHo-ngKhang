@@ -8,12 +8,10 @@ import {
 import { firebaseConfig } from "./firebase-config.js";
 
 // FIREBASE
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // HTML ELEMENT
-
 const registerForm = document.querySelector("#registerForm");
 
 const username = document.querySelector("#username");
@@ -28,20 +26,14 @@ const confirmPasswordError = document.querySelector("#confirmPasswordError");
 
 // PASSWORD RULE
 
-// Ít nhất:
-// 1 chữ thường
-// 1 chữ hoa
-// 1 số
-// 1 ký tự đặc biệt
+// Ít nhất: 1 chữ thường 1 chữ hoa 1 số 1 ký tự đặc biệt
 // Tổng cộng ít nhất 8 ký tự
 
-const passwordRegex =
+const passwordRegex = 
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 
 // REGISTER
-
 registerForm.addEventListener("submit", async function(event) {
-
     event.preventDefault();
 
     // Xóa lỗi cũ
@@ -53,7 +45,6 @@ registerForm.addEventListener("submit", async function(event) {
     let isValid = true;
 
     // USERNAME
-
     const usernameValue = username.value.trim();
 
     if (usernameValue === "") {
@@ -68,7 +59,6 @@ registerForm.addEventListener("submit", async function(event) {
     }
 
     // EMAIL
-
     const emailValue = email.value.trim();
 
     if (emailValue === "") {
@@ -84,7 +74,6 @@ registerForm.addEventListener("submit", async function(event) {
     }
 
     // PASSWORD
-    
     const passwordValue = password.value;
 
     if (passwordValue === "") {
@@ -92,21 +81,17 @@ registerForm.addEventListener("submit", async function(event) {
 
         isValid = false;
     }
-
     else if (passwordValue.length < 8) {
         passwordError.textContent = "Mật khẩu phải có ít nhất 8 ký tự.";
 
         isValid = false;
     }
-
     else if (!passwordRegex.test(passwordValue)) {
         passwordError.textContent = "Mật khẩu phải có chữ hoa, chữ thường, số và ký tự đặc biệt.";
-
         isValid = false;
     }
 
     // PASSWORD KHÔNG ĐƯỢC GIỐNG USERNAME
-
     if (usernameValue !== "" && passwordValue !== "" 
         && usernameValue.toLowerCase() === passwordValue.toLowerCase()) 
     {      
@@ -116,16 +101,12 @@ registerForm.addEventListener("submit", async function(event) {
     }
 
     // CONFIRM PASSWORD
-
-    const confirmPasswordValue =
-        confirmPassword.value;
+    const confirmPasswordValue = confirmPassword.value;
 
     if (confirmPasswordValue === "") {
         confirmPasswordError.textContent = "Vui lòng nhập lại mật khẩu.";
-
         isValid = false;
     }
-
     else if (confirmPasswordValue !== passwordValue) {
         confirmPasswordError.textContent = "Mật khẩu xác nhận không trùng khớp.";
 
@@ -133,21 +114,15 @@ registerForm.addEventListener("submit", async function(event) {
     }
 
     // STOP IF INVALID
-
     if (!isValid) {
         return;
     }
 
     // FIREBASE REGISTER
-    
     try {
-        const userCredential =
-            await createUserWithEmailAndPassword(
-                auth,
-                emailValue,
-                passwordValue
+        const userCredential = await createUserWithEmailAndPassword(
+                auth, emailValue, passwordValue
             );
-
         const user = userCredential.user;
 
         console.log("Đăng ký thành công!");
@@ -156,25 +131,19 @@ registerForm.addEventListener("submit", async function(event) {
 
         alert("Đăng ký thành công! Hãy đăng nhập.");
 
-        // Chuyển sang LOGIN
         window.location.href = "./Pages/login.html";
-
     } catch (error) {
-
         console.error(error);
-
+        
         if (error.code === "auth/email-already-in-use") {
             emailError.textContent = "Email này đã được đăng ký.";
         }
-
         else if (error.code === "auth/invalid-email") {
             emailError.textContent = "Email không hợp lệ.";
         }
-
         else if (error.code === "auth/weak-password") {
             passwordError.textContent = "Mật khẩu quá yếu.";
         }
-
         else {
             alert("Đăng ký thất bại. Vui lòng thử lại.");
         }

@@ -8,46 +8,30 @@ import {
 
 import { firebaseConfig } from "./firebase-config.js";
 
-
 // Firebase
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 
-// ===============================
 // CHECK LOGIN
-// ===============================
-
 onAuthStateChanged(auth, function(user) {
-
     if (user) {
-
         console.log("Đang đăng nhập:");
         console.log("UID:", user.uid);
         console.log("Email:", user.email);
     }
     else {
         console.log("Chưa đăng nhập.");
-
-        // Không cho vào Home
         window.location.href = "./Pages/login.html";
     }
 
 });
 
-
-// ===============================
 // LOGOUT
-// ===============================
-
-const logoutBtn =
-    document.querySelector("#logoutBtn");
+const logoutBtn = document.querySelector("#logoutBtn");
 
 if (logoutBtn) {
     logoutBtn.addEventListener("click", async function(event) {
-
         event.preventDefault();
-
         try {
             await signOut(auth);
 

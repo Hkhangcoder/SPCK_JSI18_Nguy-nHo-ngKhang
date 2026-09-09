@@ -177,7 +177,8 @@ function renderPokemonList(pokemons) {
         }).join("");
         // Trả về card Pokémon
         return ` <articleclass="pokemon-card" data-id="${pokemon.id}">
-                <div class="pokemon-card-image-box" data-number="${formattedId}">
+                <div class="pokemon-card-image-box" 
+                    data-number="${formattedId}">
                     <img class="pokemon-card-image" src="${image}"
                         alt="${capitalize(pokemon.name)}">
                 </div>
