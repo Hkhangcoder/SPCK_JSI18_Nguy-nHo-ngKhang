@@ -1,309 +1,2021 @@
+// // ============================
+// // API POKEMON
+// // ============================
+
+// // URL API chính dùng để lấy thông tin Pokémon.
+// const API_URL = "https://pokeapi.co/api/v2/pokemon";
+
+// // URL API Species dùng để lấy thông tin bổ sung của Pokémon.
+// const SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species";
+
+
+// // ============================
+// // LẤY PHẦN TỬ HTML
+// // ============================
+
+// // Lấy khu vực hiển thị loading.
+// const loading = document.querySelector("#pokemonDetailLoading");
+
+// // Lấy khu vực chứa toàn bộ nội dung detail Pokémon.
+// const detailContainer = document.querySelector("#pokemonDetail");
+
+// // Lấy phần tử Modal Bootstrap.
+// const abilityModalElement = document.querySelector("#abilityModal");
+
+// // Lấy tiêu đề của Modal.
+// const abilityModalTitle = document.querySelector("#abilityModalTitle");
+
+// // Lấy phần nội dung của Modal.
+// const abilityModalBody = document.querySelector("#abilityModalBody");
+
+// // Tạo đối tượng Modal Bootstrap từ phần tử HTML.
+// const abilityModal = new bootstrap.Modal(abilityModalElement);
+
+
+// // ============================
+// // LẤY ID TỪ URL
+// // ============================
+
+// // Lấy toàn bộ phần query phía sau dấu ? trên URL.
+// const params = new URLSearchParams(window.location.search);
+
+// // Lấy giá trị id từ URL.
+// // Ví dụ: detail.html?id=25 → pokemonId = "25".
+// const pokemonId = params.get("id");
+
+
+// // ============================
+// // VIẾT HOA CHỮ ĐẦU
+// // ============================
+
+// // Tạo hàm viết hoa chữ cái đầu của tên Pokémon.
+// function capitalize(text) {
+
+//     // Tách tên Pokémon thành nhiều phần bằng dấu "-".
+//     const words = text.split("-");
+
+//     // Duyệt qua từng phần của tên.
+//     return words.map(function (word) {
+
+//         // Viết hoa ký tự đầu tiên.
+//         // Sau đó nối với phần còn lại của từ.
+//         return word.charAt(0).toUpperCase() + word.slice(1);
+
+//     // Nối các phần lại bằng khoảng trắng.
+//     }).join(" ");
+// }
+
+
+// // ============================
+// // LẤY ID TỪ URL API
+// // ============================
+
+// // Tạo hàm lấy ID Pokémon từ URL API.
+// function getIdFromUrl(url) {
+
+//     // Tách URL thành từng phần bằng dấu "/".
+//     const parts = url.split("/");
+
+//     // Phần tử cuối thường là chuỗi rỗng.
+//     // Vì vậy lấy phần tử đứng trước nó.
+//     return parts[parts.length - 2];
+// }
+
+
+// // ============================
+// // LẤY 1 POKEMON
+// // ============================
+
+// // Tạo hàm async để lấy thông tin một Pokémon.
+// async function getPokemon(id) {
+
+//     // Bắt lỗi khi gọi API.
+//     try {
+
+//         // Gửi request GET đến API Pokémon.
+//         const response = await fetch(`${API_URL}/${id}`);
+
+//         // Kiểm tra response có thành công hay không.
+//         if (!response.ok) {
+
+//             // Nếu lỗi thì tạo Error.
+//             throw new Error("Không tìm thấy Pokémon");
+//         }
+
+//         // Chuyển dữ liệu JSON thành JavaScript object.
+//         return await response.json();
+
+//     } catch (error) {
+
+//         // In lỗi ra Console để kiểm tra.
+//         console.error("Lỗi Pokémon:", error);
+
+//         // Trả về null nếu lấy dữ liệu thất bại.
+//         return null;
+//     }
+// }
+
+
+// // ============================
+// // LẤY POKEMON SPECIES
+// // ============================
+
+// // Tạo hàm lấy dữ liệu Species của Pokémon.
+// async function getPokemonSpecies(id) {
+
+//     // Bắt lỗi khi gọi API.
+//     try {
+
+//         // Gửi request đến API Species.
+//         const response = await fetch(`${SPECIES_URL}/${id}`);
+
+//         // Kiểm tra request có thành công không.
+//         if (!response.ok) {
+
+//             // Tạo lỗi nếu không tìm thấy Species.
+//             throw new Error("Không tìm thấy Species");
+//         }
+
+//         // Chuyển response JSON thành JavaScript object.
+//         return await response.json();
+
+//     } catch (error) {
+
+//         // In lỗi ra Console.
+//         console.error("Lỗi Species:", error);
+
+//         // Trả về null nếu có lỗi.
+//         return null;
+//     }
+// }
+
+
+// // ============================
+// // LẤY THÔNG TIN ABILITY
+// // ============================
+
+// // Tạo hàm lấy thông tin một Ability.
+// async function getAbility(url) {
+
+//     // Bắt lỗi khi gọi API.
+//     try {
+
+//         // Gửi request đến URL Ability.
+//         const response = await fetch(url);
+
+//         // Kiểm tra response.
+//         if (!response.ok) {
+
+//             // Tạo lỗi nếu không lấy được dữ liệu.
+//             throw new Error("Không lấy được Ability");
+//         }
+
+//         // Chuyển dữ liệu JSON thành object.
+//         return await response.json();
+
+//     } catch (error) {
+
+//         // In lỗi ra Console.
+//         console.error("Lỗi Ability:", error);
+
+//         // Trả về null nếu có lỗi.
+//         return null;
+//     }
+// }
+
+
+// // ============================
+// // THÊM VÀO BỘ SƯU TẬP
+// // ============================
+
+// // Tạo hàm thêm Pokémon vào Collection.
+// function addToCollection(pokemon) {
+
+//     // Lấy dữ liệu Collection từ localStorage.
+//     // Nếu chưa có dữ liệu thì sử dụng mảng rỗng.
+//     const collection =
+//         JSON.parse(localStorage.getItem("pokemonCollection")) || [];
+
+//     // Kiểm tra Pokémon đã tồn tại trong Collection chưa.
+//     const exists = collection.some(function (item) {
+
+//         // So sánh ID của Pokémon.
+//         return item.id === pokemon.id;
+//     });
+
+//     // Nếu Pokémon chưa tồn tại.
+//     if (!exists) {
+
+//         // Thêm Pokémon vào mảng Collection.
+//         collection.push({
+
+//             // Lưu ID Pokémon.
+//             id: pokemon.id,
+
+//             // Lưu tên Pokémon.
+//             name: pokemon.name,
+
+//             // Lấy ảnh official artwork.
+//             // Nếu không có thì dùng ảnh mặc định.
+//             image:
+//                 pokemon.sprites.other["official-artwork"].front_default ||
+//                 pokemon.sprites.front_default,
+
+//             // Lấy danh sách các hệ Pokémon.
+//             types: pokemon.types.map(function (item) {
+
+//                 // Chỉ lấy tên của hệ.
+//                 return item.type.name;
+//             })
+//         });
+
+//         // Chuyển mảng thành JSON rồi lưu vào localStorage.
+//         localStorage.setItem(
+//             "pokemonCollection",
+//             JSON.stringify(collection)
+//         );
+
+//         // Thông báo đã thêm thành công.
+//         alert("Đã thêm vào Bộ sưu tập!");
+
+//     } else {
+
+//         // Thông báo nếu Pokémon đã tồn tại.
+//         alert("Pokémon này đã có trong Bộ sưu tập!");
+//     }
+// }
+
+
+// // ============================
+// // THÊM VÀO YÊU THÍCH
+// // ============================
+
+// // Tạo hàm thêm Pokémon vào Favorite.
+// function addToFavorite(pokemon) {
+
+//     // Lấy danh sách Favorite từ localStorage.
+//     // Nếu chưa có thì tạo mảng rỗng.
+//     const favorites =
+//         JSON.parse(localStorage.getItem("pokemonFavorite")) || [];
+
+//     // Kiểm tra Pokémon đã tồn tại chưa.
+//     const exists = favorites.some(function (item) {
+
+//         // So sánh ID Pokémon.
+//         return item.id === pokemon.id;
+//     });
+
+//     // Nếu Pokémon chưa tồn tại.
+//     if (!exists) {
+
+//         // Thêm Pokémon vào danh sách yêu thích.
+//         favorites.push({
+
+//             // Lưu ID.
+//             id: pokemon.id,
+
+//             // Lưu tên.
+//             name: pokemon.name,
+
+//             // Lưu ảnh Pokémon.
+//             image:
+//                 pokemon.sprites.other["official-artwork"].front_default ||
+//                 pokemon.sprites.front_default,
+
+//             // Lưu danh sách hệ.
+//             types: pokemon.types.map(function (item) {
+
+//                 // Lấy tên hệ.
+//                 return item.type.name;
+//             })
+//         });
+
+//         // Lưu danh sách Favorite vào localStorage.
+//         localStorage.setItem(
+//             "pokemonFavorite",
+//             JSON.stringify(favorites)
+//         );
+
+//         // Thông báo thành công.
+//         alert("Đã thêm vào Yêu thích!");
+
+//     } else {
+
+//         // Thông báo nếu đã tồn tại.
+//         alert("Pokémon này đã có trong Yêu thích!");
+//     }
+// }
+
+
+// // ============================
+// // GIỚI TÍNH
+// // ============================
+
+// // Tạo hàm tính giới tính Pokémon.
+// function getGender(genderRate) {
+
+//     // -1 nghĩa là Pokémon không xác định giới tính.
+//     if (genderRate === -1) {
+
+//         // Trả về thông báo.
+//         return "Không xác định";
+//     }
+
+//     // Tính phần trăm giới tính cái.
+//     const female = genderRate * 12.5;
+
+//     // Tính phần trăm giới tính đực.
+//     const male = 100 - female;
+
+//     // Trả về HTML hiển thị giới tính.
+//     return `
+//         <div class="pokemon-detail-gender">
+
+//             <span class="gender-male">
+//                 ♂ ${male}%
+//             </span>
+
+//             <span class="gender-female">
+//                 ♀ ${female}%
+//             </span>
+
+//         </div>
+//     `;
+// }
+
+
+// // ============================
+// // MÀU CHỈ SỐ
+// // ============================
+
+// // Tạo hàm lấy màu tương ứng với từng chỉ số.
+// function getStatColor(statName) {
+
+//     // Object chứa màu của từng loại chỉ số.
+//     const colors = {
+
+//         // Màu cho HP.
+//         hp: "#24a148",
+
+//         // Màu cho Attack.
+//         attack: "#f04b23",
+
+//         // Màu cho Defense.
+//         defense: "#f5a800",
+
+//         // Màu cho Special Attack.
+//         "special-attack": "#2878b8",
+
+//         // Màu cho Special Defense.
+//         "special-defense": "#49a35a",
+
+//         // Màu cho Speed.
+//         speed: "#7d3fc7"
+//     };
+
+//     // Trả về màu tương ứng.
+//     // Nếu không tìm thấy thì dùng màu xanh mặc định.
+//     return colors[statName] || "#2a75bb";
+// }
+
+
+// // ============================
+// // TÊN ĐẸP CỦA CHỈ SỐ
+// // ============================
+
+// // Tạo hàm chuyển tên API thành tên dễ đọc.
+// function getStatName(name) {
+
+//     // Object chứa tên hiển thị.
+//     const names = {
+
+//         // Tên HP.
+//         hp: "HP",
+
+//         // Tên Attack.
+//         attack: "Attack",
+
+//         // Tên Defense.
+//         defense: "Defense",
+
+//         // Tên Special Attack.
+//         "special-attack": "Special Attack",
+
+//         // Tên Special Defense.
+//         "special-defense": "Special Defense",
+
+//         // Tên Speed.
+//         speed: "Speed"
+//     };
+
+//     // Nếu có tên trong object thì dùng tên đó.
+//     // Nếu không có thì dùng hàm capitalize().
+//     return names[name] || capitalize(name);
+// }
+
+
+// // ============================
+// // RENDER CHỈ SỐ
+// // ============================
+
+// // Tạo hàm render danh sách chỉ số.
+// function renderStats(stats) {
+
+//     // Tính tổng tất cả chỉ số.
+//     const total = stats.reduce(function (sum, stat) {
+
+//         // Cộng base_stat vào tổng.
+//         return sum + stat.base_stat;
+
+//     // Giá trị ban đầu của tổng là 0.
+//     }, 0);
+
+//     // Tạo HTML cho từng chỉ số.
+//     const statHTML = stats.map(function (stat) {
+
+//         // Tính độ dài thanh progress.
+//         // 150 được xem là mức tối đa để tính phần trăm.
+//         const width = Math.min(
+//             stat.base_stat / 150 * 100,
+//             100
+//         );
+
+//         // Lấy màu tương ứng với chỉ số.
+//         const color = getStatColor(stat.stat.name);
+
+//         // Trả về HTML của một chỉ số.
+//         return `
+//             <div class="pokemon-detail-stat">
+
+//                 <span
+//                     class="pokemon-detail-stat-name"
+//                     style="color: ${color};"
+//                 >
+//                     ${getStatName(stat.stat.name)}
+//                 </span>
+
+//                 <div class="pokemon-detail-stat-bar">
+
+//                     <div
+//                         class="pokemon-detail-stat-fill"
+//                         style="
+//                             width: ${width}%;
+//                             background: ${color};
+//                         "
+//                     ></div>
+
+//                 </div>
+
+//                 <span class="pokemon-detail-stat-value">
+//                     ${stat.base_stat}
+//                 </span>
+
+//             </div>
+//         `;
+
+//     // Nối tất cả card thành một chuỗi HTML.
+//     }).join("");
+
+//     // Trả về toàn bộ khu vực chỉ số.
+//     return `
+//         <div class="pokemon-detail-stat-list">
+//             ${statHTML}
+//         </div>
+
+//         <p class="pokemon-detail-total">
+//             Tổng:
+//             <strong>${total}</strong>
+//         </p>
+//     `;
+// }
+
+
+// // ============================
+// // RENDER DẠNG / TRẠNG THÁI
+// // ============================
+
+// // Tạo hàm render các dạng Pokémon.
+// async function renderForms(species) {
+
+//     // Lấy danh sách varieties.
+//     // Nếu không có thì sử dụng mảng rỗng.
+//     const forms = species.varieties || [];
+
+//     // Tạo Promise cho từng dạng.
+//     const formPromises = forms.map(async function (variety) {
+
+//         // Lấy ID từ URL Pokémon.
+//         const id = getIdFromUrl(variety.pokemon.url);
+
+//         // Gọi API để lấy Pokémon.
+//         const pokemon = await getPokemon(id);
+
+//         // Nếu API lỗi thì bỏ qua dạng này.
+//         if (!pokemon) {
+//             return "";
+//         }
+
+//         // Lấy ảnh official artwork.
+//         const image =
+//             pokemon.sprites.other["official-artwork"].front_default ||
+//             pokemon.sprites.front_default;
+
+//         // Trả về HTML của card dạng.
+//         return `
+//             <div
+//                 class="pokemon-detail-form-card"
+//                 data-id="${pokemon.id}"
+//             >
+
+//                 <img
+//                     class="pokemon-detail-form-image"
+//                     src="${image}"
+//                     alt="${pokemon.name}"
+//                 >
+
+//                 <div>
+
+//                     <h4 class="pokemon-detail-form-name">
+//                         ${capitalize(pokemon.name)}
+//                     </h4>
+
+//                     <p class="pokemon-detail-form-id">
+//                         #${pokemon.id}
+//                     </p>
+
+//                 </div>
+
+//                 <i class="bi bi-chevron-right"></i>
+
+//             </div>
+//         `;
+//     });
+
+//     // Chờ tất cả API trả dữ liệu.
+//     const formCards = await Promise.all(formPromises);
+
+//     // Nối tất cả card thành một chuỗi HTML.
+//     return formCards.join("");
+// }
+
+
+// // ============================
+// // LẤY EVOLUTION CHAIN
+// // ============================
+
+// // Tạo hàm lấy dữ liệu Evolution Chain.
+// async function getEvolutionChain(url) {
+
+//     // Bắt lỗi khi gọi API.
+//     try {
+
+//         // Gửi request đến URL Evolution.
+//         const response = await fetch(url);
+
+//         // Kiểm tra response.
+//         if (!response.ok) {
+
+//             // Tạo lỗi nếu request thất bại.
+//             throw new Error("Không lấy được Evolution");
+//         }
+
+//         // Chuyển JSON thành JavaScript object.
+//         return await response.json();
+
+//     } catch (error) {
+
+//         // In lỗi ra Console.
+//         console.error("Lỗi Evolution:", error);
+
+//         // Trả về null khi lỗi.
+//         return null;
+//     }
+// }
+
+
+// // ============================
+// // TẠO DANH SÁCH TIẾN HÓA
+// // ============================
+
+// // Tạo hàm lấy danh sách Pokémon trong Evolution Chain.
+// function getEvolutionPokemon(chain) {
+
+//     // Tạo mảng chứa kết quả.
+//     const result = [];
+
+//     // Bắt đầu từ Pokémon đầu tiên trong chain.
+//     let current = chain;
+
+//     // Lặp khi vẫn còn Pokémon.
+//     while (current) {
+
+//         // Thêm Pokémon hiện tại vào kết quả.
+//         result.push({
+
+//             // Lấy tên species.
+//             name: current.species.name,
+
+//             // Lấy ID từ URL species.
+//             id: getIdFromUrl(current.species.url)
+//         });
+
+//         // Kiểm tra có Pokémon tiến hóa tiếp theo không.
+//         if (
+//             current.evolves_to &&
+//             current.evolves_to.length > 0
+//         ) {
+
+//             // Lấy Pokémon tiến hóa đầu tiên.
+//             current = current.evolves_to[0];
+
+//         } else {
+
+//             // Không còn tiến hóa thì kết thúc vòng lặp.
+//             current = null;
+//         }
+//     }
+
+//     // Trả về danh sách tiến hóa.
+//     return result;
+// }
+
+
+// // ============================
+// // RENDER TIẾN HÓA
+// // ============================
+
+// // Tạo hàm render khu vực Evolution.
+// async function renderEvolution(evolutionUrl) {
+
+//     // Lấy dữ liệu Evolution Chain.
+//     const evolutionData =
+//         await getEvolutionChain(evolutionUrl);
+
+//     // Nếu không lấy được dữ liệu.
+//     if (!evolutionData) {
+
+//         // Hiển thị thông báo lỗi.
+//         return `<p>Không có dữ liệu tiến hóa.</p>`;
+//     }
+
+//     // Lấy danh sách Pokémon tiến hóa.
+//     const evolutionList =
+//         getEvolutionPokemon(evolutionData.chain);
+
+//     // Tạo Promise để lấy thông tin từng Pokémon.
+//     const pokemonPromises = evolutionList.map(function (item) {
+
+//         // Gọi API theo ID.
+//         return getPokemon(item.id);
+//     });
+
+//     // Chờ tất cả Pokémon được lấy về.
+//     const pokemons = await Promise.all(pokemonPromises);
+
+//     // Chỉ giữ lại những Pokémon lấy thành công.
+//     const validPokemons = pokemons.filter(function (pokemon) {
+
+//         // Pokémon khác null là hợp lệ.
+//         return pokemon !== null;
+//     });
+
+//     // Tạo HTML cho từng Pokémon.
+//     return validPokemons.map(function (pokemon, index) {
+
+//         // Lấy ảnh Pokémon.
+//         const image =
+//             pokemon.sprites.other["official-artwork"].front_default ||
+//             pokemon.sprites.front_default;
+
+//         // Tạo card Pokémon.
+//         const card = `
+//             <div
+//                 class="pokemon-detail-evolution-card"
+//                 data-id="${pokemon.id}"
+//             >
+
+//                 <img
+//                     class="pokemon-detail-evolution-image"
+//                     src="${image}"
+//                     alt="${pokemon.name}"
+//                 >
+
+//                 <p class="pokemon-detail-evolution-name">
+//                     ${capitalize(pokemon.name)}
+//                 </p>
+
+//                 <p class="pokemon-detail-evolution-id">
+//                     #${pokemon.id}
+//                 </p>
+
+//             </div>
+//         `;
+
+//         // Kiểm tra Pokémon có phải Pokémon cuối không.
+//         if (index < validPokemons.length - 1) {
+
+//             // Nếu chưa phải cuối thì thêm mũi tên.
+//             return `
+//                 ${card}
+
+//                 <i
+//                     class="bi bi-arrow-right
+//                     pokemon-detail-evolution-arrow"
+//                 ></i>
+//             `;
+//         }
+
+//         // Nếu là Pokémon cuối thì chỉ trả card.
+//         return card;
+
+//     // Nối tất cả thành một chuỗi HTML.
+//     }).join("");
+// }
+
+
+// // ============================
+// // MỞ MODAL KỸ NĂNG
+// // ============================
+
+// // Tạo hàm mở Modal Ability.
+// async function openAbilityModal(url) {
+
+//     // Hiển thị Modal.
+//     abilityModal.show();
+
+//     // Đổi tiêu đề thành trạng thái loading.
+//     abilityModalTitle.textContent =
+//         "Đang tải kỹ năng...";
+
+//     // Hiển thị loading trong phần nội dung.
+//     abilityModalBody.innerHTML =
+//         "<p>⏳ Đang lấy thông tin...</p>";
+
+//     // Gọi API lấy Ability.
+//     const ability = await getAbility(url);
+
+//     // Nếu không lấy được dữ liệu.
+//     if (!ability) {
+
+//         // Đổi tiêu đề thành lỗi.
+//         abilityModalTitle.textContent = "Lỗi";
+
+//         // Hiển thị thông báo lỗi.
+//         abilityModalBody.innerHTML =
+//             "<p>Không thể tải thông tin kỹ năng.</p>";
+
+//         // Dừng hàm.
+//         return;
+//     }
+
+//     // Tìm mô tả tiếng Anh trong danh sách effect.
+//     const effectEntry = ability.effect_entries.find(
+//         function (item) {
+
+//             // Chỉ lấy phần có language = en.
+//             return item.language.name === "en";
+//         }
+//     );
+
+//     // Lấy mô tả ngắn.
+//     // Nếu không có thì hiển thị thông báo mặc định.
+//     const description =
+//         effectEntry
+//             ? effectEntry.short_effect
+//             : "Chưa có mô tả.";
+
+//     // Đổi tiêu đề Modal thành tên Ability.
+//     abilityModalTitle.textContent =
+//         capitalize(ability.name);
+
+//     // Hiển thị thông tin Ability.
+//     abilityModalBody.innerHTML = `
+//         <div class="pokemon-ability-modal-row">
+
+//             <strong>Tên:</strong>
+
+//             ${capitalize(ability.name)}
+
+//         </div>
+
+//         <div class="pokemon-ability-modal-row">
+
+//             <strong>Mô tả:</strong>
+
+//             ${description}
+
+//         </div>
+//     `;
+// }
+
+
+// // ============================
+// // GẮN SỰ KIỆN
+// // ============================
+
+// // Tạo hàm gắn các event cho trang Detail.
+// function addDetailEvents(pokemon) {
+
+//     // ============================
+//     // NÚT BỘ SƯU TẬP
+//     // ============================
+
+//     // Tìm nút thêm Collection.
+//     const collectionButton =
+//         document.querySelector("#addCollection");
+
+//     // Kiểm tra nút có tồn tại không.
+//     if (collectionButton) {
+
+//         // Gắn sự kiện click.
+//         collectionButton.addEventListener(
+//             "click",
+//             function () {
+
+//                 // Thêm Pokémon vào Collection.
+//                 addToCollection(pokemon);
+//             }
+//         );
+//     }
+
+
+//     // ============================
+//     // NÚT YÊU THÍCH
+//     // ============================
+
+//     // Tìm nút Favorite.
+//     const favoriteButton =
+//         document.querySelector("#addFavorite");
+
+//     // Kiểm tra nút có tồn tại không.
+//     if (favoriteButton) {
+
+//         // Gắn sự kiện click.
+//         favoriteButton.addEventListener(
+//             "click",
+//             function () {
+
+//                 // Thêm Pokémon vào Favorite.
+//                 addToFavorite(pokemon);
+//             }
+//         );
+//     }
+
+
+//     // ============================
+//     // NÚT ABILITY
+//     // ============================
+
+//     // Lấy tất cả button Ability.
+//     document
+//         .querySelectorAll(
+//             ".pokemon-detail-ability-button"
+//         )
+//         .forEach(function (button) {
+
+//             // Gắn sự kiện click cho từng button.
+//             button.addEventListener(
+//                 "click",
+//                 function () {
+
+//                     // Mở Modal bằng URL Ability.
+//                     openAbilityModal(
+//                         button.dataset.url
+//                     );
+//                 }
+//             );
+//         });
+
+
+//     // ============================
+//     // CARD DẠNG
+//     // ============================
+
+//     // Lấy tất cả card dạng Pokémon.
+//     document
+//         .querySelectorAll(
+//             ".pokemon-detail-form-card"
+//         )
+//         .forEach(function (card) {
+
+//             // Gắn sự kiện click.
+//             card.addEventListener(
+//                 "click",
+//                 function () {
+
+//                     // Chuyển sang trang Detail của dạng đó.
+//                     window.location.href =
+//                         `detail.html?id=${card.dataset.id}`;
+//                 }
+//             );
+//         });
+
+
+//     // ============================
+//     // CARD TIẾN HÓA
+//     // ============================
+
+//     // Lấy tất cả card Evolution.
+//     document
+//         .querySelectorAll(
+//             ".pokemon-detail-evolution-card"
+//         )
+//         .forEach(function (card) {
+
+//             // Gắn sự kiện click.
+//             card.addEventListener(
+//                 "click",
+//                 function () {
+
+//                     // Chuyển sang Detail Pokémon được chọn.
+//                     window.location.href =
+//                         `detail.html?id=${card.dataset.id}`;
+//                 }
+//             );
+//         });
+// }
+
+
+// // ============================
+// // LOAD TRANG DETAIL
+// // ============================
+
+// // Tạo hàm load toàn bộ dữ liệu Detail.
+// async function loadPokemonDetail() {
+
+//     // Kiểm tra URL có ID Pokémon không.
+//     if (!pokemonId) {
+
+//         // Hiển thị thông báo lỗi.
+//         loading.textContent =
+//             "❌ Không tìm thấy Pokémon.";
+
+//         // Dừng hàm.
+//         return;
+//     }
+
+//     // Bắt lỗi toàn bộ quá trình load.
+//     try {
+
+//         // Lấy dữ liệu Pokémon.
+//         const pokemon =
+//             await getPokemon(pokemonId);
+
+//         // Nếu không lấy được Pokémon.
+//         if (!pokemon) {
+
+//             // Hiển thị thông báo lỗi.
+//             loading.textContent =
+//                 "❌ Không tìm thấy Pokémon.";
+
+//             // Dừng hàm.
+//             return;
+//         }
+
+
+//         // ============================
+//         // LẤY SPECIES
+//         // ============================
+
+//         // Lấy dữ liệu Species.
+//         const species =
+//             await getPokemonSpecies(pokemon.id);
+
+
+//         // ============================
+//         // LẤY ẢNH
+//         // ============================
+
+//         // Lấy ảnh official artwork.
+//         // Nếu không có thì dùng ảnh mặc định.
+//         const image =
+//             pokemon.sprites.other["official-artwork"].front_default ||
+//             pokemon.sprites.front_default;
+
+
+//         // ============================
+//         // RENDER HỆ
+//         // ============================
+
+//         // Lấy danh sách hệ Pokémon.
+//         const types = pokemon.types.map(
+//             function (item) {
+
+//                 // Tạo HTML cho từng hệ.
+//                 return `
+//                     <span class="pokemon-detail-type">
+//                         ${capitalize(item.type.name)}
+//                     </span>
+//                 `;
+//             }
+
+//         // Nối tất cả hệ thành một chuỗi.
+//         ).join("");
+
+
+//         // ============================
+//         // CATEGORY
+//         // ============================
+
+//         // Đặt Category mặc định.
+//         let category = "Chưa có dữ liệu";
+
+//         // Kiểm tra có Species không.
+//         if (species) {
+
+//             // Tìm genus tiếng Anh.
+//             const englishGenus =
+//                 species.genera.find(
+//                     function (item) {
+
+//                         // Chỉ lấy genus có language = en.
+//                         return item.language.name === "en";
+//                     }
+//                 );
+
+//             // Nếu tìm thấy genus.
+//             if (englishGenus) {
+
+//                 // Lấy tên genus.
+//                 category = englishGenus.genus;
+//             }
+//         }
+
+
+//         // ============================
+//         // GIỚI TÍNH
+//         // ============================
+
+//         // Lấy thông tin giới tính.
+//         const gender =
+//             species
+//                 ? getGender(species.gender_rate)
+//                 : "Không xác định";
+
+
+//         // ============================
+//         // ABILITY
+//         // ============================
+
+//         // Lấy các Ability thường.
+//         const normalAbilities =
+//             pokemon.abilities.filter(
+//                 function (item) {
+
+//                     // Chỉ lấy Ability không phải hidden.
+//                     return !item.is_hidden;
+//                 }
+//             );
+
+//         // Tìm Ability ẩn.
+//         const hiddenAbility =
+//             pokemon.abilities.find(
+//                 function (item) {
+
+//                     // Tìm Ability có is_hidden = true.
+//                     return item.is_hidden;
+//                 }
+//             );
+
+
+//         // ============================
+//         // RENDER ABILITY THƯỜNG
+//         // ============================
+
+//         // Tạo button cho từng Ability thường.
+//         const abilityButtons =
+//             normalAbilities.map(
+//                 function (item) {
+
+//                     // Trả về HTML button.
+//                     return `
+//                         <button
+//                             class="pokemon-detail-ability-button"
+//                             data-url="${item.ability.url}"
+//                         >
+//                             ${capitalize(item.ability.name)}
+//                         </button>
+//                     `;
+//                 }
+
+//             // Nối tất cả button.
+//             ).join("");
+
+
+//         // ============================
+//         // RENDER DẠNG
+//         // ============================
+
+//         // Lấy HTML các dạng Pokémon.
+//         const forms =
+//             species
+//                 ? await renderForms(species)
+//                 : "<p>Không có dữ liệu dạng.</p>";
+
+
+//         // ============================
+//         // RENDER TIẾN HÓA
+//         // ============================
+
+//         // Lấy HTML Evolution.
+//         const evolution =
+//             species
+//                 ? await renderEvolution(
+//                     species.evolution_chain.url
+//                 )
+//                 : "<p>Không có dữ liệu tiến hóa.</p>";
+
+
+//         // ============================
+//         // POKEMON TRƯỚC
+//         // ============================
+
+//         // Nếu ID > 1 thì lấy Pokémon trước.
+//         // Nếu là Pokémon #1 thì vẫn giữ ID 1.
+//         const previousId =
+//             pokemon.id > 1
+//                 ? pokemon.id - 1
+//                 : 1;
+
+
+//         // ============================
+//         // POKEMON SAU
+//         // ============================
+
+//         // Lấy ID Pokémon tiếp theo.
+//         const nextId =
+//             pokemon.id + 1;
+
+
+//         // ============================
+//         // ẨN LOADING
+//         // ============================
+
+//         // Ẩn khu vực loading.
+//         loading.style.display = "none";
+
+//         // Hiển thị khu vực Detail.
+//         detailContainer.style.display = "block";
+
+
+//         // ============================
+//         // RENDER TOÀN BỘ DETAIL
+//         // ============================
+
+//         // Đưa toàn bộ HTML vào detailContainer.
+//         detailContainer.innerHTML = `
+
+//             <!-- ============================ -->
+//             <!-- CARD CHÍNH + NÚT CHUYỂN -->
+//             <!-- ============================ -->
+
+//             <div class="pokemon-detail-wrapper">
+
+
+//                 <!-- Pokémon trước -->
+
+//                 <div class="pokemon-detail-nav">
+
+//                     <button
+//                         class="pokemon-detail-nav-button"
+//                         data-id="${previousId}"
+//                     >
+//                         <i class="bi bi-chevron-left"></i>
+//                     </button>
+
+//                     <div class="pokemon-detail-nav-text">
+
+//                         #${previousId}
+
+//                         <br>
+
+//                         Trước
+
+//                     </div>
+
+//                 </div>
+
+
+//                 <!-- CARD CHÍNH -->
+
+//                 <div class="pokemon-detail-main-card">
+
+//                     <div class="pokemon-detail-top">
+
+
+//                         <!-- Ảnh Pokémon -->
+
+//                         <div class="pokemon-detail-image-box">
+
+//                             <img
+//                                 src="${image}"
+//                                 alt="${pokemon.name}"
+//                             >
+
+//                         </div>
+
+
+//                         <!-- ID + tên + hệ -->
+
+//                         <div>
+
+//                             <p class="pokemon-detail-id">
+
+//                                 #${pokemon.id}
+
+//                             </p>
+
+//                             <h1 class="pokemon-detail-name">
+
+//                                 ${capitalize(pokemon.name)}
+
+//                             </h1>
+
+//                             <div class="pokemon-detail-types">
+
+//                                 ${types}
+
+//                             </div>
+
+//                         </div>
+
+
+//                         <!-- Thông tin tổng quan -->
+
+//                         <div class="pokemon-detail-summary">
+
+
+//                             <!-- Category -->
+
+//                             <div class="pokemon-detail-category">
+
+//                                 <div
+//                                     class="pokemon-detail-category-title"
+//                                 >
+
+//                                     <i class="bi bi-tag"></i>
+
+//                                     Category
+
+//                                 </div>
+
+//                                 <div
+//                                     class="pokemon-detail-category-value"
+//                                 >
+
+//                                     ${category}
+
+//                                 </div>
+
+//                             </div>
+
+
+//                             <!-- Grid thông tin -->
+
+//                             <div class="pokemon-detail-info-grid">
+
+
+//                                 <!-- Chiều cao -->
+
+//                                 <div
+//                                     class="pokemon-detail-info-item"
+//                                 >
+
+//                                     <span
+//                                         class="pokemon-detail-info-label"
+//                                     >
+//                                         Chiều cao
+//                                     </span>
+
+//                                     <span
+//                                         class="pokemon-detail-info-value"
+//                                     >
+//                                         ${pokemon.height / 10} m
+//                                     </span>
+
+//                                 </div>
+
+
+//                                 <!-- Cân nặng -->
+
+//                                 <div
+//                                     class="pokemon-detail-info-item"
+//                                 >
+
+//                                     <span
+//                                         class="pokemon-detail-info-label"
+//                                     >
+//                                         Cân nặng
+//                                     </span>
+
+//                                     <span
+//                                         class="pokemon-detail-info-value"
+//                                     >
+//                                         ${pokemon.weight / 10} kg
+//                                     </span>
+
+//                                 </div>
+
+
+//                                 <!-- Giới tính -->
+
+//                                 <div
+//                                     class="pokemon-detail-info-item"
+//                                 >
+
+//                                     <span
+//                                         class="pokemon-detail-info-label"
+//                                     >
+//                                         Giới tính
+//                                     </span>
+
+//                                     <span
+//                                         class="pokemon-detail-info-value"
+//                                     >
+//                                         ${gender}
+//                                     </span>
+
+//                                 </div>
+
+
+//                                 <!-- Kinh nghiệm -->
+
+//                                 <div
+//                                     class="pokemon-detail-info-item"
+//                                 >
+
+//                                     <span
+//                                         class="pokemon-detail-info-label"
+//                                     >
+//                                         Kinh nghiệm cơ bản
+//                                     </span>
+
+//                                     <span
+//                                         class="pokemon-detail-info-value"
+//                                     >
+//                                         ${pokemon.base_experience || 0}
+//                                     </span>
+
+//                                 </div>
+
+//                             </div>
+
+//                         </div>
+
+//                     </div>
+
+
+//                     <!-- Hai nút chức năng -->
+
+//                     <div class="pokemon-detail-actions">
+
+
+//                         <!-- Nút Collection -->
+
+//                         <button
+//                             id="addCollection"
+//                             class="pokemon-detail-btn collection"
+//                         >
+
+//                             <i class="bi bi-grid"></i>
+
+//                             Bộ sưu tập
+
+//                         </button>
+
+
+//                         <!-- Nút Favorite -->
+
+//                         <button
+//                             id="addFavorite"
+//                             class="pokemon-detail-btn favorite"
+//                         >
+
+//                             <i class="bi bi-heart"></i>
+
+//                             Yêu thích
+
+//                         </button>
+
+//                     </div>
+
+//                 </div>
+
+
+//                 <!-- Pokémon sau -->
+
+//                 <div class="pokemon-detail-nav">
+
+//                     <button
+//                         class="pokemon-detail-nav-button"
+//                         data-id="${nextId}"
+//                     >
+
+//                         <i class="bi bi-chevron-right"></i>
+
+//                     </button>
+
+//                     <div class="pokemon-detail-nav-text">
+
+//                         #${nextId}
+
+//                         <br>
+
+//                         Tiếp theo
+
+//                     </div>
+
+//                 </div>
+
+//             </div>
+
+
+//             <!-- ============================ -->
+//             <!-- PHẦN 2 CỘT -->
+//             <!-- ============================ -->
+
+//             <div class="pokemon-detail-content">
+
+
+//                 <!-- ============================ -->
+//                 <!-- CỘT TRÁI -->
+//                 <!-- ============================ -->
+
+//                 <div class="pokemon-detail-column">
+
+
+//                     <!-- Chỉ số -->
+
+//                     <h2
+//                         class="pokemon-detail-section-title"
+//                     >
+
+//                         <i class="bi bi-bar-chart-line"></i>
+
+//                         Chỉ số cơ bản
+
+//                     </h2>
+
+//                     ${renderStats(pokemon.stats)}
+
+
+//                     <!-- Khả năng ẩn -->
+
+//                     <div
+//                         class="pokemon-detail-hidden-ability"
+//                     >
+
+//                         <h3
+//                             class="pokemon-detail-section-title"
+//                         >
+
+//                             <i class="bi bi-lock-fill"></i>
+
+//                             Khả năng ẩn
+
+//                         </h3>
+
+
+//                         ${
+//                             hiddenAbility
+//                                 ? `
+//                                     <button
+//                                         class="pokemon-detail-ability-button"
+//                                         data-url="${hiddenAbility.ability.url}"
+//                                     >
+//                                         ${capitalize(
+//                                             hiddenAbility.ability.name
+//                                         )}
+//                                     </button>
+//                                 `
+//                                 : `
+//                                     <p>
+//                                         Pokémon này không có
+//                                         khả năng ẩn.
+//                                     </p>
+//                                 `
+//                         }
+
+//                     </div>
+
+//                 </div>
+
+
+//                 <!-- ============================ -->
+//                 <!-- CỘT PHẢI -->
+//                 <!-- ============================ -->
+
+//                 <div class="pokemon-detail-column">
+
+
+//                     <!-- Kỹ năng -->
+
+//                     <h2
+//                         class="pokemon-detail-section-title"
+//                     >
+
+//                         <i class="bi bi-star-fill"></i>
+
+//                         Kỹ năng nổi bật
+
+//                     </h2>
+
+
+//                     <div
+//                         class="pokemon-detail-abilities"
+//                     >
+
+//                         ${abilityButtons}
+
+//                     </div>
+
+
+//                     <!-- Dạng -->
+
+//                     <div
+//                         class="pokemon-detail-forms"
+//                     >
+
+//                         <h2
+//                             class="pokemon-detail-section-title"
+//                         >
+
+//                             <i class="bi bi-arrow-repeat"></i>
+
+//                             Dạng / Trạng thái
+
+//                         </h2>
+
+
+//                         <div
+//                             class="pokemon-detail-form-list"
+//                         >
+
+//                             ${forms}
+
+//                         </div>
+
+//                     </div>
+
+//                 </div>
+
+//             </div>
+
+
+//             <!-- ============================ -->
+//             <!-- TIẾN HÓA -->
+//             <!-- ============================ -->
+
+//             <div
+//                 class="pokemon-detail-evolution-box"
+//             >
+
+//                 <h2
+//                     class="pokemon-detail-section-title"
+//                 >
+
+//                     <i class="bi bi-arrow-repeat"></i>
+
+//                     Tiến hóa
+
+//                 </h2>
+
+
+//                 <div
+//                     class="pokemon-detail-evolution-list"
+//                 >
+
+//                     ${evolution}
+
+//                 </div>
+
+//             </div>
+
+//         `;
+
+
+//         // ============================
+//         // SỰ KIỆN NÚT TRƯỚC / SAU
+//         // ============================
+
+//         // Lấy tất cả nút chuyển Pokémon.
+//         document
+//             .querySelectorAll(
+//                 ".pokemon-detail-nav-button"
+//             )
+//             .forEach(function (button) {
+
+//                 // Gắn sự kiện click.
+//                 button.addEventListener(
+//                     "click",
+//                     function () {
+
+//                         // Lấy ID từ data-id.
+//                         const id =
+//                             button.dataset.id;
+
+//                         // Chuyển sang Pokémon được chọn.
+//                         window.location.href =
+//                             `detail.html?id=${id}`;
+//                     }
+//                 );
+//             });
+
+
+//         // ============================
+//         // GẮN CÁC EVENT CÒN LẠI
+//         // ============================
+
+//         // Gắn event cho Collection,
+//         // Favorite, Ability, Form và Evolution.
+//         addDetailEvents(pokemon);
+
+
+//     } catch (error) {
+
+//         // In lỗi ra Console.
+//         console.error("Lỗi Detail:", error);
+
+//         // Hiển thị lỗi cho người dùng.
+//         loading.textContent =
+//             "❌ Không thể tải thông tin Pokémon.";
+//     }
+// }
+
+
+// // ============================
+// // CHẠY HÀM LOAD
+// // ============================
+
+// // Bắt đầu tải dữ liệu Pokémon khi file JS chạy.
+// loadPokemonDetail();
+
+
+
+
+
+
+
+
+// ============================
+// FIREBASE
+// ============================
+
+import {
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import { auth } from "./firebase-config.js";
+import { db } from "./firestore.js";
+
+
+// Chờ Firebase xác định người dùng hiện tại.
+// Nếu chưa đăng nhập thì trả về null.
+function getCurrentUser() {
+    return new Promise(function (resolve) {
+
+        if (auth.currentUser) {
+            resolve(auth.currentUser);
+            return;
+        }
+
+        const unsubscribe = onAuthStateChanged(
+            auth,
+            function (user) {
+                unsubscribe();
+                resolve(user);
+            }
+        );
+    });
+}
+
+
 // ============================
 // API POKEMON
 // ============================
 
-// URL API chính dùng để lấy thông tin Pokémon.
-const API_URL = "https://pokeapi.co/api/v2/pokemon";
+const API_URL =
+    "https://pokeapi.co/api/v2/pokemon";
 
-// URL API Species dùng để lấy thông tin bổ sung của Pokémon.
-const SPECIES_URL = "https://pokeapi.co/api/v2/pokemon-species";
-
-
-// ============================
-// LẤY PHẦN TỬ HTML
-// ============================
-
-// Lấy khu vực hiển thị loading.
-const loading = document.querySelector("#pokemonDetailLoading");
-
-// Lấy khu vực chứa toàn bộ nội dung detail Pokémon.
-const detailContainer = document.querySelector("#pokemonDetail");
-
-// Lấy phần tử Modal Bootstrap.
-const abilityModalElement = document.querySelector("#abilityModal");
-
-// Lấy tiêu đề của Modal.
-const abilityModalTitle = document.querySelector("#abilityModalTitle");
-
-// Lấy phần nội dung của Modal.
-const abilityModalBody = document.querySelector("#abilityModalBody");
-
-// Tạo đối tượng Modal Bootstrap từ phần tử HTML.
-const abilityModal = new bootstrap.Modal(abilityModalElement);
+const SPECIES_URL =
+    "https://pokeapi.co/api/v2/pokemon-species";
 
 
 // ============================
-// LẤY ID TỪ URL
+// DOM
 // ============================
 
-// Lấy toàn bộ phần query phía sau dấu ? trên URL.
-const params = new URLSearchParams(window.location.search);
+const loadingElement =
+    document.querySelector("#pokemonDetailLoading");
 
-// Lấy giá trị id từ URL.
-// Ví dụ: detail.html?id=25 → pokemonId = "25".
-const pokemonId = params.get("id");
+const detailElement =
+    document.querySelector("#pokemonDetail");
+
+const abilityModalElement =
+    document.querySelector("#abilityModal");
+
+const abilityModalTitle =
+    document.querySelector("#abilityModalTitle");
+
+const abilityModalBody =
+    document.querySelector("#abilityModalBody");
+
+const abilityModal =
+    new bootstrap.Modal(abilityModalElement);
 
 
 // ============================
-// VIẾT HOA CHỮ ĐẦU
+// LẤY ID POKEMON
 // ============================
 
-// Tạo hàm viết hoa chữ cái đầu của tên Pokémon.
+const urlParams =
+    new URLSearchParams(window.location.search);
+
+const pokemonId =
+    urlParams.get("id");
+
+
+// ============================
+// HÀM PHỤ
+// ============================
+
 function capitalize(text) {
+    if (!text) {
+        return "";
+    }
 
-    // Tách tên Pokémon thành nhiều phần bằng dấu "-".
-    const words = text.split("-");
-
-    // Duyệt qua từng phần của tên.
-    return words.map(function (word) {
-
-        // Viết hoa ký tự đầu tiên.
-        // Sau đó nối với phần còn lại của từ.
-        return word.charAt(0).toUpperCase() + word.slice(1);
-
-    // Nối các phần lại bằng khoảng trắng.
-    }).join(" ");
+    return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 
-// ============================
-// LẤY ID TỪ URL API
-// ============================
-
-// Tạo hàm lấy ID Pokémon từ URL API.
 function getIdFromUrl(url) {
+    if (!url) {
+        return "";
+    }
 
-    // Tách URL thành từng phần bằng dấu "/".
-    const parts = url.split("/");
+    const parts =
+        url.split("/").filter(Boolean);
 
-    // Phần tử cuối thường là chuỗi rỗng.
-    // Vì vậy lấy phần tử đứng trước nó.
-    return parts[parts.length - 2];
+    return parts[parts.length - 1];
 }
 
 
 // ============================
-// LẤY 1 POKEMON
+// API - POKEMON
 // ============================
 
-// Tạo hàm async để lấy thông tin một Pokémon.
 async function getPokemon(id) {
 
-    // Bắt lỗi khi gọi API.
-    try {
+    const response =
+        await fetch(`${API_URL}/${id}`);
 
-        // Gửi request GET đến API Pokémon.
-        const response = await fetch(`${API_URL}/${id}`);
-
-        // Kiểm tra response có thành công hay không.
-        if (!response.ok) {
-
-            // Nếu lỗi thì tạo Error.
-            throw new Error("Không tìm thấy Pokémon");
-        }
-
-        // Chuyển dữ liệu JSON thành JavaScript object.
-        return await response.json();
-
-    } catch (error) {
-
-        // In lỗi ra Console để kiểm tra.
-        console.error("Lỗi Pokémon:", error);
-
-        // Trả về null nếu lấy dữ liệu thất bại.
-        return null;
+    if (!response.ok) {
+        throw new Error("Không thể tải dữ liệu Pokémon.");
     }
+
+    return await response.json();
 }
 
 
 // ============================
-// LẤY POKEMON SPECIES
+// API - SPECIES
 // ============================
 
-// Tạo hàm lấy dữ liệu Species của Pokémon.
 async function getPokemonSpecies(id) {
 
-    // Bắt lỗi khi gọi API.
-    try {
+    const response =
+        await fetch(`${SPECIES_URL}/${id}`);
 
-        // Gửi request đến API Species.
-        const response = await fetch(`${SPECIES_URL}/${id}`);
-
-        // Kiểm tra request có thành công không.
-        if (!response.ok) {
-
-            // Tạo lỗi nếu không tìm thấy Species.
-            throw new Error("Không tìm thấy Species");
-        }
-
-        // Chuyển response JSON thành JavaScript object.
-        return await response.json();
-
-    } catch (error) {
-
-        // In lỗi ra Console.
-        console.error("Lỗi Species:", error);
-
-        // Trả về null nếu có lỗi.
-        return null;
+    if (!response.ok) {
+        throw new Error("Không thể tải dữ liệu species.");
     }
+
+    return await response.json();
 }
 
 
 // ============================
-// LẤY THÔNG TIN ABILITY
+// API - ABILITY
 // ============================
 
-// Tạo hàm lấy thông tin một Ability.
 async function getAbility(url) {
 
-    // Bắt lỗi khi gọi API.
+    const response =
+        await fetch(url);
+
+    if (!response.ok) {
+        throw new Error("Không thể tải ability.");
+    }
+
+    return await response.json();
+}
+
+
+// ============================
+// THÊM VÀO COLLECTION
+// ============================
+
+async function addToCollection(pokemon) {
+
+    const collection =
+        JSON.parse(
+            localStorage.getItem("pokemonCollection")
+        ) || [];
+
+
+    const exists =
+        collection.some(function (item) {
+            return Number(item.id) === Number(pokemon.id);
+        });
+
+
+    if (exists) {
+
+        alert(
+            "Pokémon này đã có trong Bộ sưu tập!"
+        );
+
+        return;
+    }
+
+
+    const pokemonData = {
+
+        id: pokemon.id,
+
+        name: pokemon.name,
+
+        image:
+            pokemon.sprites.other["official-artwork"]
+                .front_default ||
+            pokemon.sprites.front_default,
+
+        types:
+            pokemon.types.map(function (item) {
+                return item.type.name;
+            })
+    };
+
+
+    // Lưu localStorage trước để web vẫn hoạt động
+    // ngay cả khi Firebase gặp lỗi.
+    collection.push(pokemonData);
+
+    localStorage.setItem(
+        "pokemonCollection",
+        JSON.stringify(collection)
+    );
+
+
+    // ============================
+    // LƯU FIREBASE
+    // ============================
+
     try {
 
-        // Gửi request đến URL Ability.
-        const response = await fetch(url);
+        const user =
+            await getCurrentUser();
 
-        // Kiểm tra response.
-        if (!response.ok) {
 
-            // Tạo lỗi nếu không lấy được dữ liệu.
-            throw new Error("Không lấy được Ability");
+        if (user) {
+
+            const pokemonRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid,
+                    "collection",
+                    String(pokemon.id)
+                );
+
+
+            await setDoc(
+                pokemonRef,
+                {
+                    ...pokemonData,
+                    updatedAt: serverTimestamp()
+                }
+            );
         }
-
-        // Chuyển dữ liệu JSON thành object.
-        return await response.json();
 
     } catch (error) {
 
-        // In lỗi ra Console.
-        console.error("Lỗi Ability:", error);
-
-        // Trả về null nếu có lỗi.
-        return null;
+        console.error(
+            "Không thể lưu Collection lên Firebase:",
+            error
+        );
     }
+
+
+    alert(
+        "Đã thêm vào Bộ sưu tập!"
+    );
 }
 
 
 // ============================
-// THÊM VÀO BỘ SƯU TẬP
+// THÊM VÀO FAVORITE
 // ============================
 
-// Tạo hàm thêm Pokémon vào Collection.
-function addToCollection(pokemon) {
+async function addToFavorite(pokemon) {
 
-    // Lấy dữ liệu Collection từ localStorage.
-    // Nếu chưa có dữ liệu thì sử dụng mảng rỗng.
-    const collection =
-        JSON.parse(localStorage.getItem("pokemonCollection")) || [];
+    const favorite =
+        JSON.parse(
+            localStorage.getItem("pokemonFavorite")
+        ) || [];
 
-    // Kiểm tra Pokémon đã tồn tại trong Collection chưa.
-    const exists = collection.some(function (item) {
 
-        // So sánh ID của Pokémon.
-        return item.id === pokemon.id;
-    });
-
-    // Nếu Pokémon chưa tồn tại.
-    if (!exists) {
-
-        // Thêm Pokémon vào mảng Collection.
-        collection.push({
-
-            // Lưu ID Pokémon.
-            id: pokemon.id,
-
-            // Lưu tên Pokémon.
-            name: pokemon.name,
-
-            // Lấy ảnh official artwork.
-            // Nếu không có thì dùng ảnh mặc định.
-            image:
-                pokemon.sprites.other["official-artwork"].front_default ||
-                pokemon.sprites.front_default,
-
-            // Lấy danh sách các hệ Pokémon.
-            types: pokemon.types.map(function (item) {
-
-                // Chỉ lấy tên của hệ.
-                return item.type.name;
-            })
+    const exists =
+        favorite.some(function (item) {
+            return Number(item.id) === Number(pokemon.id);
         });
 
-        // Chuyển mảng thành JSON rồi lưu vào localStorage.
-        localStorage.setItem(
-            "pokemonCollection",
-            JSON.stringify(collection)
+
+    if (exists) {
+
+        alert(
+            "Pokémon này đã có trong Yêu thích!"
         );
 
-        // Thông báo đã thêm thành công.
-        alert("Đã thêm vào Bộ sưu tập!");
-
-    } else {
-
-        // Thông báo nếu Pokémon đã tồn tại.
-        alert("Pokémon này đã có trong Bộ sưu tập!");
+        return;
     }
-}
 
 
-// ============================
-// THÊM VÀO YÊU THÍCH
-// ============================
+    const pokemonData = {
 
-// Tạo hàm thêm Pokémon vào Favorite.
-function addToFavorite(pokemon) {
+        id: pokemon.id,
 
-    // Lấy danh sách Favorite từ localStorage.
-    // Nếu chưa có thì tạo mảng rỗng.
-    const favorites =
-        JSON.parse(localStorage.getItem("pokemonFavorite")) || [];
+        name: pokemon.name,
 
-    // Kiểm tra Pokémon đã tồn tại chưa.
-    const exists = favorites.some(function (item) {
+        image:
+            pokemon.sprites.other["official-artwork"]
+                .front_default ||
+            pokemon.sprites.front_default,
 
-        // So sánh ID Pokémon.
-        return item.id === pokemon.id;
-    });
-
-    // Nếu Pokémon chưa tồn tại.
-    if (!exists) {
-
-        // Thêm Pokémon vào danh sách yêu thích.
-        favorites.push({
-
-            // Lưu ID.
-            id: pokemon.id,
-
-            // Lưu tên.
-            name: pokemon.name,
-
-            // Lưu ảnh Pokémon.
-            image:
-                pokemon.sprites.other["official-artwork"].front_default ||
-                pokemon.sprites.front_default,
-
-            // Lưu danh sách hệ.
-            types: pokemon.types.map(function (item) {
-
-                // Lấy tên hệ.
+        types:
+            pokemon.types.map(function (item) {
                 return item.type.name;
             })
-        });
+    };
 
-        // Lưu danh sách Favorite vào localStorage.
-        localStorage.setItem(
-            "pokemonFavorite",
-            JSON.stringify(favorites)
+
+    favorite.push(pokemonData);
+
+    localStorage.setItem(
+        "pokemonFavorite",
+        JSON.stringify(favorite)
+    );
+
+
+    // ============================
+    // LƯU FIREBASE
+    // ============================
+
+    try {
+
+        const user =
+            await getCurrentUser();
+
+
+        if (user) {
+
+            const pokemonRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid,
+                    "favorite",
+                    String(pokemon.id)
+                );
+
+
+            await setDoc(
+                pokemonRef,
+                {
+                    ...pokemonData,
+                    updatedAt: serverTimestamp()
+                }
+            );
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Không thể lưu Favorite lên Firebase:",
+            error
         );
-
-        // Thông báo thành công.
-        alert("Đã thêm vào Yêu thích!");
-
-    } else {
-
-        // Thông báo nếu đã tồn tại.
-        alert("Pokémon này đã có trong Yêu thích!");
     }
+
+
+    alert(
+        "Đã thêm vào Yêu thích!"
+    );
 }
 
 
@@ -311,1341 +2023,705 @@ function addToFavorite(pokemon) {
 // GIỚI TÍNH
 // ============================
 
-// Tạo hàm tính giới tính Pokémon.
-function getGender(genderRate) {
+function getGender(species) {
 
-    // -1 nghĩa là Pokémon không xác định giới tính.
-    if (genderRate === -1) {
-
-        // Trả về thông báo.
+    if (
+        species.gender_rate === -1
+    ) {
         return "Không xác định";
     }
 
-    // Tính phần trăm giới tính cái.
-    const female = genderRate * 12.5;
 
-    // Tính phần trăm giới tính đực.
-    const male = 100 - female;
+    if (
+        species.gender_rate === 0
+    ) {
+        return "Chỉ đực";
+    }
 
-    // Trả về HTML hiển thị giới tính.
-    return `
-        <div class="pokemon-detail-gender">
 
-            <span class="gender-male">
-                ♂ ${male}%
-            </span>
+    if (
+        species.gender_rate === 8
+    ) {
+        return "Chỉ cái";
+    }
 
-            <span class="gender-female">
-                ♀ ${female}%
-            </span>
 
-        </div>
-    `;
+    return "Đực / Cái";
 }
 
 
 // ============================
-// MÀU CHỈ SỐ
+// MÀU STAT
 // ============================
 
-// Tạo hàm lấy màu tương ứng với từng chỉ số.
-function getStatColor(statName) {
+function getStatColor(value) {
 
-    // Object chứa màu của từng loại chỉ số.
-    const colors = {
+    if (value >= 120) {
+        return "high";
+    }
 
-        // Màu cho HP.
-        hp: "#24a148",
+    if (value >= 80) {
+        return "medium";
+    }
 
-        // Màu cho Attack.
-        attack: "#f04b23",
-
-        // Màu cho Defense.
-        defense: "#f5a800",
-
-        // Màu cho Special Attack.
-        "special-attack": "#2878b8",
-
-        // Màu cho Special Defense.
-        "special-defense": "#49a35a",
-
-        // Màu cho Speed.
-        speed: "#7d3fc7"
-    };
-
-    // Trả về màu tương ứng.
-    // Nếu không tìm thấy thì dùng màu xanh mặc định.
-    return colors[statName] || "#2a75bb";
+    return "low";
 }
 
 
 // ============================
-// TÊN ĐẸP CỦA CHỈ SỐ
+// TÊN STAT
 // ============================
 
-// Tạo hàm chuyển tên API thành tên dễ đọc.
 function getStatName(name) {
 
-    // Object chứa tên hiển thị.
-    const names = {
+    const statNames = {
 
-        // Tên HP.
         hp: "HP",
 
-        // Tên Attack.
-        attack: "Attack",
+        attack: "Tấn công",
 
-        // Tên Defense.
-        defense: "Defense",
+        defense: "Phòng thủ",
 
-        // Tên Special Attack.
-        "special-attack": "Special Attack",
+        "special-attack": "Công đặc biệt",
 
-        // Tên Special Defense.
-        "special-defense": "Special Defense",
+        "special-defense": "Phòng thủ đặc biệt",
 
-        // Tên Speed.
-        speed: "Speed"
+        speed: "Tốc độ"
     };
 
-    // Nếu có tên trong object thì dùng tên đó.
-    // Nếu không có thì dùng hàm capitalize().
-    return names[name] || capitalize(name);
+
+    return statNames[name] || capitalize(name);
 }
 
 
 // ============================
-// RENDER CHỈ SỐ
+// RENDER STATS
 // ============================
 
-// Tạo hàm render danh sách chỉ số.
 function renderStats(stats) {
 
-    // Tính tổng tất cả chỉ số.
-    const total = stats.reduce(function (sum, stat) {
+    return stats.map(function (stat) {
 
-        // Cộng base_stat vào tổng.
-        return sum + stat.base_stat;
+        const value =
+            stat.base_stat;
 
-    // Giá trị ban đầu của tổng là 0.
-    }, 0);
+        const percentage =
+            Math.min(
+                (value / 150) * 100,
+                100
+            );
 
-    // Tạo HTML cho từng chỉ số.
-    const statHTML = stats.map(function (stat) {
 
-        // Tính độ dài thanh progress.
-        // 150 được xem là mức tối đa để tính phần trăm.
-        const width = Math.min(
-            stat.base_stat / 150 * 100,
-            100
-        );
-
-        // Lấy màu tương ứng với chỉ số.
-        const color = getStatColor(stat.stat.name);
-
-        // Trả về HTML của một chỉ số.
         return `
-            <div class="pokemon-detail-stat">
+            <div class="stat-row">
 
-                <span
-                    class="pokemon-detail-stat-name"
-                    style="color: ${color};"
-                >
+                <div class="stat-name">
                     ${getStatName(stat.stat.name)}
-                </span>
-
-                <div class="pokemon-detail-stat-bar">
-
-                    <div
-                        class="pokemon-detail-stat-fill"
-                        style="
-                            width: ${width}%;
-                            background: ${color};
-                        "
-                    ></div>
-
                 </div>
 
-                <span class="pokemon-detail-stat-value">
-                    ${stat.base_stat}
-                </span>
+                <div class="stat-value">
+                    ${value}
+                </div>
+
+                <div class="stat-bar">
+                    <div
+                        class="stat-bar-fill ${getStatColor(value)}"
+                        style="width: ${percentage}%"
+                    ></div>
+                </div>
 
             </div>
         `;
-
-    // Nối tất cả card thành một chuỗi HTML.
     }).join("");
+}
 
-    // Trả về toàn bộ khu vực chỉ số.
+
+// ============================
+// RENDER FORMS
+// ============================
+
+function renderForms(pokemon) {
+
+    if (!pokemon.forms || pokemon.forms.length <= 1) {
+        return "";
+    }
+
+
     return `
-        <div class="pokemon-detail-stat-list">
-            ${statHTML}
-        </div>
+        <section class="pokemon-forms">
 
-        <p class="pokemon-detail-total">
-            Tổng:
-            <strong>${total}</strong>
-        </p>
+            <h2>Các dạng</h2>
+
+            <div class="forms-list">
+
+                ${pokemon.forms.map(function (form) {
+
+                    return `
+                        <div
+                            class="form-card"
+                            data-form-name="${form.name}"
+                        >
+                            <span>
+                                ${capitalize(form.name)}
+                            </span>
+                        </div>
+                    `;
+
+                }).join("")}
+
+            </div>
+
+        </section>
     `;
 }
 
 
 // ============================
-// RENDER DẠNG / TRẠNG THÁI
+// EVOLUTION CHAIN
 // ============================
 
-// Tạo hàm render các dạng Pokémon.
-async function renderForms(species) {
+async function getEvolutionChain(species) {
 
-    // Lấy danh sách varieties.
-    // Nếu không có thì sử dụng mảng rỗng.
-    const forms = species.varieties || [];
+    if (!species.evolution_chain) {
+        return null;
+    }
 
-    // Tạo Promise cho từng dạng.
-    const formPromises = forms.map(async function (variety) {
 
-        // Lấy ID từ URL Pokémon.
-        const id = getIdFromUrl(variety.pokemon.url);
+    const response =
+        await fetch(
+            species.evolution_chain.url
+        );
 
-        // Gọi API để lấy Pokémon.
-        const pokemon = await getPokemon(id);
 
-        // Nếu API lỗi thì bỏ qua dạng này.
-        if (!pokemon) {
-            return "";
-        }
+    if (!response.ok) {
+        return null;
+    }
 
-        // Lấy ảnh official artwork.
-        const image =
-            pokemon.sprites.other["official-artwork"].front_default ||
-            pokemon.sprites.front_default;
 
-        // Trả về HTML của card dạng.
-        return `
-            <div
-                class="pokemon-detail-form-card"
-                data-id="${pokemon.id}"
-            >
-
-                <img
-                    class="pokemon-detail-form-image"
-                    src="${image}"
-                    alt="${pokemon.name}"
-                >
-
-                <div>
-
-                    <h4 class="pokemon-detail-form-name">
-                        ${capitalize(pokemon.name)}
-                    </h4>
-
-                    <p class="pokemon-detail-form-id">
-                        #${pokemon.id}
-                    </p>
-
-                </div>
-
-                <i class="bi bi-chevron-right"></i>
-
-            </div>
-        `;
-    });
-
-    // Chờ tất cả API trả dữ liệu.
-    const formCards = await Promise.all(formPromises);
-
-    // Nối tất cả card thành một chuỗi HTML.
-    return formCards.join("");
+    return await response.json();
 }
 
 
 // ============================
-// LẤY EVOLUTION CHAIN
+// LẤY POKEMON TRONG EVOLUTION
 // ============================
 
-// Tạo hàm lấy dữ liệu Evolution Chain.
-async function getEvolutionChain(url) {
+async function getEvolutionPokemon(chain) {
 
-    // Bắt lỗi khi gọi API.
-    try {
+    const pokemonList = [];
 
-        // Gửi request đến URL Evolution.
-        const response = await fetch(url);
 
-        // Kiểm tra response.
-        if (!response.ok) {
+    async function processChain(currentChain) {
 
-            // Tạo lỗi nếu request thất bại.
-            throw new Error("Không lấy được Evolution");
+        if (!currentChain) {
+            return;
         }
 
-        // Chuyển JSON thành JavaScript object.
-        return await response.json();
+
+        const id =
+            getIdFromUrl(
+                currentChain.species.url
+            );
+
+
+        try {
+
+            const pokemon =
+                await getPokemon(id);
+
+            pokemonList.push(pokemon);
+
+        } catch (error) {
+
+            console.error(
+                "Lỗi tải evolution Pokémon:",
+                error
+            );
+        }
+
+
+        if (
+            currentChain.evolves_to &&
+            currentChain.evolves_to.length > 0
+        ) {
+
+            for (
+                const nextChain
+                of currentChain.evolves_to
+            ) {
+
+                await processChain(nextChain);
+            }
+        }
+    }
+
+
+    await processChain(chain.chain);
+
+    return pokemonList;
+}
+
+
+// ============================
+// RENDER EVOLUTION
+// ============================
+
+function renderEvolution(pokemonList) {
+
+    if (
+        !pokemonList ||
+        pokemonList.length === 0
+    ) {
+        return "";
+    }
+
+
+    return `
+        <section class="pokemon-evolution">
+
+            <h2>Tiến hóa</h2>
+
+            <div class="evolution-list">
+
+                ${pokemonList.map(function (pokemon) {
+
+                    const image =
+                        pokemon.sprites.other[
+                            "official-artwork"
+                        ].front_default ||
+                        pokemon.sprites.front_default;
+
+
+                    return `
+                        <div
+                            class="evolution-card"
+                            data-id="${pokemon.id}"
+                        >
+
+                            <img
+                                src="${image}"
+                                alt="${capitalize(pokemon.name)}"
+                            >
+
+                            <h3>
+                                ${capitalize(pokemon.name)}
+                            </h3>
+
+                            <span>
+                                #${String(pokemon.id).padStart(3, "0")}
+                            </span>
+
+                        </div>
+                    `;
+
+                }).join("")}
+
+            </div>
+
+        </section>
+    `;
+}
+
+
+// ============================
+// ABILITY MODAL
+// ============================
+
+async function openAbilityModal(url) {
+
+    try {
+
+        abilityModalTitle.textContent =
+            "Đang tải...";
+
+        abilityModalBody.innerHTML =
+            "<p>Đang tải thông tin ability...</p>";
+
+        abilityModal.show();
+
+
+        const ability =
+            await getAbility(url);
+
+
+        abilityModalTitle.textContent =
+            capitalize(ability.name);
+
+
+        let description =
+            "Chưa có mô tả.";
+
+
+        if (
+            ability.effect_entries &&
+            ability.effect_entries.length > 0
+        ) {
+
+            const englishEntry =
+                ability.effect_entries.find(
+                    function (entry) {
+                        return entry.language.name === "en";
+                    }
+                );
+
+
+            if (englishEntry) {
+                description =
+                    englishEntry.effect;
+            }
+        }
+
+
+        abilityModalBody.innerHTML = `
+            <p>
+                ${description}
+            </p>
+        `;
 
     } catch (error) {
 
-        // In lỗi ra Console.
-        console.error("Lỗi Evolution:", error);
+        console.error(error);
 
-        // Trả về null khi lỗi.
-        return null;
-    }
-}
+        abilityModalTitle.textContent =
+            "Lỗi";
 
-
-// ============================
-// TẠO DANH SÁCH TIẾN HÓA
-// ============================
-
-// Tạo hàm lấy danh sách Pokémon trong Evolution Chain.
-function getEvolutionPokemon(chain) {
-
-    // Tạo mảng chứa kết quả.
-    const result = [];
-
-    // Bắt đầu từ Pokémon đầu tiên trong chain.
-    let current = chain;
-
-    // Lặp khi vẫn còn Pokémon.
-    while (current) {
-
-        // Thêm Pokémon hiện tại vào kết quả.
-        result.push({
-
-            // Lấy tên species.
-            name: current.species.name,
-
-            // Lấy ID từ URL species.
-            id: getIdFromUrl(current.species.url)
-        });
-
-        // Kiểm tra có Pokémon tiến hóa tiếp theo không.
-        if (
-            current.evolves_to &&
-            current.evolves_to.length > 0
-        ) {
-
-            // Lấy Pokémon tiến hóa đầu tiên.
-            current = current.evolves_to[0];
-
-        } else {
-
-            // Không còn tiến hóa thì kết thúc vòng lặp.
-            current = null;
-        }
-    }
-
-    // Trả về danh sách tiến hóa.
-    return result;
-}
-
-
-// ============================
-// RENDER TIẾN HÓA
-// ============================
-
-// Tạo hàm render khu vực Evolution.
-async function renderEvolution(evolutionUrl) {
-
-    // Lấy dữ liệu Evolution Chain.
-    const evolutionData =
-        await getEvolutionChain(evolutionUrl);
-
-    // Nếu không lấy được dữ liệu.
-    if (!evolutionData) {
-
-        // Hiển thị thông báo lỗi.
-        return `<p>Không có dữ liệu tiến hóa.</p>`;
-    }
-
-    // Lấy danh sách Pokémon tiến hóa.
-    const evolutionList =
-        getEvolutionPokemon(evolutionData.chain);
-
-    // Tạo Promise để lấy thông tin từng Pokémon.
-    const pokemonPromises = evolutionList.map(function (item) {
-
-        // Gọi API theo ID.
-        return getPokemon(item.id);
-    });
-
-    // Chờ tất cả Pokémon được lấy về.
-    const pokemons = await Promise.all(pokemonPromises);
-
-    // Chỉ giữ lại những Pokémon lấy thành công.
-    const validPokemons = pokemons.filter(function (pokemon) {
-
-        // Pokémon khác null là hợp lệ.
-        return pokemon !== null;
-    });
-
-    // Tạo HTML cho từng Pokémon.
-    return validPokemons.map(function (pokemon, index) {
-
-        // Lấy ảnh Pokémon.
-        const image =
-            pokemon.sprites.other["official-artwork"].front_default ||
-            pokemon.sprites.front_default;
-
-        // Tạo card Pokémon.
-        const card = `
-            <div
-                class="pokemon-detail-evolution-card"
-                data-id="${pokemon.id}"
-            >
-
-                <img
-                    class="pokemon-detail-evolution-image"
-                    src="${image}"
-                    alt="${pokemon.name}"
-                >
-
-                <p class="pokemon-detail-evolution-name">
-                    ${capitalize(pokemon.name)}
-                </p>
-
-                <p class="pokemon-detail-evolution-id">
-                    #${pokemon.id}
-                </p>
-
-            </div>
-        `;
-
-        // Kiểm tra Pokémon có phải Pokémon cuối không.
-        if (index < validPokemons.length - 1) {
-
-            // Nếu chưa phải cuối thì thêm mũi tên.
-            return `
-                ${card}
-
-                <i
-                    class="bi bi-arrow-right
-                    pokemon-detail-evolution-arrow"
-                ></i>
-            `;
-        }
-
-        // Nếu là Pokémon cuối thì chỉ trả card.
-        return card;
-
-    // Nối tất cả thành một chuỗi HTML.
-    }).join("");
-}
-
-
-// ============================
-// MỞ MODAL KỸ NĂNG
-// ============================
-
-// Tạo hàm mở Modal Ability.
-async function openAbilityModal(url) {
-
-    // Hiển thị Modal.
-    abilityModal.show();
-
-    // Đổi tiêu đề thành trạng thái loading.
-    abilityModalTitle.textContent =
-        "Đang tải kỹ năng...";
-
-    // Hiển thị loading trong phần nội dung.
-    abilityModalBody.innerHTML =
-        "<p>⏳ Đang lấy thông tin...</p>";
-
-    // Gọi API lấy Ability.
-    const ability = await getAbility(url);
-
-    // Nếu không lấy được dữ liệu.
-    if (!ability) {
-
-        // Đổi tiêu đề thành lỗi.
-        abilityModalTitle.textContent = "Lỗi";
-
-        // Hiển thị thông báo lỗi.
         abilityModalBody.innerHTML =
-            "<p>Không thể tải thông tin kỹ năng.</p>";
-
-        // Dừng hàm.
-        return;
+            "<p>Không thể tải thông tin ability.</p>";
     }
-
-    // Tìm mô tả tiếng Anh trong danh sách effect.
-    const effectEntry = ability.effect_entries.find(
-        function (item) {
-
-            // Chỉ lấy phần có language = en.
-            return item.language.name === "en";
-        }
-    );
-
-    // Lấy mô tả ngắn.
-    // Nếu không có thì hiển thị thông báo mặc định.
-    const description =
-        effectEntry
-            ? effectEntry.short_effect
-            : "Chưa có mô tả.";
-
-    // Đổi tiêu đề Modal thành tên Ability.
-    abilityModalTitle.textContent =
-        capitalize(ability.name);
-
-    // Hiển thị thông tin Ability.
-    abilityModalBody.innerHTML = `
-        <div class="pokemon-ability-modal-row">
-
-            <strong>Tên:</strong>
-
-            ${capitalize(ability.name)}
-
-        </div>
-
-        <div class="pokemon-ability-modal-row">
-
-            <strong>Mô tả:</strong>
-
-            ${description}
-
-        </div>
-    `;
 }
 
 
 // ============================
-// GẮN SỰ KIỆN
+// EVENT
 // ============================
 
-// Tạo hàm gắn các event cho trang Detail.
 function addDetailEvents(pokemon) {
 
-    // ============================
-    // NÚT BỘ SƯU TẬP
-    // ============================
-
-    // Tìm nút thêm Collection.
     const collectionButton =
         document.querySelector("#addCollection");
 
-    // Kiểm tra nút có tồn tại không.
+    const favoriteButton =
+        document.querySelector("#addFavorite");
+
+
     if (collectionButton) {
 
-        // Gắn sự kiện click.
         collectionButton.addEventListener(
             "click",
             function () {
-
-                // Thêm Pokémon vào Collection.
                 addToCollection(pokemon);
             }
         );
     }
 
 
-    // ============================
-    // NÚT YÊU THÍCH
-    // ============================
-
-    // Tìm nút Favorite.
-    const favoriteButton =
-        document.querySelector("#addFavorite");
-
-    // Kiểm tra nút có tồn tại không.
     if (favoriteButton) {
 
-        // Gắn sự kiện click.
         favoriteButton.addEventListener(
             "click",
             function () {
-
-                // Thêm Pokémon vào Favorite.
                 addToFavorite(pokemon);
             }
         );
     }
 
 
-    // ============================
-    // NÚT ABILITY
-    // ============================
+    // Ability
+    const abilityButtons =
+        document.querySelectorAll(
+            "[data-ability-url]"
+        );
 
-    // Lấy tất cả button Ability.
-    document
-        .querySelectorAll(
-            ".pokemon-detail-ability-button"
-        )
-        .forEach(function (button) {
 
-            // Gắn sự kiện click cho từng button.
+    abilityButtons.forEach(
+        function (button) {
+
             button.addEventListener(
                 "click",
                 function () {
 
-                    // Mở Modal bằng URL Ability.
-                    openAbilityModal(
-                        button.dataset.url
+                    const url =
+                        button.dataset.abilityUrl;
+
+                    openAbilityModal(url);
+                }
+            );
+        }
+    );
+
+
+    // Form
+    const formCards =
+        document.querySelectorAll(
+            ".form-card"
+        );
+
+
+    formCards.forEach(
+        function (card) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    const name =
+                        card.dataset.formName;
+
+                    console.log(
+                        "Form:",
+                        name
                     );
                 }
             );
-        });
+        }
+    );
 
 
-    // ============================
-    // CARD DẠNG
-    // ============================
+    // Evolution
+    const evolutionCards =
+        document.querySelectorAll(
+            ".evolution-card"
+        );
 
-    // Lấy tất cả card dạng Pokémon.
-    document
-        .querySelectorAll(
-            ".pokemon-detail-form-card"
-        )
-        .forEach(function (card) {
 
-            // Gắn sự kiện click.
+    evolutionCards.forEach(
+        function (card) {
+
             card.addEventListener(
                 "click",
                 function () {
 
-                    // Chuyển sang trang Detail của dạng đó.
+                    const id =
+                        card.dataset.id;
+
                     window.location.href =
-                        `detail.html?id=${card.dataset.id}`;
+                        `detail.html?id=${id}`;
                 }
             );
-        });
-
-
-    // ============================
-    // CARD TIẾN HÓA
-    // ============================
-
-    // Lấy tất cả card Evolution.
-    document
-        .querySelectorAll(
-            ".pokemon-detail-evolution-card"
-        )
-        .forEach(function (card) {
-
-            // Gắn sự kiện click.
-            card.addEventListener(
-                "click",
-                function () {
-
-                    // Chuyển sang Detail Pokémon được chọn.
-                    window.location.href =
-                        `detail.html?id=${card.dataset.id}`;
-                }
-            );
-        });
+        }
+    );
 }
 
 
 // ============================
-// LOAD TRANG DETAIL
+// LOAD DETAIL
 // ============================
 
-// Tạo hàm load toàn bộ dữ liệu Detail.
 async function loadPokemonDetail() {
 
-    // Kiểm tra URL có ID Pokémon không.
-    if (!pokemonId) {
-
-        // Hiển thị thông báo lỗi.
-        loading.textContent =
-            "❌ Không tìm thấy Pokémon.";
-
-        // Dừng hàm.
-        return;
-    }
-
-    // Bắt lỗi toàn bộ quá trình load.
     try {
 
-        // Lấy dữ liệu Pokémon.
+        if (!pokemonId) {
+            throw new Error(
+                "Không tìm thấy ID Pokémon."
+            );
+        }
+
+
+        loadingElement.style.display =
+            "block";
+
+        detailElement.style.display =
+            "none";
+
+
         const pokemon =
             await getPokemon(pokemonId);
 
-        // Nếu không lấy được Pokémon.
-        if (!pokemon) {
 
-            // Hiển thị thông báo lỗi.
-            loading.textContent =
-                "❌ Không tìm thấy Pokémon.";
+        const species =
+            await getPokemonSpecies(pokemonId);
 
-            // Dừng hàm.
-            return;
+
+        const evolutionChain =
+            await getEvolutionChain(species);
+
+
+        let evolutionPokemon = [];
+
+
+        if (evolutionChain) {
+
+            evolutionPokemon =
+                await getEvolutionPokemon(
+                    evolutionChain
+                );
         }
 
 
-        // ============================
-        // LẤY SPECIES
-        // ============================
-
-        // Lấy dữ liệu Species.
-        const species =
-            await getPokemonSpecies(pokemon.id);
-
-
-        // ============================
-        // LẤY ẢNH
-        // ============================
-
-        // Lấy ảnh official artwork.
-        // Nếu không có thì dùng ảnh mặc định.
         const image =
-            pokemon.sprites.other["official-artwork"].front_default ||
+            pokemon.sprites.other[
+                "official-artwork"
+            ].front_default ||
             pokemon.sprites.front_default;
 
 
-        // ============================
-        // RENDER HỆ
-        // ============================
+        const types =
+            pokemon.types.map(
+                function (item) {
+                    return item.type.name;
+                }
+            );
 
-        // Lấy danh sách hệ Pokémon.
-        const types = pokemon.types.map(
-            function (item) {
 
-                // Tạo HTML cho từng hệ.
-                return `
-                    <span class="pokemon-detail-type">
-                        ${capitalize(item.type.name)}
+        const abilities =
+            pokemon.abilities;
+
+
+        detailElement.innerHTML = `
+
+            <section class="pokemon-detail-main">
+
+                <div class="pokemon-detail-image">
+
+                    <span class="pokemon-detail-id">
+                        #${String(pokemon.id).padStart(3, "0")}
                     </span>
-                `;
-            }
 
-        // Nối tất cả hệ thành một chuỗi.
-        ).join("");
-
-
-        // ============================
-        // CATEGORY
-        // ============================
-
-        // Đặt Category mặc định.
-        let category = "Chưa có dữ liệu";
-
-        // Kiểm tra có Species không.
-        if (species) {
-
-            // Tìm genus tiếng Anh.
-            const englishGenus =
-                species.genera.find(
-                    function (item) {
-
-                        // Chỉ lấy genus có language = en.
-                        return item.language.name === "en";
-                    }
-                );
-
-            // Nếu tìm thấy genus.
-            if (englishGenus) {
-
-                // Lấy tên genus.
-                category = englishGenus.genus;
-            }
-        }
-
-
-        // ============================
-        // GIỚI TÍNH
-        // ============================
-
-        // Lấy thông tin giới tính.
-        const gender =
-            species
-                ? getGender(species.gender_rate)
-                : "Không xác định";
-
-
-        // ============================
-        // ABILITY
-        // ============================
-
-        // Lấy các Ability thường.
-        const normalAbilities =
-            pokemon.abilities.filter(
-                function (item) {
-
-                    // Chỉ lấy Ability không phải hidden.
-                    return !item.is_hidden;
-                }
-            );
-
-        // Tìm Ability ẩn.
-        const hiddenAbility =
-            pokemon.abilities.find(
-                function (item) {
-
-                    // Tìm Ability có is_hidden = true.
-                    return item.is_hidden;
-                }
-            );
-
-
-        // ============================
-        // RENDER ABILITY THƯỜNG
-        // ============================
-
-        // Tạo button cho từng Ability thường.
-        const abilityButtons =
-            normalAbilities.map(
-                function (item) {
-
-                    // Trả về HTML button.
-                    return `
-                        <button
-                            class="pokemon-detail-ability-button"
-                            data-url="${item.ability.url}"
-                        >
-                            ${capitalize(item.ability.name)}
-                        </button>
-                    `;
-                }
-
-            // Nối tất cả button.
-            ).join("");
-
-
-        // ============================
-        // RENDER DẠNG
-        // ============================
-
-        // Lấy HTML các dạng Pokémon.
-        const forms =
-            species
-                ? await renderForms(species)
-                : "<p>Không có dữ liệu dạng.</p>";
-
-
-        // ============================
-        // RENDER TIẾN HÓA
-        // ============================
-
-        // Lấy HTML Evolution.
-        const evolution =
-            species
-                ? await renderEvolution(
-                    species.evolution_chain.url
-                )
-                : "<p>Không có dữ liệu tiến hóa.</p>";
-
-
-        // ============================
-        // POKEMON TRƯỚC
-        // ============================
-
-        // Nếu ID > 1 thì lấy Pokémon trước.
-        // Nếu là Pokémon #1 thì vẫn giữ ID 1.
-        const previousId =
-            pokemon.id > 1
-                ? pokemon.id - 1
-                : 1;
-
-
-        // ============================
-        // POKEMON SAU
-        // ============================
-
-        // Lấy ID Pokémon tiếp theo.
-        const nextId =
-            pokemon.id + 1;
-
-
-        // ============================
-        // ẨN LOADING
-        // ============================
-
-        // Ẩn khu vực loading.
-        loading.style.display = "none";
-
-        // Hiển thị khu vực Detail.
-        detailContainer.style.display = "block";
-
-
-        // ============================
-        // RENDER TOÀN BỘ DETAIL
-        // ============================
-
-        // Đưa toàn bộ HTML vào detailContainer.
-        detailContainer.innerHTML = `
-
-            <!-- ============================ -->
-            <!-- CARD CHÍNH + NÚT CHUYỂN -->
-            <!-- ============================ -->
-
-            <div class="pokemon-detail-wrapper">
-
-
-                <!-- Pokémon trước -->
-
-                <div class="pokemon-detail-nav">
-
-                    <button
-                        class="pokemon-detail-nav-button"
-                        data-id="${previousId}"
+                    <img
+                        src="${image}"
+                        alt="${capitalize(pokemon.name)}"
                     >
-                        <i class="bi bi-chevron-left"></i>
-                    </button>
-
-                    <div class="pokemon-detail-nav-text">
-
-                        #${previousId}
-
-                        <br>
-
-                        Trước
-
-                    </div>
 
                 </div>
 
 
-                <!-- CARD CHÍNH -->
+                <div class="pokemon-detail-info">
 
-                <div class="pokemon-detail-main-card">
-
-                    <div class="pokemon-detail-top">
-
-
-                        <!-- Ảnh Pokémon -->
-
-                        <div class="pokemon-detail-image-box">
-
-                            <img
-                                src="${image}"
-                                alt="${pokemon.name}"
-                            >
-
-                        </div>
+                    <h1>
+                        ${capitalize(pokemon.name)}
+                    </h1>
 
 
-                        <!-- ID + tên + hệ -->
+                    <div class="pokemon-detail-types">
 
-                        <div>
+                        ${types.map(function (type) {
 
-                            <p class="pokemon-detail-id">
-
-                                #${pokemon.id}
-
-                            </p>
-
-                            <h1 class="pokemon-detail-name">
-
-                                ${capitalize(pokemon.name)}
-
-                            </h1>
-
-                            <div class="pokemon-detail-types">
-
-                                ${types}
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Thông tin tổng quan -->
-
-                        <div class="pokemon-detail-summary">
-
-
-                            <!-- Category -->
-
-                            <div class="pokemon-detail-category">
-
-                                <div
-                                    class="pokemon-detail-category-title"
+                            return `
+                                <span
+                                    class="pokemon-type type-${type}"
                                 >
+                                    ${capitalize(type)}
+                                </span>
+                            `;
 
-                                    <i class="bi bi-tag"></i>
-
-                                    Category
-
-                                </div>
-
-                                <div
-                                    class="pokemon-detail-category-value"
-                                >
-
-                                    ${category}
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Grid thông tin -->
-
-                            <div class="pokemon-detail-info-grid">
-
-
-                                <!-- Chiều cao -->
-
-                                <div
-                                    class="pokemon-detail-info-item"
-                                >
-
-                                    <span
-                                        class="pokemon-detail-info-label"
-                                    >
-                                        Chiều cao
-                                    </span>
-
-                                    <span
-                                        class="pokemon-detail-info-value"
-                                    >
-                                        ${pokemon.height / 10} m
-                                    </span>
-
-                                </div>
-
-
-                                <!-- Cân nặng -->
-
-                                <div
-                                    class="pokemon-detail-info-item"
-                                >
-
-                                    <span
-                                        class="pokemon-detail-info-label"
-                                    >
-                                        Cân nặng
-                                    </span>
-
-                                    <span
-                                        class="pokemon-detail-info-value"
-                                    >
-                                        ${pokemon.weight / 10} kg
-                                    </span>
-
-                                </div>
-
-
-                                <!-- Giới tính -->
-
-                                <div
-                                    class="pokemon-detail-info-item"
-                                >
-
-                                    <span
-                                        class="pokemon-detail-info-label"
-                                    >
-                                        Giới tính
-                                    </span>
-
-                                    <span
-                                        class="pokemon-detail-info-value"
-                                    >
-                                        ${gender}
-                                    </span>
-
-                                </div>
-
-
-                                <!-- Kinh nghiệm -->
-
-                                <div
-                                    class="pokemon-detail-info-item"
-                                >
-
-                                    <span
-                                        class="pokemon-detail-info-label"
-                                    >
-                                        Kinh nghiệm cơ bản
-                                    </span>
-
-                                    <span
-                                        class="pokemon-detail-info-value"
-                                    >
-                                        ${pokemon.base_experience || 0}
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        </div>
+                        }).join("")}
 
                     </div>
 
 
-                    <!-- Hai nút chức năng -->
-
-                    <div class="pokemon-detail-actions">
-
-
-                        <!-- Nút Collection -->
+                    <div class="pokemon-detail-buttons">
 
                         <button
                             id="addCollection"
-                            class="pokemon-detail-btn collection"
+                            class="btn btn-primary"
                         >
-
-                            <i class="bi bi-grid"></i>
-
-                            Bộ sưu tập
-
+                            Thêm vào Bộ sưu tập
                         </button>
-
-
-                        <!-- Nút Favorite -->
 
                         <button
                             id="addFavorite"
-                            class="pokemon-detail-btn favorite"
+                            class="btn btn-danger"
                         >
-
-                            <i class="bi bi-heart"></i>
-
                             Yêu thích
-
                         </button>
 
                     </div>
 
-                </div>
 
+                    <div class="pokemon-basic-info">
 
-                <!-- Pokémon sau -->
+                        <div>
+                            <strong>Chiều cao:</strong>
+                            ${pokemon.height / 10} m
+                        </div>
 
-                <div class="pokemon-detail-nav">
+                        <div>
+                            <strong>Cân nặng:</strong>
+                            ${pokemon.weight / 10} kg
+                        </div>
 
-                    <button
-                        class="pokemon-detail-nav-button"
-                        data-id="${nextId}"
-                    >
-
-                        <i class="bi bi-chevron-right"></i>
-
-                    </button>
-
-                    <div class="pokemon-detail-nav-text">
-
-                        #${nextId}
-
-                        <br>
-
-                        Tiếp theo
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ============================ -->
-            <!-- PHẦN 2 CỘT -->
-            <!-- ============================ -->
-
-            <div class="pokemon-detail-content">
-
-
-                <!-- ============================ -->
-                <!-- CỘT TRÁI -->
-                <!-- ============================ -->
-
-                <div class="pokemon-detail-column">
-
-
-                    <!-- Chỉ số -->
-
-                    <h2
-                        class="pokemon-detail-section-title"
-                    >
-
-                        <i class="bi bi-bar-chart-line"></i>
-
-                        Chỉ số cơ bản
-
-                    </h2>
-
-                    ${renderStats(pokemon.stats)}
-
-
-                    <!-- Khả năng ẩn -->
-
-                    <div
-                        class="pokemon-detail-hidden-ability"
-                    >
-
-                        <h3
-                            class="pokemon-detail-section-title"
-                        >
-
-                            <i class="bi bi-lock-fill"></i>
-
-                            Khả năng ẩn
-
-                        </h3>
-
-
-                        ${
-                            hiddenAbility
-                                ? `
-                                    <button
-                                        class="pokemon-detail-ability-button"
-                                        data-url="${hiddenAbility.ability.url}"
-                                    >
-                                        ${capitalize(
-                                            hiddenAbility.ability.name
-                                        )}
-                                    </button>
-                                `
-                                : `
-                                    <p>
-                                        Pokémon này không có
-                                        khả năng ẩn.
-                                    </p>
-                                `
-                        }
-
-                    </div>
-
-                </div>
-
-
-                <!-- ============================ -->
-                <!-- CỘT PHẢI -->
-                <!-- ============================ -->
-
-                <div class="pokemon-detail-column">
-
-
-                    <!-- Kỹ năng -->
-
-                    <h2
-                        class="pokemon-detail-section-title"
-                    >
-
-                        <i class="bi bi-star-fill"></i>
-
-                        Kỹ năng nổi bật
-
-                    </h2>
-
-
-                    <div
-                        class="pokemon-detail-abilities"
-                    >
-
-                        ${abilityButtons}
-
-                    </div>
-
-
-                    <!-- Dạng -->
-
-                    <div
-                        class="pokemon-detail-forms"
-                    >
-
-                        <h2
-                            class="pokemon-detail-section-title"
-                        >
-
-                            <i class="bi bi-arrow-repeat"></i>
-
-                            Dạng / Trạng thái
-
-                        </h2>
-
-
-                        <div
-                            class="pokemon-detail-form-list"
-                        >
-
-                            ${forms}
-
+                        <div>
+                            <strong>Giới tính:</strong>
+                            ${getGender(species)}
                         </div>
 
                     </div>
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <!-- ============================ -->
-            <!-- TIẾN HÓA -->
-            <!-- ============================ -->
+            <section class="pokemon-stats">
 
-            <div
-                class="pokemon-detail-evolution-box"
-            >
+                <h2>Chỉ số</h2>
 
-                <h2
-                    class="pokemon-detail-section-title"
-                >
+                <div class="stats-list">
 
-                    <i class="bi bi-arrow-repeat"></i>
-
-                    Tiến hóa
-
-                </h2>
-
-
-                <div
-                    class="pokemon-detail-evolution-list"
-                >
-
-                    ${evolution}
+                    ${renderStats(pokemon.stats)}
 
                 </div>
 
-            </div>
+            </section>
+
+
+            <section class="pokemon-abilities">
+
+                <h2>Kỹ năng</h2>
+
+                <div class="abilities-list">
+
+                    ${abilities.map(function (abilityItem) {
+
+                        return `
+                            <button
+                                class="ability-button"
+                                data-ability-url="${abilityItem.ability.url}"
+                            >
+                                ${capitalize(abilityItem.ability.name)}
+                            </button>
+                        `;
+
+                    }).join("")}
+
+                </div>
+
+            </section>
+
+
+            ${renderForms(pokemon)}
+
+            ${renderEvolution(evolutionPokemon)}
 
         `;
 
 
-        // ============================
-        // SỰ KIỆN NÚT TRƯỚC / SAU
-        // ============================
-
-        // Lấy tất cả nút chuyển Pokémon.
-        document
-            .querySelectorAll(
-                ".pokemon-detail-nav-button"
-            )
-            .forEach(function (button) {
-
-                // Gắn sự kiện click.
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        // Lấy ID từ data-id.
-                        const id =
-                            button.dataset.id;
-
-                        // Chuyển sang Pokémon được chọn.
-                        window.location.href =
-                            `detail.html?id=${id}`;
-                    }
-                );
-            });
-
-
-        // ============================
-        // GẮN CÁC EVENT CÒN LẠI
-        // ============================
-
-        // Gắn event cho Collection,
-        // Favorite, Ability, Form và Evolution.
         addDetailEvents(pokemon);
+
+
+        loadingElement.style.display =
+            "none";
+
+        detailElement.style.display =
+            "block";
 
 
     } catch (error) {
 
-        // In lỗi ra Console.
-        console.error("Lỗi Detail:", error);
+        console.error(error);
 
-        // Hiển thị lỗi cho người dùng.
-        loading.textContent =
-            "❌ Không thể tải thông tin Pokémon.";
+        loadingElement.innerHTML = `
+            <div class="alert alert-danger">
+                Không thể tải thông tin Pokémon.
+            </div>
+        `;
     }
 }
 
 
 // ============================
-// CHẠY HÀM LOAD
+// CHẠY
 // ============================
 
-// Bắt đầu tải dữ liệu Pokémon khi file JS chạy.
 loadPokemonDetail();
