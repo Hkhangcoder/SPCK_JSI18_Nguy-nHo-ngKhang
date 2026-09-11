@@ -1,16 +1,12 @@
-// Import hàm lấy app Firebase đã khởi tạo
-import { getApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+// Import hàm kết nối Firestore.
+import { getFirestore } from 
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Import hàm kết nối Cloud Firestore
-import {
-    getFirestore
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+// Import Firebase App đã được khởi tạo.
+import { app } from "./firebase-config.js";
 
-// Lấy Firebase app hiện tại
-const app = getApp();
-
-// Tạo kết nối tới Firestore
+// Tạo kết nối tới Cloud Firestore.
 const db = getFirestore(app);
 
-// Xuất db để các file khác sử dụng
+// Xuất db để các file khác sử dụng.
 export { db };

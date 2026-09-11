@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cài đặt - Liên hệ | Pokémon Hub</title>
+    <title>Cài đặt - Góp ý | Pokémon Hub</title>
     <!-- Logo -->
     <link rel="icon" type="image/png" href="./Image/logo.png">
     <!-- Tích hợp Bootstrap -->
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="./style/main.css">
-    <link rel="stylesheet" href="./style/contact.css">
+    <link rel="stylesheet" href="./style/feedback.css">
 </head>
 <body style="padding-top:70px;">
     <!-- Navbar -->
@@ -31,24 +31,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./Pages/intro-web.html">Giới thiệu web</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./collection.html">Giới thiệu web</a></li>
                     <!-- Pokédex -->
-                    <li class="nav-item"><a class="nav-link" href="./Pages/list.html">Pokédex</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./list.html">Pokédex</a></li>
                     <!-- Bộ sưu tập -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Bộ sưu tập</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="./Pages/collection.html"><i class="bi bi-grid-3x3-gap-fill"></i> Tất cả</a></li>
-                            <li><a class="dropdown-item" href="./Pages/favorite.html">❤️ Yêu thích</a></li>                        
+                            <li><a class="dropdown-item" href="./collection.html"><i class="bi bi-grid-3x3-gap-fill"></i> Tất cả</a></li>
+                            <li><a class="dropdown-item" href="./favorite.html">❤️ Yêu thích</a></li>                        
                         </ul>
                     </li>
                     <!-- Cài đặt -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> <i class="bi bi-gear-fill icon-setting"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./Pages/profile.html">👤 Hồ sơ</a></li>
-                            <li><a class="dropdown-item" href="./Pages/contact.html">📞 Liên hệ</a></li>
-                            <li><a class="dropdown-item" href="./Pages/feedback.html">💬 Góp ý</a></li>
+                            <li><a class="dropdown-item" href="./profile.html">👤 Hồ sơ</a></li>
+                            <li><a class="dropdown-item" href="./contact.html">📞 Liên hệ</a></li>
+                            <li><a class="dropdown-item" href="./feedback.html">💬 Góp ý</a></li>
                             <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">🚪 Đăng xuất</a></li>
                         </ul>
                     </li>
@@ -63,187 +63,185 @@
         <div class="breadcrumb-custom">
             <a href="index.html">🏠 Trang chủ</a>
             <i class="bi bi-chevron-right"></i>
-            <a href="./Pages/contact.html">Cài đặt - Liên hệ</a>
+            <a href="./feedback.html">Cài đặt - Góp ý</a>
         </div>
     </div>
-    <!-- ================= MAIN ================= -->
-    <main class="contact-page">
+    <!-- MAIN -->
+    <main class="feedback-page">
         <div class="container">
-            <!-- HEADER -->
-            <section class="contact-heading">
+            <!-- TIÊU ĐỀ -->
+            <section class="feedback-heading">
                 <h1>
-                    <i class="bi bi-envelope-paper-heart-fill"></i> Liên hệ với chúng tôi
+                    <i class="bi bi-chat-heart-fill"></i> Góp ý
                 </h1>
-
-                <p>
-                    Bạn có câu hỏi hoặc cần hỗ trợ? Hãy gửi tin nhắn cho Pokémon Hub!
-                </p>
+                
+                <p> Ý kiến của bạn sẽ giúp Pokémon Hub trở nên tốt hơn mỗi ngày. </p>
             </section>
-            <!-- NỘI DUNG CONTACT -->
-            <section class="contact-wrapper">
-                <!-- THÔNG TIN BÊN TRÁI -->
-                <div class="contact-info">
-                    <div class="contact-info-header">
-                        <div class="contact-icon">
-                            <i class="bi bi-chat-dots-fill"></i>
+            <!-- NỘI DUNG -->
+            <div class="feedback-wrapper">
+                <!-- PHẦN GIỚI THIỆU -->
+                <section class="feedback-info">
+                    <div class="feedback-info-header">
+                        <div class="feedback-icon">
+                            <i class="bi bi-stars"></i>
                         </div>
-
+                        
                         <div>
-                            <h2> Chúng tôi có thể giúp gì? </h2>
+                            <h2> Chia sẻ trải nghiệm </h2>
 
-                            <p>
-                                Hãy gửi câu hỏi hoặc vấn đề bạn đang gặp phải.
-                            </p>
+                            <p> Hãy cho chúng mình biết trải nghiệm của bạn nhé! </p>
                         </div>
                     </div>
-                    <!-- Các mục thông tin -->
-                    <div class="contact-info-list">
-                        <div class="contact-info-item">
+                    <!-- Danh sách -->
+                    <div class="feedback-info-list">
+                        <div class="feedback-info-item">
                             <div class="info-item-icon">
-                                <i class="bi bi-envelope-fill"></i>
+                                <i class="bi bi-pencil-square"></i>
                             </div>
 
                             <div>
-                                <span>Email hỗ trợ</span>
-                                <strong> support@pokemonhub.com </strong>
+                                <span> Góp ý của bạn </span>
+                                
+                                <strong> Giúp cải thiện Pokémon Hub </strong>
                             </div>
                         </div>
-                        <div class="contact-info-item">
+
+                        <div class="feedback-info-item">
                             <div class="info-item-icon">
-                                <i class="bi bi-clock-fill"></i>
+                                <i class="bi bi-star-fill"></i>
                             </div>
 
                             <div>
-                                <span>Thời gian phản hồi</span>
-                                <strong> Trong thời gian sớm nhất </strong>
+                                <span> Đánh giá </span>
+
+                                <strong> Chia sẻ mức độ hài lòng </strong>
                             </div>
                         </div>
-                        <div class="contact-info-item">
+
+                        <div class="feedback-info-item">
                             <div class="info-item-icon">
-                                <i class="bi bi-lightning-charge-fill"></i>
+                                <i class="bi bi-heart-fill"></i>
                             </div>
 
                             <div>
-                                <span>Chủ đề phổ biến</span>
-                                <strong> Tài khoản · Pokédex · Bộ sưu tập </strong>
+                                <span> Pokémon Hub </span>
+
+                                <strong> Luôn lắng nghe ý kiến của bạn </strong>
                             </div>
                         </div>
                     </div>
-                    <!-- Lời nhắn -->
-                    <div class="contact-tip">
+                    <!-- Tip -->
+                    <div class="feedback-tip">
                         <i class="bi bi-lightbulb-fill"></i>
 
-                        <p>
-                            Hãy mô tả vấn đề càng rõ ràng càng tốt để chúng tôi có thể hỗ trợ bạn nhanh hơn!
+                        <p> Bạn có thể góp ý về giao diện,
+                            chức năng hoặc trải nghiệm sử dụng Pokémon Hub.
                         </p>
                     </div>
-                </div>
-                <!-- FORM BÊN PHẢI -->
-                <div class="contact-form-card">
-                    <h2> Gửi tin nhắn </h2>
+                </section>
+                <!-- FORM -->
+                <section class="feedback-form-card">
+                    <h2> Gửi góp ý </h2>
 
-                    <p class="contact-form-description">
-                        Điền thông tin bên dưới để gửi liên hệ.
+                    <p class="feedback-form-description">
+                        Vui lòng điền thông tin bên dưới.
                     </p>
-
-                    <form id="contactForm">
+                    <!-- Form -->
+                    <form id="feedbackForm">
                         <!-- Họ tên -->
                         <div class="form-group">
-                            <label for="contactName">
+                            <label for="feedbackName">
                                 <i class="bi bi-person-fill"></i> Họ và tên
                             </label>
 
-                            <input type="text" id="contactName" class="form-control"
-                                placeholder="Nhập họ và tên của bạn" required>
+                            <input type="text" id="feedbackName" class="form-control"
+                                placeholder="Nhập họ và tên" required>
                         </div>
                         <!-- Email -->
                         <div class="form-group">
-                            <label for="contactEmail">
+                            <label for="feedbackEmail">
                                 <i class="bi bi-envelope-fill"></i> Email
                             </label>
 
-                            <input type="email" id="contactEmail" class="form-control"
+                            <input type="email" id="feedbackEmail" class="form-control"
                                 placeholder="example@email.com" required>
                         </div>
-                        <!-- Chủ đề -->
+                        <!-- Đánh giá -->
                         <div class="form-group">
-                            <label for="contactSubject">
-                                <i class="bi bi-tag-fill"></i> Chủ đề
+                            <label>
+                                <i class="bi bi-star-fill"></i> Đánh giá của bạn
                             </label>
 
-                            <select id="contactSubject" class="form-select" required>
-                                <option value="">
-                                    -- Chọn chủ đề --
-                                </option>
+                            <div class="rating-box">
+                                <button type="button" class="star-btn" data-rating="1">
+                                    <i class="bi bi-star"></i>
+                                </button>
 
-                                <option value="account">
-                                    Vấn đề tài khoản
-                                </option>
+                                <button type="button" class="star-btn" data-rating="2">
+                                    <i class="bi bi-star"></i>
+                                </button>
 
-                                <option value="collection">
-                                    Bộ sưu tập Pokémon
-                                </option>
+                                <button type="button" class="star-btn" data-rating="3">
+                                    <i class="bi bi-star"></i>
+                                </button>
 
-                                <option value="pokedex"> Pokédex </option>
+                                <button type="button" class="star-btn" data-rating="4">
+                                    <i class="bi bi-star"></i>
+                                </button>
 
-                                <option value="website"> 
-                                    Vấn đề về website
-                                </option>
+                                <button type="button" class="star-btn" data-rating="5">
+                                    <i class="bi bi-star"></i>
+                                </button>
+                            </div>
 
-                                <option value="other"> Khác </option>
-                            </select>
+                            <p class="rating-text" id="ratingText">
+                                Chưa chọn đánh giá
+                            </p>
+                            <!-- Lưu giá trị đánh giá -->
+                            <input type="hidden" id="feedbackRating">
                         </div>
                         <!-- Nội dung -->
                         <div class="form-group">
-                            <label for="contactMessage">
-                                <i class="bi bi-chat-left-text-fill"></i> Nội dung
+                            <label for="feedbackContent">
+                                <i class="bi bi-chat-left-text-fill"></i> Nội dung góp ý
                             </label>
 
-                            <textarea id="contactMessage" 
-                                class="form-control" rows="6" 
-                                placeholder="Hãy viết nội dung bạn muốn liên hệ..."
+                            <textarea id="feedbackContent" class="form-control"
+                                placeholder="Hãy chia sẻ ý kiến của bạn..."
                                 required></textarea>
                         </div>
                         <!-- Nút gửi -->
-                        <button type="submit" class="contact-submit-btn">
-                            <i class="bi bi-send-fill"></i> Gửi liên hệ
+                        <button type="submit" class="feedback-submit-btn">
+                            <i class="bi bi-send-fill"></i> Gửi góp ý
                         </button>
                     </form>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </main>
-    <!-- ================= MODAL ================= -->
-    <div class="modal fade" id="contactSuccessModal" tabindex="-1">
+    <!-- MODAL THÀNH CÔNG -->
+    <div class="modal fade" id="feedbackSuccessModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content contact-modal">
-                <!-- Header -->
-                <div class="modal-header border-0">
-                    <button type="button" class="btn-close" 
-                    data-bs-dismiss="modal"></button>
-                </div>
-                <!-- Body -->
-                <div class="modal-body text-center pb-4">
-                    <div class="contact-success-icon">
+            <div class="modal-content feedback-modal">
+                <div class="modal-body text-center p-4">
+                    <div class="feedback-success-icon">
                         <i class="bi bi-check-lg"></i>
                     </div>
 
-                    <h3> Gửi liên hệ thành công! </h3>
-                    
-                    <p>
-                        Cảm ơn bạn đã liên hệ với Pokémon Hub.
-                        Chúng tôi đã nhận được thông tin của bạn.
+                    <h3> Cảm ơn bạn! </h3>
+
+                    <p> Góp ý của bạn đã được gửi thành công.
+                        Pokémon Hub rất trân trọng ý kiến của bạn!
                     </p>
-                    
-                    <button type="button" class="contact-modal-btn"
-                        data-bs-dismiss="modal"> Tuyệt vời!
+
+                    <button type="button" class="feedback-modal-btn"
+                        data-bs-dismiss="modal"> Đóng
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
-
+    
     <!-- FOOTER -->
     <!-- Footer dùng chung -->
     <footer class="main-footer">
@@ -254,7 +252,7 @@
                 <!-- Cột thương hiệu -->
                 <div class="footer-brand">
                     <!-- Logo footer -->
-                    <a href="home.html" class="footer-logo">
+                    <a href="index.html" class="footer-logo">
                         <img src="./Image/logo.png" alt="Pokémon Hub Logo">
                         <span>Pokémon Hub</span>
                     </a>
@@ -268,21 +266,21 @@
                 <div class="footer-column">
                     <h3>Khám phá</h3>
                     <a href="index.html">Trang chủ</a>
-                    <a href="./Pages/intro-web.html">Giới thiệu</a>
-                    <a href="./Pages/list.html">Pokédex</a>
+                    <a href="./intro-web.html">Giới thiệu</a>
+                    <a href="./list.html">Pokédex</a>
                 </div>
                 <!-- Cột bộ sưu tập -->
                 <div class="footer-column">
                     <h3>Bộ sưu tập</h3>
-                    <a href="./Pages/collection.html">Tất cả Pokémon</a>
-                    <a href="./Pages/favorite.html">Pokémon yêu thích</a>
+                    <a href="./collection.html">Tất cả Pokémon</a>
+                    <a href="./favorite.html">Pokémon yêu thích</a>
                 </div>
                 <!-- Cột hỗ trợ -->
                 <div class="footer-column">
                     <h3>Hỗ trợ</h3>
-                    <a href="./Pages/profile.html">Hồ sơ</a>
-                    <a href="./Pages/contact.html">Liên hệ</a>
-                    <a href="./Pages/feedback.html">Góp ý</a>
+                    <a href="./profile.html">Hồ sơ</a>
+                    <a href="./contact.html">Liên hệ</a>
+                    <a href="./feedback.html">Góp ý</a>
                 </div>
             </div>
             <!-- Phần cuối footer -->
@@ -292,15 +290,13 @@
             </div>
         </div>
     </footer>
-
-    <!-- Contact JS -->
-    <script src="./js/contact.js"></script>
-    <!-- Auth -->
-    <script type="module" src="./js/auth.js"></script>
-    <script type="module" src="./js/home.js"></script>
+    
+    <script src="./js/feedback.js"></script>
     <script>
         (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="v2Z13ueAslLe-hNsM6IUq";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
-</body>
+    <script type="module" src="./js/auth.js"></script>
+    <script type="module" src="./js/home.js"></script>
 
+</body>
 </html>

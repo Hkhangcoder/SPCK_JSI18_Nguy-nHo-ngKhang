@@ -21,7 +21,7 @@ onAuthStateChanged(auth, function(user) {
     }
     else {
         console.log("Chưa đăng nhập.");
-        window.location.href = "./Pages/login.html";
+        window.location.href = "./login.html";
     }
 
 });
@@ -36,7 +36,7 @@ if (logoutBtn) {
             await signOut(auth);
 
             console.log("Đã đăng xuất.");
-            window.location.href ="./Pages/login.html";
+            window.location.href ="./login.html";
 
         }
         catch (error) { 

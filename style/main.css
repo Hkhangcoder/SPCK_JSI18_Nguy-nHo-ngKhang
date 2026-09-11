@@ -514,7 +514,6 @@ body:not(.modal-open) .card:hover {
     font-size: 16px;
     /* Xóa outline mặc định */
     outline: none;
-    /* Tạo hiệu ứng khi thay đổi trạng thái */
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 /* Màu chữ placeholder */
@@ -540,18 +539,15 @@ body:not(.modal-open) .card:hover {
     cursor: pointer;
     /* Ngăn nút bị co lại */
     flex-shrink: 0;
-    /* Tạo hiệu ứng chuyển động */
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 /* Khi rê chuột vào nút tìm kiếm */
 .pokemon-search-box button:hover {
-    /* Di chuyển nút lên nhẹ */
     transform: translateY(-2px);
     box-shadow: 0 8px 18px rgba(42, 117, 187, 0.25);
     background: linear-gradient(135deg, #23649f, #2a75bb);
 }
 /* Khi nhấn nút */
 .pokemon-search-box button:active {
-    /* Đưa nút về gần vị trí ban đầu */
     transform: translateY(0);
 }

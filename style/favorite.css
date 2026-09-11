@@ -1,31 +1,53 @@
 /* =========================================
    FAVORITE PAGE - POKÉMON HUB
+   CSS dành cho trang Pokémon yêu thích
+   ========================================= */
+
+
+/* =========================================
+   KHU VỰC CHÍNH CỦA TRANG
    ========================================= */
 
 .favorite-page {
+    /* Tạo khoảng cách phía trên và dưới cho toàn bộ trang */
     padding: 40px 0 60px;
 }
 
 
 /* ==============================
-   HEADER
+   PHẦN TIÊU ĐỀ
    ============================== */
 
 .favorite-heading {
+    /* Căn giữa toàn bộ nội dung tiêu đề */
     text-align: center;
+
+    /* Tạo khoảng cách với phần bên dưới */
     margin-bottom: 30px;
 }
 
 .favorite-heading h1 {
+    /* Font tự động thay đổi theo kích thước màn hình */
     font-size: clamp(32px, 5vw, 46px);
+
+    /* Làm chữ đậm */
     font-weight: 800;
+
+    /* Màu chữ */
     color: #1f2937;
+
+    /* Khoảng cách phía dưới */
     margin-bottom: 10px;
 }
 
 .favorite-heading p {
+    /* Màu chữ mô tả */
     color: #64748b;
+
+    /* Kích thước chữ */
     font-size: 16px;
+
+    /* Xóa margin mặc định */
     margin: 0;
 }
 
@@ -35,51 +57,82 @@
    ============================== */
 
 .favorite-page .pokemon-search-box {
+    /* Sắp xếp input và button theo hàng ngang */
     display: flex;
+
+    /* Khoảng cách giữa input và button */
     gap: 10px;
+
+    /* Khoảng cách phía dưới */
     margin-bottom: 25px;
 }
 
 .favorite-page .pokemon-search-box input {
+    /* Input chiếm toàn bộ khoảng trống còn lại */
     flex: 1;
 }
 
 .favorite-page .pokemon-search-box button {
+    /* Không cho button bị co lại */
     flex-shrink: 0;
 }
 
 
 /* ==============================
-   FILTER HỆ
+   BỘ LỌC HỆ POKÉMON
    ============================== */
 
 .favorite-type-filters {
+    /* Sử dụng Flexbox */
     display: flex;
+
+    /* Cho phép button xuống hàng */
     flex-wrap: wrap;
+
+    /* Căn giữa các button */
     justify-content: center;
+
+    /* Khoảng cách giữa các button */
     gap: 10px;
 
+    /* Khoảng cách với phần bên dưới */
     margin-bottom: 30px;
 }
 
+
+/* Button của từng hệ Pokémon */
 .favorite-type-button {
+    /* Căn icon và chữ trên cùng một hàng */
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
+    /* Khoảng cách giữa các phần tử */
     gap: 5px;
 
+    /* Thiết kế viền */
     border: 1px solid #dbe4ee;
+
+    /* Màu nền */
     background: #ffffff;
+
+    /* Màu chữ */
     color: #475569;
 
+    /* Khoảng cách bên trong */
     padding: 9px 15px;
+
+    /* Làm button hình viên thuốc */
     border-radius: 999px;
 
+    /* Định dạng chữ */
     font-size: 14px;
     font-weight: 700;
 
+    /* Hiển thị con trỏ khi hover */
     cursor: pointer;
 
+    /* Hiệu ứng chuyển động mượt */
     transition:
         background 0.2s ease,
         color 0.2s ease,
@@ -87,143 +140,201 @@
         box-shadow 0.2s ease;
 }
 
+
+/* Hiệu ứng khi di chuột vào button */
 .favorite-type-button:hover {
+    /* Nâng button lên */
     transform: translateY(-2px);
+
+    /* Đổi màu viền */
     border-color: #2a75bb;
+
+    /* Đổi màu chữ */
     color: #2a75bb;
 }
 
+
+/* Button đang được chọn */
 .favorite-type-button.active {
+    /* Đổi màu nền */
     background: #2a75bb;
+
+    /* Đổi màu chữ */
     color: #ffffff;
+
+    /* Đổi màu viền */
     border-color: #2a75bb;
 
+    /* Tạo bóng */
     box-shadow: 0 6px 15px rgba(42, 117, 187, 0.2);
 }
 
 
-/* Số lượng Pokémon của từng hệ */
+/* ==============================
+   SỐ LƯỢNG POKÉMON TRONG HỆ
+   ============================== */
 
 .favorite-type-button .type-count {
+    /* Đảm bảo badge có chiều rộng tối thiểu */
     min-width: 20px;
 
+    /* Khoảng cách bên trong */
     padding: 2px 6px;
 
+    /* Bo tròn badge */
     border-radius: 999px;
 
+    /* Màu nền trong suốt nhẹ */
     background: rgba(0, 0, 0, 0.08);
 
+    /* Kích thước chữ */
     font-size: 11px;
+
+    /* Chiều cao dòng */
     line-height: 16px;
 
+    /* Căn giữa chữ */
     text-align: center;
 }
 
+
+/* Badge khi button đang active */
 .favorite-type-button.active .type-count {
     background: rgba(255, 255, 255, 0.22);
 }
 
 
 /* ==============================
-   THÔNG TIN
+   THÔNG TIN DANH SÁCH
    ============================== */
 
 .favorite-info {
+    /* Sắp xếp tiêu đề và số lượng theo hàng ngang */
     display: flex;
+
+    /* Đẩy hai phần tử ra hai phía */
     justify-content: space-between;
+
+    /* Căn giữa theo chiều dọc */
     align-items: center;
 
+    /* Khoảng cách giữa các phần tử */
     gap: 15px;
+
+    /* Cho phép xuống hàng trên màn hình nhỏ */
     flex-wrap: wrap;
 
+    /* Khoảng cách phía dưới */
     margin-bottom: 20px;
 }
+
 
 .favorite-info h2 {
     margin: 0;
 
     font-size: 26px;
+
     font-weight: 800;
+
     color: #1f2937;
 }
 
+
+/* Hiển thị tổng số Pokémon yêu thích */
 #favoriteCount {
     background: #ffffff;
 
     border: 1px solid #e2e8f0;
+
     border-radius: 999px;
 
     padding: 8px 15px;
 
     color: #64748b;
+
     font-size: 14px;
+
     font-weight: 700;
 }
 
 
 /* ==============================
-   GRID
+   GRID DANH SÁCH
    ============================== */
 
 #favoriteList {
+    /* Sử dụng CSS Grid */
     display: grid;
 
-    grid-template-columns: repeat(
-        auto-fill,
-        minmax(210px, 1fr)
-    );
+    /* Tự động tạo số cột phù hợp với màn hình */
+    grid-template-columns:
+        repeat(auto-fill, minmax(210px, 1fr));
 
+    /* Khoảng cách giữa các card */
     gap: 20px;
 
+    /* Khoảng cách phía dưới */
     padding-bottom: 10px;
 }
 
 
 /* ==============================
-   POKÉMON CARD
+   CARD POKÉMON
    ============================== */
 
 .favorite-pokemon-card {
+    /* Làm mốc định vị cho các phần tử absolute */
     position: relative;
 
     background: #ffffff;
 
     border: 1px solid #e4ebf3;
+
     border-radius: 18px;
 
+    /* Ẩn nội dung tràn ra ngoài */
     overflow: hidden;
 
     cursor: pointer;
 
+    /* Đổ bóng */
     box-shadow:
         0 8px 22px rgba(15, 23, 42, 0.07);
 
+    /* Hiệu ứng mượt */
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease,
         border-color 0.25s ease;
 }
 
+
+/* Hiệu ứng khi hover card */
 .favorite-pokemon-card:hover {
+    /* Nâng card lên */
     transform: translateY(-6px);
 
+    /* Đổi màu viền */
     border-color: #f3b4b2;
 
+    /* Tăng bóng */
     box-shadow:
         0 18px 32px rgba(229, 57, 53, 0.14);
 }
 
 
 /* ==============================
-   ID
+   ID POKÉMON
    ============================== */
 
 .favorite-card-id {
+    /* Đặt ID lên góc card */
     position: absolute;
 
     top: 12px;
     left: 12px;
 
+    /* Đảm bảo ID nằm phía trên ảnh */
     z-index: 2;
 
     background: rgba(255, 255, 255, 0.9);
@@ -235,17 +346,20 @@
     color: #64748b;
 
     font-size: 12px;
+
     font-weight: 800;
 }
 
 
 /* ==============================
-   IMAGE
+   KHU VỰC HÌNH ẢNH
    ============================== */
 
 .favorite-card-image-box {
+    /* Chiều cao cố định */
     height: 185px;
 
+    /* Căn giữa ảnh */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -254,6 +368,7 @@
 
     overflow: hidden;
 
+    /* Nền gradient */
     background:
         linear-gradient(
             135deg,
@@ -262,6 +377,8 @@
         );
 }
 
+
+/* Tạo vòng tròn trang trí phía sau Pokémon */
 .favorite-card-image-box::before {
     content: "";
 
@@ -277,27 +394,33 @@
     z-index: 0;
 }
 
+
+/* Ảnh Pokémon */
 .favorite-card-image-box img {
     width: 145px;
     height: 145px;
 
+    /* Giữ nguyên tỉ lệ ảnh */
     object-fit: contain;
 
     position: relative;
 
+    /* Đặt ảnh phía trên vòng tròn */
     z-index: 1;
 
     transition:
         transform 0.3s ease;
 }
 
+
+/* Phóng to ảnh khi hover card */
 .favorite-pokemon-card:hover .favorite-card-image-box img {
     transform: scale(1.1);
 }
 
 
 /* ==============================
-   TÊN
+   TÊN POKÉMON
    ============================== */
 
 .favorite-pokemon-card h3 {
@@ -308,10 +431,12 @@
     color: #1f2937;
 
     font-size: 21px;
+
     font-weight: 800;
 
     text-transform: capitalize;
 
+    /* Xử lý tên quá dài */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -319,12 +444,13 @@
 
 
 /* ==============================
-   TYPE
+   HỆ POKÉMON
    ============================== */
 
 .favorite-card-types {
     display: flex;
 
+    /* Cho phép nhiều hệ xuống hàng */
     flex-wrap: wrap;
 
     gap: 7px;
@@ -332,6 +458,8 @@
     padding: 0 17px 18px;
 }
 
+
+/* Badge hiển thị từng hệ */
 .favorite-card-type {
     display: inline-block;
 
@@ -344,8 +472,10 @@
     color: #475569;
 
     font-size: 12px;
+
     font-weight: 700;
 
+    /* Viết hoa chữ cái đầu */
     text-transform: capitalize;
 
     white-space: nowrap;
@@ -353,105 +483,37 @@
 
 
 /* ==============================
-   TYPE COLORS
+   MÀU CÁC HỆ POKÉMON
    ============================== */
 
-.type-normal {
-    background: #a8a77a;
-    color: white;
-}
+/* Mỗi class tương ứng với một hệ Pokémon */
 
-.type-fire {
-    background: #ee8130;
-    color: white;
-}
-
-.type-water {
-    background: #6390f0;
-    color: white;
-}
-
-.type-electric {
-    background: #f7d02c;
-    color: #333;
-}
-
-.type-grass {
-    background: #7ac74c;
-    color: white;
-}
-
-.type-ice {
-    background: #96d9d6;
-    color: #333;
-}
-
-.type-fighting {
-    background: #c22e28;
-    color: white;
-}
-
-.type-poison {
-    background: #a33ea1;
-    color: white;
-}
-
-.type-ground {
-    background: #e2bf65;
-    color: #333;
-}
-
-.type-flying {
-    background: #a98ff3;
-    color: white;
-}
-
-.type-psychic {
-    background: #f95587;
-    color: white;
-}
-
-.type-bug {
-    background: #a6b91a;
-    color: white;
-}
-
-.type-rock {
-    background: #b6a136;
-    color: white;
-}
-
-.type-ghost {
-    background: #735797;
-    color: white;
-}
-
-.type-dragon {
-    background: #6f35fc;
-    color: white;
-}
-
-.type-dark {
-    background: #705746;
-    color: white;
-}
-
-.type-steel {
-    background: #b7b7ce;
-    color: #333;
-}
-
-.type-fairy {
-    background: #d685ad;
-    color: white;
-}
+.type-normal { background: #a8a77a; color: white; }
+.type-fire { background: #ee8130; color: white; }
+.type-water { background: #6390f0; color: white; }
+.type-electric { background: #f7d02c; color: #333; }
+.type-grass { background: #7ac74c; color: white; }
+.type-ice { background: #96d9d6; color: #333; }
+.type-fighting { background: #c22e28; color: white; }
+.type-poison { background: #a33ea1; color: white; }
+.type-ground { background: #e2bf65; color: #333; }
+.type-flying { background: #a98ff3; color: white; }
+.type-psychic { background: #f95587; color: white; }
+.type-bug { background: #a6b91a; color: white; }
+.type-rock { background: #b6a136; color: white; }
+.type-ghost { background: #735797; color: white; }
+.type-dragon { background: #6f35fc; color: white; }
+.type-dark { background: #705746; color: white; }
+.type-steel { background: #b7b7ce; color: #333; }
+.type-fairy { background: #d685ad; color: white; }
 
 
 /* ==============================
-   EMPTY
+   TRẠNG THÁI KHÔNG CÓ DỮ LIỆU
    ============================== */
 
 .favorite-empty {
+    /* Chiếm toàn bộ chiều rộng Grid */
     grid-column: 1 / -1;
 
     text-align: center;
@@ -467,51 +529,13 @@
     color: #64748b;
 }
 
-.favorite-empty h3 {
-    margin-bottom: 10px;
-
-    color: #334155;
-
-    font-weight: 800;
-}
-
-.favorite-empty p {
-    margin-bottom: 20px;
-}
-
-.favorite-empty a {
-    display: inline-block;
-
-    padding: 11px 20px;
-
-    background: #2a75bb;
-    color: white;
-
-    border-radius: 10px;
-
-    text-decoration: none;
-
-    font-weight: 700;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.favorite-empty a:hover {
-    background: #23649f;
-
-    color: white;
-
-    transform: translateY(-2px);
-}
-
 
 /* ==============================
    PHÂN TRANG
    ============================== */
 
 .favorite-pagination {
+    /* Ban đầu ẩn phân trang */
     display: none;
 
     justify-content: center;
@@ -522,229 +546,32 @@
     margin-top: 30px;
 }
 
-.favorite-pagination button {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    padding: 10px 18px;
-
-    border: 1px solid #dbe4ee;
-    border-radius: 10px;
-
-    background: #ffffff;
-    color: #475569;
-
-    font-size: 14px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.favorite-pagination button:hover:not(:disabled) {
-    background: #2a75bb;
-    color: #ffffff;
-    border-color: #2a75bb;
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 6px 15px rgba(42, 117, 187, 0.2);
-}
-
-.favorite-pagination button:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
-}
-
-.favorite-pagination span {
-    color: #475569;
-
-    font-size: 14px;
-    font-weight: 700;
-
-    white-space: nowrap;
-}
-
 
 /* ==============================
-   TABLET
+   RESPONSIVE - TABLET
    ============================== */
 
 @media (max-width: 768px) {
 
-    .favorite-page {
-        padding: 30px 0 50px;
-    }
+    /* Giảm kích thước card và ảnh trên tablet */
 
-    #favoriteList {
-        grid-template-columns:
-            repeat(auto-fill, minmax(180px, 1fr));
-
-        gap: 15px;
-    }
-
-    .favorite-card-image-box {
-        height: 160px;
-    }
-
-    .favorite-card-image-box img {
-        width: 125px;
-        height: 125px;
-    }
-
-    .favorite-card-image-box::before {
-        width: 125px;
-        height: 125px;
-    }
-
-    .favorite-pokemon-card h3 {
-        font-size: 19px;
-    }
 }
 
 
 /* ==============================
-   MOBILE
+   RESPONSIVE - MOBILE
    ============================== */
 
 @media (max-width: 480px) {
 
-    .favorite-page {
-        padding: 25px 0 45px;
-    }
-
-    .favorite-heading h1 {
-        font-size: 31px;
-    }
-
-    .favorite-heading p {
-        font-size: 15px;
-    }
-
+    /* Chuyển ô tìm kiếm thành dạng dọc */
     .favorite-page .pokemon-search-box {
         flex-direction: column;
     }
 
-    .favorite-page .pokemon-search-box button {
-        width: 100%;
-    }
-
-    .favorite-type-filters {
-        justify-content: flex-start;
-
-        overflow-x: auto;
-
-        flex-wrap: nowrap;
-
-        padding-bottom: 8px;
-    }
-
-    .favorite-type-button {
-        flex-shrink: 0;
-
-        font-size: 13px;
-
-        padding: 8px 13px;
-    }
-
-    .favorite-info {
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-    .favorite-info h2 {
-        font-size: 22px;
-    }
-
+    /* Hiển thị 2 card trên một hàng */
     #favoriteList {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-
-        gap: 12px;
-    }
-
-    .favorite-card-image-box {
-        height: 130px;
-    }
-
-    .favorite-card-image-box img {
-        width: 105px;
-        height: 105px;
-    }
-
-    .favorite-card-image-box::before {
-        width: 105px;
-        height: 105px;
-    }
-
-    .favorite-pokemon-card h3 {
-        font-size: 17px;
-
-        padding: 12px 13px 7px;
-    }
-
-    .favorite-card-types {
-        padding: 0 13px 14px;
-
-        gap: 5px;
-    }
-
-    .favorite-card-type {
-        padding: 5px 8px;
-
-        font-size: 11px;
-    }
-
-    .favorite-card-id {
-        top: 8px;
-        left: 8px;
-
-        font-size: 11px;
-    }
-
-    .favorite-pagination {
-        gap: 10px;
-    }
-
-    .favorite-pagination button {
-        padding: 9px 12px;
-
-        font-size: 13px;
-    }
-
-    .favorite-pagination span {
-        font-size: 13px;
-    }
-}
-
-
-/* ==============================
-   MÀN HÌNH RẤT NHỎ
-   ============================== */
-
-@media (max-width: 360px) {
-
-    #favoriteList {
-        grid-template-columns: 1fr;
-    }
-
-    .favorite-card-image-box {
-        height: 180px;
-    }
-
-    .favorite-card-image-box img {
-        width: 140px;
-        height: 140px;
-    }
-
-    .favorite-card-image-box::before {
-        width: 140px;
-        height: 140px;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 }

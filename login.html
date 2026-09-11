@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
+<head> 
     <meta charset="UTF-8">
-    <title>Đăng ký | Pokémon Hub</title>
+    <title>Đăng nhập | Pokémon Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Logo -->
     <link rel="icon" type="image/png" href="./Image/logo.png">
@@ -27,18 +27,12 @@
                     <img src="./Image/logo.png" class="logo-register">
                     <h2 class="web-name">Pokémon Hub</h2>
                 </div>
-                <p class="text-muted mb-0">Bắt đầu với tài khoản mới</p>
+                <p class="text-muted mb-0">
+                    Chào mừng trở lại! Đăng nhập để tiếp tục hành trình.
+                </p>            
             </div>
             <!-- Form -->
-            <form id="registerForm" class="inner-card">
-                <!-- Username -->
-                <div class="mb-3">
-                    <label for="username">Username</label>
-                    <div class="input-group">
-                        <input type="text" id="username" class="form-control" placeholder="Nhập username">
-                    </div>
-                    <small id="usernameError" class="field-error"></small>
-                </div>
+            <form id="loginForm" class="inner-card">
                 <!-- Email -->
                 <div class="mb-3">
                     <label for="email">Email</label>
@@ -55,26 +49,28 @@
                     </div>
                     <small id="passwordError" class="field-error"></small>
                 </div>
-                <!-- Confirm Password -->
-                <div class="mb-3">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <div class="input-group">
-                        <input type="password" id="confirmPassword" class="form-control" placeholder="Nhập lại mật khẩu">
-                    </div>
-                    <small id="confirmPasswordError" class="field-error"></small>
+                <!-- Remember -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="remember">
+                    <label class="form-check-label" for="remember">Ghi nhớ đăng nhập </label>
                 </div>
                 <!-- Button -->
-                <button type="submit" class="btn-register">
-                    <i class="bi bi-person-plus-fill"></i>
-                    <span>Đăng ký</span>
+                <button type="submit" class="btn-login">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Đăng nhập</span>
                 </button>
+                <!-- Forgot password -->
+                <div class="forgot-password">
+                    <a href="#">Quên mật khẩu?</a>
+                </div>
             </form>
-            <p class="login-link mt-3">Đã có tài khoản?
-                <a href="./Pages/login.html">Đăng nhập ngay</a>
-            </p>  
+            <p class="login-link mt-3">Chưa có tài khoản?
+                <a href="./register.html">Đăng ký ngay</a>
+            </p>
         </div>
     </div>
-    <script type="module" src="./js/register.js"></script>
+    <script type="module" src="./js/login.js"></script>
+    <!-- <script src="./js/login.js"></script> -->
     <script>
         (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="v2Z13ueAslLe-hNsM6IUq";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>

@@ -131,7 +131,7 @@ registerForm.addEventListener("submit", async function(event) {
 
         alert("Đăng ký thành công! Hãy đăng nhập.");
 
-        window.location.href = "./Pages/login.html";
+        window.location.href = "./login.html";
     } catch (error) {
         console.error(error);
         

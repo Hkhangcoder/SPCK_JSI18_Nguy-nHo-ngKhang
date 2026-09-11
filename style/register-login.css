@@ -1,189 +1,247 @@
-/* Thông báo lỗi */
+/* =========================================
+   REGISTER & LOGIN PAGE
+   CSS dùng chung cho trang đăng ký và đăng nhập
+   ========================================= */
+
+/* THÔNG BÁO LỖI FORM */
 .field-error {
+    /* Hiển thị lỗi thành một dòng riêng */
     display: block;
     color: #dc3545;
     font-size: 13px;
     font-weight: 500;
+    /* Khoảng cách phía trên */
     margin-top: 6px;
+    /* Khoảng cách giữa các dòng */
     line-height: 1.4;
 }
+/* Ẩn phần tử lỗi nếu không có nội dung */
 .field-error:empty {
     display: none;
 }
-/* Forgot passwword */
-.forgot-password{
-    text-align:right;
-    margin-top:10px;
+
+/* QUÊN MẬT KHẨU */
+.forgot-password {
+    text-align: right;
+    /* Khoảng cách phía trên */
+    margin-top: 10px;
 }
-.forgot-password a{
-    text-decoration:none;
-    color:#2A75BB;
+/* Link quên mật khẩu */
+.forgot-password a {
+    text-decoration: none;
+    color: #2A75BB;
 }
-.forgot-password a:hover{
-    color:#E53935;
+.forgot-password a:hover {
+    color: #E53935;
 }
-/* Remember box */
-.remember-box{
-    margin:15px 0;
-    font-size:15px;
+
+/* REMEMBER ME */
+.remember-box {
+    /* Khoảng cách trên dưới */
+    margin: 15px 0;
+    font-size: 15px;
 }
-.remember-box input{
-    margin-right:6px;
+/* Khoảng cách giữa checkbox và chữ */
+.remember-box input {
+    margin-right: 6px;
 }
-/* Logo-name box */
-.logo-box{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    margin-bottom:5px;
+
+/* KHU VỰC LOGO VÀ TÊN WEBSITE */
+.logo-box {
+    /* Sắp xếp logo và tên website theo hàng ngang */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Khoảng cách giữa logo và tên */
+    gap: 10px;
+    /* Khoảng cách phía dưới */
+    margin-bottom: 5px;
 }
-/* Body */
-.body-register{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:linear-gradient(to bottom,#EAF7FB,#F8FCFF);
+
+/* BODY TRANG */
+.body-register {
+    /* Xóa margin mặc định */
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to bottom, #EAF7FB, #F8FCFF);
 }
-/* Container */
-.register-container{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px;
+
+/* CONTAINER CHÍNH */
+.register-container {
+    /* Chiều cao tối thiểu bằng toàn bộ màn hình */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Khoảng cách an toàn trên màn hình nhỏ */
+    padding: 40px 20px;
 }
-/* Card lớn */
-.register-card{
-    width:90%;
-    max-width:500px;
-    background:white;
-    border-radius:25px;
-    padding:25px 30px;
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
-    transition:.3s;
+
+/* CARD ĐĂNG KÝ / ĐĂNG NHẬP */
+.register-card {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    border-radius: 25px;
+    /* Khoảng cách bên trong */
+    padding: 25px 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .12);
+    /* Hiệu ứng */
+    transition: .3s;
 }
-.register-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 20px 40px rgba(0,0,0,.18);
+
+
+/* Hiệu ứng khi hover card */
+.register-card:hover {
+    /* Di chuyển card lên nhẹ */
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .18);
 }
-/* Logo */
-.logo-register{
-    width:65px;
-    height:65px;
-    object-fit:contain;
+
+/* LOGO */
+.logo-register {
+    width: 65px;
+    height: 65px;
+    /* Giữ nguyên tỉ lệ ảnh */
+    object-fit: contain;
 }
-/* Tên web */
-.web-name{
-    margin:0;
-    color:#2A75BB;
-    font-size:38px;
-    font-weight:800;
+
+/* TÊN WEBSITE */
+.web-name {
+    /* Xóa margin mặc định */
+    margin: 0;
+    color: #2A75BB;
+    font-size: 38px;
+    font-weight: 800;
 }
-/* Card trong */
-.inner-card{
-    margin-top:18px;
-    padding:18px;
-    background:#F8FCFF;
-    border-radius:18px;
-    transition:.3s;
+
+/* CARD BÊN TRONG FORM */
+.inner-card {
+    /* Khoảng cách với phần logo */
+    margin-top: 18px;
+    /* Khoảng cách bên trong */
+    padding: 18px;
+    background: #F8FCFF;
+    border-radius: 18px;
+    transition: .3s;
 }
-.inner-card:hover{
-    transform:translateY(-2px);
+.inner-card:hover {
+    transform: translateY(-2px);
 }
-/* Form label */
+
+/* LABEL CỦA FORM */
 .inner-card > div > label {
+    /* Hiển thị label trên một dòng riêng */
     display: block;
+    /* Khoảng cách với input */
     margin-bottom: 6px;
     font-weight: 600;
     color: #333;
 }
-/* Input */
+
+/* INPUT FORM */
 .form-control {
+    /* Khoảng cách bên trong */
     padding: 12px 15px;
+    /* Không tạo margin dưới */
     margin-bottom: 0;
     border-radius: 12px;
 }
-.form-control:focus{
-    border-color:#2A75BB;
-    box-shadow:0 0 8px rgba(42,117,187,.25);
-}
-/* Button register*/
-.btn-register{
-    width:100%;
-    padding:13px;
-    border:none;
-    border-radius:15px;
-    background:linear-gradient(90deg,#E53935,#FF7043);
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    transition:.3s;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;   /* khoảng cách icon và chữ */
-}
-.btn-register:hover{
-    transform:translateY(-3px);
-    background:linear-gradient(90deg,#C62828,#F4511E);
-    box-shadow:0 10px 20px rgba(229,57,53,.35);
-}
-/* Button login*/
-.btn-login{
-    width:100%;
-    padding:13px;
-    border:none;
-    border-radius:15px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    background:linear-gradient(90deg,#2A75BB,#3FA9F5);
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:all .3s ease;
-    letter-spacing:.5px;
+/* Khi người dùng chọn input */
+.form-control:focus {
+    border-color: #2A75BB;
+    box-shadow: 0 0 8px rgba(42, 117, 187, .25);
 }
 
-.btn-login:hover{
-    transform:translateY(-3px);
-    background:linear-gradient(90deg,#1E5A99,#2A75BB);
-    box-shadow:0 10px 20px rgba(42,117,187,.35);
+/* NÚT ĐĂNG KÝ */
+.btn-register {
+    width: 100%;
+    /* Khoảng cách bên trong */
+    padding: 13px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(90deg,#E53935, #FF7043);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Khoảng cách icon và chữ */
+    gap: 10px;
+    transition: .3s;
 }
-.btn-login i{
-    font-size:20px;
-}
-/* Link */
-.login-link{
-    margin-top:18px;
-    text-align:center;
-    font-size:15px;
-}
-.login-link a{
-    text-decoration:none;
-    color:#E53935;
-    font-weight:bold;
-}
-.login-link a:hover{
-    color:#2A75BB;
+/* Hover nút đăng ký */
+.btn-register:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(90deg, #C62828, #F4511E);
+    box-shadow: 0 10px 20px rgba(229, 57, 53, .35);
 }
 
-/* Chia login card */
-/* .divider{
-    display:flex;
-    align-items:center;
-    margin:20px 0;
+/* NÚT ĐĂNG NHẬP */
+.btn-login {
+    width: 100%;
+    /* Khoảng cách bên trong */
+    padding: 13px;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Khoảng cách icon và chữ */
+    gap: 10px;
+    background: linear-gradient(90deg, #2A75BB, #3FA9F5);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .3s ease;
+    /* Khoảng cách giữa các ký tự */
+    letter-spacing: .5px;
+}
+/* Hiệu ứng khi hover nút đăng nhập */
+.btn-login:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(90deg, #1E5A99, #2A75BB);
+    box-shadow: 0 10px 20px rgba(42, 117, 187, .35);
+}
+/* Kích thước icon trong nút */
+.btn-login i {
+    font-size: 20px;
+}
+
+/* LINK CHUYỂN ĐỔI LOGIN / REGISTER */
+.login-link {
+    /* Khoảng cách phía trên */
+    margin-top: 18px;
+    text-align: center;
+    font-size: 15px;
+}
+/* Link bên trong */
+.login-link a {
+    text-decoration: none;
+    color: #E53935;
+    font-weight: bold;
+}
+/* Hiệu ứng hover */
+.login-link a:hover {
+    color: #2A75BB;
+}
+
+/* DIVIDER -> Hiện tại chưa sử dụng nên được comment lại /*
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
 }
 .divider::before,
-.divider::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:#ddd;
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ddd;
 }
-.divider span{
-    margin:0 12px;
-    color:#888;
-} */
+.divider span {
+    margin: 0 12px;
+    color: #888;
+}  */

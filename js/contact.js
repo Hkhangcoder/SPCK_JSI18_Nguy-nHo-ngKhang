@@ -17,9 +17,7 @@ if (successModalElement) {
 // Kiểm tra form có tồn tại.
 if (contactForm) {
     // Lắng nghe sự kiện submit.
-    contactForm.addEventListener(
-        "submit",
-        function (event) {
+    contactForm.addEventListener("submit", function (event) {
             event.preventDefault();
             // Kiểm tra dữ liệu form.
             if (!contactForm.checkValidity()) {

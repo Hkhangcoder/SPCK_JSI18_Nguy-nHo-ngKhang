@@ -29,25 +29,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="home.html">Trang chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="intro-web.html">Giới thiệu web</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./collection.html">Giới thiệu web</a></li>
                     <!-- Pokédex -->
-                    <li class="nav-item"><a class="nav-link" href="list.html">Pokédex</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./list.html">Pokédex</a></li>
                     <!-- Bộ sưu tập -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Bộ sưu tập</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="collection.html"><i class="bi bi-grid-3x3-gap-fill"></i> Tất cả</a></li>
-                            <li><a class="dropdown-item" href="favorite.html">❤️ Yêu thích</a></li>
+                            <li><a class="dropdown-item" href="./collection.html"><i class="bi bi-grid-3x3-gap-fill"></i> Tất cả</a></li>
+                            <li><a class="dropdown-item" href="./favorite.html">❤️ Yêu thích</a></li>                        
                         </ul>
                     </li>
                     <!-- Cài đặt -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> <i class="bi bi-gear-fill icon-setting"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="profile.html">👤 Hồ sơ</a></li>
-                            <li><a class="dropdown-item" href="contact.html">📞 Liên hệ</a></li>
-                            <li><a class="dropdown-item" href="feedback.html">💬 Góp ý</a></li>
+                            <li><a class="dropdown-item" href="./profile.html">👤 Hồ sơ</a></li>
+                            <li><a class="dropdown-item" href="./contact.html">📞 Liên hệ</a></li>
+                            <li><a class="dropdown-item" href="./feedback.html">💬 Góp ý</a></li>
                             <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">🚪 Đăng xuất</a></li>
                         </ul>
                     </li>
@@ -60,9 +60,9 @@
     <!-- Back page-->
      <div class="container mt-3">
         <div class="breadcrumb-custom">
-            <a href="home.html">🏠 Trang chủ</a>
+            <a href="index.html">🏠 Trang chủ</a>
             <i class="bi bi-chevron-right"></i>
-            <a href="own.html">Giới thiệu chủ web</a>
+            <a href="./own.html">Giới thiệu chủ web</a>
         </div>
     </div>
 
@@ -111,7 +111,7 @@
                     <img src="./Image/logo.png" alt="Chủ web" class="owner-img mb-4">
                     <h3 class="fw-bold">Pokemon Hub</h3>
                     <p class="text-muted mb-4">Tìm hiểu về trang web</p>
-                    <a href="intro-web.html" class="btn-own">👨‍💻 Tìm hiểu ngay</a>
+                    <a href="./intro-web.html" class="btn-own">👨‍💻 Tìm hiểu ngay</a>
                 </div>
             </div>
         </div>
@@ -125,44 +125,48 @@
     <script type="module" src="./js/auth.js"></script>
     <script type="module" src="./js/home.js"></script>    
     
-    <!-- FOOTER DÙNG CHUNG -->
+    <!-- FOOTER -->
+    <!-- Footer dùng chung -->
     <footer class="main-footer">
+        <!-- Container footer -->
         <div class="container">
+            <!-- Grid các cột -->
             <div class="footer-grid">
-                <!-- Cột 1: Logo -->
+                <!-- Cột thương hiệu -->
                 <div class="footer-brand">
+                    <!-- Logo footer -->
                     <a href="index.html" class="footer-logo">
                         <img src="./Image/logo.png" alt="Pokémon Hub Logo">
                         <span>Pokémon Hub</span>
                     </a>
-
+                    <!-- Mô tả -->
                     <p>
                         Khám phá thế giới Pokémon, xây dựng bộ sưu tập
                         và tìm hiểu thêm về những Pokémon yêu thích.
                     </p>
                 </div>
-                <!-- Cột 2: Khám phá -->
+                <!-- Cột khám phá -->
                 <div class="footer-column">
                     <h3>Khám phá</h3>
                     <a href="index.html">Trang chủ</a>
-                    <a href="./Pages/intro-web.html">Giới thiệu</a>
-                    <a href="./Pages/list.html">Pokédex</a>
+                    <a href="./intro-web.html">Giới thiệu</a>
+                    <a href="./list.html">Pokédex</a>
                 </div>
-                <!-- Cột 3: Bộ sưu tập -->
+                <!-- Cột bộ sưu tập -->
                 <div class="footer-column">
-                    <h3>Bộ sưu tập</h3>                
-                    <a href="./Pages/collection.html">Tất cả</a>
-                    <a href="./Pages/favorite.html">Yêu thích</a>
+                    <h3>Bộ sưu tập</h3>
+                    <a href="./collection.html">Tất cả Pokémon</a>
+                    <a href="./favorite.html">Pokémon yêu thích</a>
                 </div>
-                <!-- Cột 4: Hỗ trợ -->
+                <!-- Cột hỗ trợ -->
                 <div class="footer-column">
                     <h3>Hỗ trợ</h3>
-                    <a href="./Pages/profile.html">Hồ sơ</a>
-                    <a href="./Pages/contact.html">Liên hệ</a>
-                    <a href="./Pages/feedback.html">Góp ý</a>
+                    <a href="./profile.html">Hồ sơ</a>
+                    <a href="./contact.html">Liên hệ</a>
+                    <a href="./feedback.html">Góp ý</a>
                 </div>
             </div>
-            <!-- Phần dưới footer -->
+            <!-- Phần cuối footer -->
             <div class="footer-bottom">
                 <p> © 2026 Pokémon Hub. All rights reserved. </p>
                 <p> Dự án sản phẩm cuối khóa JSI - Trung tâm MindX </p>
