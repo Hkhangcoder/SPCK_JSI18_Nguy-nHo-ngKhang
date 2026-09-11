@@ -5,6 +5,233 @@
 // ======================================================
 
 
+
+// ======================================================
+// FIREBASE
+// ======================================================
+
+import {
+    collection,
+    getDocs,
+    setDoc,
+    doc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import { auth } from "./firebase-config.js";
+import { db } from "./firestore.js";
+
+
+// Chờ Firebase xác định người dùng hiện tại.
+function getCurrentUser() {
+
+    return new Promise(function (resolve) {
+
+        if (auth.currentUser) {
+
+            resolve(auth.currentUser);
+            return;
+        }
+
+        const unsubscribe =
+            onAuthStateChanged(
+                auth,
+                function (user) {
+
+                    unsubscribe();
+
+                    resolve(user);
+                }
+            );
+    });
+}
+
+
+// Chuẩn hóa dữ liệu Pokémon.
+function normalizeFavoritePokemon(data) {
+
+    return {
+
+        id: Number(data.id),
+
+        name: data.name || "",
+
+        image: data.image || "./Image/logo.png",
+
+        types: Array.isArray(data.types)
+            ? data.types
+            : []
+    };
+}
+
+
+// Đồng bộ Favorite giữa localStorage và Firebase.
+async function loadFavoriteFromFirebase() {
+
+    // Giữ lại dữ liệu Favorite cũ.
+    const localData =
+        loadFavoriteData();
+
+    try {
+
+        const user =
+            await getCurrentUser();
+
+        // Chưa đăng nhập.
+        if (!user) {
+            return localData;
+        }
+
+
+        // Lấy Favorite từ Firebase.
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "users",
+                    user.uid,
+                    "favorite"
+                )
+            );
+
+
+        const firebaseData =
+            snapshot.docs.map(function (item) {
+
+                return normalizeFavoritePokemon(
+                    item.data()
+                );
+            });
+
+
+        // Gộp dữ liệu local + Firebase.
+        const mergedMap =
+            new Map();
+
+
+        // Local trước.
+        localData.forEach(function (pokemon) {
+
+            mergedMap.set(
+                String(pokemon.id),
+                pokemon
+            );
+        });
+
+
+        // Firebase sau.
+        firebaseData.forEach(function (pokemon) {
+
+            const oldPokemon =
+                mergedMap.get(
+                    String(pokemon.id)
+                );
+
+
+            // Giữ types local nếu Firebase thiếu.
+            if (
+                oldPokemon &&
+                (!pokemon.types ||
+                    pokemon.types.length === 0) &&
+                oldPokemon.types &&
+                oldPokemon.types.length > 0
+            ) {
+
+                pokemon.types =
+                    oldPokemon.types;
+            }
+
+
+            mergedMap.set(
+                String(pokemon.id),
+                pokemon
+            );
+        });
+
+
+        const mergedData =
+            Array.from(
+                mergedMap.values()
+            );
+
+
+        // Những Pokémon chỉ có ở localStorage.
+        const firebaseIds =
+            new Set(
+                firebaseData.map(function (pokemon) {
+
+                    return String(pokemon.id);
+                })
+            );
+
+
+        const uploadPromises = [];
+
+
+        localData.forEach(function (pokemon) {
+
+            const id =
+                String(pokemon.id);
+
+
+            if (!firebaseIds.has(id)) {
+
+                uploadPromises.push(
+
+                    setDoc(
+                        doc(
+                            db,
+                            "users",
+                            user.uid,
+                            "favorite",
+                            id
+                        ),
+                        {
+                            id: pokemon.id,
+                            name: pokemon.name,
+                            image: pokemon.image,
+                            types: pokemon.types || [],
+                            updatedAt:
+                                serverTimestamp()
+                        }
+                    )
+
+                );
+            }
+        });
+
+
+        // Upload dữ liệu local chưa có trên Firebase.
+        await Promise.all(
+            uploadPromises
+        );
+
+
+        // Cập nhật localStorage.
+        localStorage.setItem(
+            "pokemonFavorite",
+            JSON.stringify(mergedData)
+        );
+
+
+        return mergedData;
+
+    } catch (error) {
+
+        // Firebase lỗi → vẫn dùng dữ liệu local.
+        console.error(
+            "Lỗi đồng bộ Favorite Firebase:",
+            error
+        );
+
+        return localData;
+    }
+}
+
 // ======================================================
 // LẤY PHẦN TỬ HTML
 // ======================================================
@@ -942,7 +1169,6 @@ if (favoriteInput) {
 // ======================================================
 // KHỞI ĐỘNG FAVORITE
 // ======================================================
-
 async function initFavorite() {
 
     // Đọc Favorite từ localStorage.

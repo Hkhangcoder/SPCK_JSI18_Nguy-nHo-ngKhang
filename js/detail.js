@@ -2,6 +2,48 @@
 // API POKEMON
 // ============================
 
+// ============================
+// FIREBASE
+// ============================
+
+import {
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import { auth } from "./firebase-config.js";
+import { db } from "./firestore.js";
+
+
+// Chờ Firebase xác định người dùng hiện tại.
+function getCurrentUser() {
+
+    return new Promise(function (resolve) {
+
+        if (auth.currentUser) {
+
+            resolve(auth.currentUser);
+            return;
+        }
+
+        const unsubscribe =
+            onAuthStateChanged(
+                auth,
+                function (user) {
+
+                    unsubscribe();
+
+                    resolve(user);
+                }
+            );
+    });
+}
+
 // URL API chính dùng để lấy thông tin Pokémon.
 const API_URL = "https://pokeapi.co/api/v2/pokemon";
 
@@ -188,124 +230,244 @@ async function getAbility(url) {
 // THÊM VÀO BỘ SƯU TẬP
 // ============================
 
-// Tạo hàm thêm Pokémon vào Collection.
-function addToCollection(pokemon) {
+// ============================
+// THÊM VÀO BỘ SƯU TẬP
+// ============================
 
-    // Lấy dữ liệu Collection từ localStorage.
-    // Nếu chưa có dữ liệu thì sử dụng mảng rỗng.
+async function addToCollection(pokemon) {
+
+    // Lấy Collection từ localStorage.
     const collection =
-        JSON.parse(localStorage.getItem("pokemonCollection")) || [];
+        JSON.parse(
+            localStorage.getItem(
+                "pokemonCollection"
+            )
+        ) || [];
 
-    // Kiểm tra Pokémon đã tồn tại trong Collection chưa.
-    const exists = collection.some(function (item) {
 
-        // So sánh ID của Pokémon.
-        return item.id === pokemon.id;
-    });
+    // Kiểm tra Pokémon đã tồn tại chưa.
+    const exists =
+        collection.some(function (item) {
 
-    // Nếu Pokémon chưa tồn tại.
-    if (!exists) {
-
-        // Thêm Pokémon vào mảng Collection.
-        collection.push({
-
-            // Lưu ID Pokémon.
-            id: pokemon.id,
-
-            // Lưu tên Pokémon.
-            name: pokemon.name,
-
-            // Lấy ảnh official artwork.
-            // Nếu không có thì dùng ảnh mặc định.
-            image:
-                pokemon.sprites.other["official-artwork"].front_default ||
-                pokemon.sprites.front_default,
-
-            // Lấy danh sách các hệ Pokémon.
-            types: pokemon.types.map(function (item) {
-
-                // Chỉ lấy tên của hệ.
-                return item.type.name;
-            })
+            return Number(item.id) ===
+                Number(pokemon.id);
         });
 
-        // Chuyển mảng thành JSON rồi lưu vào localStorage.
-        localStorage.setItem(
-            "pokemonCollection",
-            JSON.stringify(collection)
+
+    // Nếu đã có.
+    if (exists) {
+
+        alert(
+            "Pokémon này đã có trong Bộ sưu tập!"
         );
 
-        // Thông báo đã thêm thành công.
-        alert("Đã thêm vào Bộ sưu tập!");
+        return;
+    }
 
-    } else {
 
-        // Thông báo nếu Pokémon đã tồn tại.
-        alert("Pokémon này đã có trong Bộ sưu tập!");
+    // Tạo dữ liệu Pokémon.
+    const pokemonData = {
+
+        id: pokemon.id,
+
+        name: pokemon.name,
+
+        image:
+            pokemon.sprites.other[
+                "official-artwork"
+            ].front_default ||
+            pokemon.sprites.front_default,
+
+        types:
+            pokemon.types.map(function (item) {
+
+                return item.type.name;
+            })
+    };
+
+
+    // ==================================================
+    // LƯU LOCAL STORAGE
+    // ==================================================
+
+    collection.push(
+        pokemonData
+    );
+
+    localStorage.setItem(
+        "pokemonCollection",
+        JSON.stringify(collection)
+    );
+
+
+    // Báo thành công ngay theo chức năng cũ.
+    alert(
+        "Đã thêm vào Bộ sưu tập!"
+    );
+
+
+    // ==================================================
+    // LƯU FIREBASE
+    // ==================================================
+
+    try {
+
+        const user =
+            await getCurrentUser();
+
+
+        // Chỉ lưu Firebase khi đã đăng nhập.
+        if (user) {
+
+            await setDoc(
+                doc(
+                    db,
+                    "users",
+                    user.uid,
+                    "collection",
+                    String(pokemon.id)
+                ),
+                {
+                    id: pokemonData.id,
+                    name: pokemonData.name,
+                    image: pokemonData.image,
+                    types: pokemonData.types,
+                    updatedAt:
+                        serverTimestamp()
+                }
+            );
+        }
+
+    } catch (error) {
+
+        // Firebase lỗi không làm mất dữ liệu local.
+        console.error(
+            "Lỗi lưu Collection lên Firebase:",
+            error
+        );
     }
 }
-
 
 // ============================
 // THÊM VÀO YÊU THÍCH
 // ============================
+// ============================
+// THÊM VÀO YÊU THÍCH
+// ============================
 
-// Tạo hàm thêm Pokémon vào Favorite.
-function addToFavorite(pokemon) {
+async function addToFavorite(pokemon) {
 
-    // Lấy danh sách Favorite từ localStorage.
-    // Nếu chưa có thì tạo mảng rỗng.
+    // Lấy Favorite từ localStorage.
     const favorites =
-        JSON.parse(localStorage.getItem("pokemonFavorite")) || [];
+        JSON.parse(
+            localStorage.getItem(
+                "pokemonFavorite"
+            )
+        ) || [];
+
 
     // Kiểm tra Pokémon đã tồn tại chưa.
-    const exists = favorites.some(function (item) {
+    const exists =
+        favorites.some(function (item) {
 
-        // So sánh ID Pokémon.
-        return item.id === pokemon.id;
-    });
-
-    // Nếu Pokémon chưa tồn tại.
-    if (!exists) {
-
-        // Thêm Pokémon vào danh sách yêu thích.
-        favorites.push({
-
-            // Lưu ID.
-            id: pokemon.id,
-
-            // Lưu tên.
-            name: pokemon.name,
-
-            // Lưu ảnh Pokémon.
-            image:
-                pokemon.sprites.other["official-artwork"].front_default ||
-                pokemon.sprites.front_default,
-
-            // Lưu danh sách hệ.
-            types: pokemon.types.map(function (item) {
-
-                // Lấy tên hệ.
-                return item.type.name;
-            })
+            return Number(item.id) ===
+                Number(pokemon.id);
         });
 
-        // Lưu danh sách Favorite vào localStorage.
-        localStorage.setItem(
-            "pokemonFavorite",
-            JSON.stringify(favorites)
+
+    // Nếu đã tồn tại.
+    if (exists) {
+
+        alert(
+            "Pokémon này đã có trong Yêu thích!"
         );
 
-        // Thông báo thành công.
-        alert("Đã thêm vào Yêu thích!");
+        return;
+    }
 
-    } else {
 
-        // Thông báo nếu đã tồn tại.
-        alert("Pokémon này đã có trong Yêu thích!");
+    // Tạo dữ liệu Pokémon.
+    const pokemonData = {
+
+        id: pokemon.id,
+
+        name: pokemon.name,
+
+        image:
+            pokemon.sprites.other[
+                "official-artwork"
+            ].front_default ||
+            pokemon.sprites.front_default,
+
+        types:
+            pokemon.types.map(function (item) {
+
+                return item.type.name;
+            })
+    };
+
+
+    // ==================================================
+    // LƯU LOCAL STORAGE
+    // ==================================================
+
+    favorites.push(
+        pokemonData
+    );
+
+    localStorage.setItem(
+        "pokemonFavorite",
+        JSON.stringify(favorites)
+    );
+
+
+    // Giữ nguyên thông báo cũ.
+    alert(
+        "Đã thêm vào Yêu thích!"
+    );
+
+
+    // ==================================================
+    // LƯU FIREBASE
+    // ==================================================
+
+    try {
+
+        const user =
+            await getCurrentUser();
+
+
+        // Chỉ lưu Firebase nếu đã đăng nhập.
+        if (user) {
+
+            await setDoc(
+                doc(
+                    db,
+                    "users",
+                    user.uid,
+                    "favorite",
+                    String(pokemon.id)
+                ),
+                {
+                    id: pokemonData.id,
+                    name: pokemonData.name,
+                    image: pokemonData.image,
+                    types: pokemonData.types,
+                    updatedAt:
+                        serverTimestamp()
+                }
+            );
+        }
+
+    } catch (error) {
+
+        // Firebase lỗi → localStorage vẫn hoạt động.
+        console.error(
+            "Lỗi lưu Favorite lên Firebase:",
+            error
+        );
     }
 }
-
 
 // ============================
 // GIỚI TÍNH

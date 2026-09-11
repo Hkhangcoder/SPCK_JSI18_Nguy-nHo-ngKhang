@@ -9,6 +9,237 @@
 // ======================================================
 
 // ======================================================
+// FIREBASE
+// ======================================================
+
+import {
+    collection,
+    getDocs,
+    setDoc,
+    doc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import { auth } from "./firebase-config.js";
+import { db } from "./firestore.js";
+
+
+// Chờ Firebase xác định người dùng hiện tại.
+function getCurrentUser() {
+
+    return new Promise(function (resolve) {
+
+        // Nếu Firebase đã biết người dùng.
+        if (auth.currentUser) {
+
+            resolve(auth.currentUser);
+            return;
+        }
+
+        // Chờ Firebase kiểm tra trạng thái đăng nhập.
+        const unsubscribe =
+            onAuthStateChanged(
+                auth,
+                function (user) {
+
+                    unsubscribe();
+
+                    resolve(user);
+                }
+            );
+    });
+}
+
+
+// Chuẩn hóa dữ liệu Pokémon lấy từ Firebase.
+function normalizePokemon(data) {
+
+    return {
+
+        id: Number(data.id),
+
+        name: data.name || "",
+
+        image: data.image || "./Image/logo.png",
+
+        types: Array.isArray(data.types)
+            ? data.types
+            : []
+    };
+}
+
+
+// Đồng bộ Collection giữa localStorage và Firebase.
+async function loadCollectionFromFirebase() {
+
+    // Giữ lại dữ liệu cũ ở máy.
+    const localData =
+        loadCollectionData();
+
+    try {
+
+        const user =
+            await getCurrentUser();
+
+        // Chưa đăng nhập → dùng localStorage như cũ.
+        if (!user) {
+            return localData;
+        }
+
+
+        // Lấy Collection của người dùng trên Firebase.
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "users",
+                    user.uid,
+                    "collection"
+                )
+            );
+
+
+        // Dữ liệu Firebase.
+        const firebaseData =
+            snapshot.docs.map(function (item) {
+
+                return normalizePokemon(
+                    item.data()
+                );
+            });
+
+
+        // Gộp localStorage + Firebase.
+        const mergedMap =
+            new Map();
+
+
+        // Đưa dữ liệu local vào trước.
+        localData.forEach(function (pokemon) {
+
+            mergedMap.set(
+                String(pokemon.id),
+                pokemon
+            );
+        });
+
+
+        // Firebase ghi đè dữ liệu trùng ID.
+        firebaseData.forEach(function (pokemon) {
+
+            const oldPokemon =
+                mergedMap.get(
+                    String(pokemon.id)
+                );
+
+
+            // Nếu Firebase thiếu types
+            // nhưng local có types thì giữ types cũ.
+            if (
+                oldPokemon &&
+                (!pokemon.types ||
+                    pokemon.types.length === 0) &&
+                oldPokemon.types &&
+                oldPokemon.types.length > 0
+            ) {
+
+                pokemon.types =
+                    oldPokemon.types;
+            }
+
+
+            mergedMap.set(
+                String(pokemon.id),
+                pokemon
+            );
+        });
+
+
+        const mergedData =
+            Array.from(
+                mergedMap.values()
+            );
+
+
+        // Tìm những Pokémon chỉ có ở localStorage.
+        const firebaseIds =
+            new Set(
+                firebaseData.map(function (pokemon) {
+
+                    return String(pokemon.id);
+                })
+            );
+
+
+        const uploadPromises = [];
+
+
+        localData.forEach(function (pokemon) {
+
+            const id =
+                String(pokemon.id);
+
+
+            // Pokémon chưa có trên Firebase.
+            if (!firebaseIds.has(id)) {
+
+                uploadPromises.push(
+
+                    setDoc(
+                        doc(
+                            db,
+                            "users",
+                            user.uid,
+                            "collection",
+                            id
+                        ),
+                        {
+                            id: pokemon.id,
+                            name: pokemon.name,
+                            image: pokemon.image,
+                            types: pokemon.types || [],
+                            updatedAt:
+                                serverTimestamp()
+                        }
+                    )
+
+                );
+            }
+        });
+
+
+        // Upload những dữ liệu cũ còn thiếu.
+        await Promise.all(
+            uploadPromises
+        );
+
+
+        // Lưu danh sách đã gộp lại vào máy.
+        localStorage.setItem(
+            "pokemonCollection",
+            JSON.stringify(mergedData)
+        );
+
+
+        return mergedData;
+
+    } catch (error) {
+
+        // Firebase lỗi → không làm hỏng Collection.
+        console.error(
+            "Lỗi đồng bộ Collection Firebase:",
+            error
+        );
+
+        return localData;
+    }
+}
+
+// ======================================================
 // LẤY PHẦN TỬ HTML
 // ======================================================
 
@@ -870,25 +1101,35 @@ if (nextPage) {
 // KHỞI ĐỘNG COLLECTION
 // ======================================================
 
-function initCollection() {
+async function initCollection() {
 
-    // Đọc Collection từ localStorage.
+    // Đọc dữ liệu local trước để trang không bị trống.
     collectionData =
         loadCollectionData();
 
-    // Sao chép dữ liệu ban đầu.
     filteredPokemon =
         [...collectionData];
 
-    // Cập nhật số lượng ban đầu.
     totalPokemon =
-//         collectionData.length;
+        collectionData.length;
 
-    // Tạo các nút hệ.
+    // Hiển thị giao diện cũ ngay lập tức.
     renderTypeFilters();
-
-    // Hiển thị trang đầu.
     renderCurrentPage();
+
+
+    // Sau đó mới đồng bộ Firebase.
+    collectionData =
+        await loadCollectionFromFirebase();
+
+    filteredPokemon =
+        [...collectionData];
+
+    totalPokemon =
+        collectionData.length;
+
+    // Render lại sau khi Firebase đồng bộ xong.
+    applyFilters();
 }
 
 

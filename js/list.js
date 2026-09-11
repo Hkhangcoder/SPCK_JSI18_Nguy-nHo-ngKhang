@@ -73,7 +73,7 @@ let pokemonData = [];
 let currentPage = 1;
 
 // Số Pokémon hiển thị trên mỗi trang
-const pokemonPerPage = 20;
+const pokemonPerPage = 18;
 
 // Hệ Pokémon đang được chọn
 let selectedType = "all";
