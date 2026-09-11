@@ -1,3 +1,4 @@
+
 // ======================================================
 // FAVORITE.JS
 // TRANG POKÉMON YÊU THÍCH
@@ -5,64 +6,28 @@
 
 
 // ======================================================
-// IMPORT FIREBASE
+// LẤY PHẦN TỬ HTML
 // ======================================================
 
-
-// Import Firebase Authentication.
-import {
-    auth
-} from "./firebase-config.js";
-
-
-// Import Firestore Database.
-import {
-    db
-} from "./firestore.js";
-
-
-// Import kiểm tra trạng thái đăng nhập.
-import {
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-
-// Import hàm đọc Collection Firestore.
-import {
-    collection,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-// ======================================================
-// HTML ELEMENTS
-// ======================================================
-
-
-// Danh sách Pokémon.
+// Danh sách card Pokémon.
 const favoriteList =
     document.querySelector("#favoriteList");
 
-
-// Tiêu đề.
+// Tiêu đề danh sách.
 const favoriteTitle =
     document.querySelector("#favoriteTitle");
 
-
-// Số lượng.
+// Số lượng Pokémon.
 const favoriteCount =
     document.querySelector("#favoriteCount");
 
-
-// Bộ lọc type.
+// Khung các nút lọc hệ.
 const favoriteTypeFilters =
     document.querySelector("#favoriteTypeFilters");
-
 
 // Ô tìm kiếm.
 const favoriteInput =
     document.querySelector("#searchInput");
-
 
 // Nút tìm kiếm.
 const favoriteSearch =
@@ -70,42 +35,31 @@ const favoriteSearch =
 
 
 // ======================================================
-// VARIABLES
+// BIẾN DỮ LIỆU
 // ======================================================
 
-
-// User hiện tại.
-let currentUser = null;
-
-
-// Toàn bộ Favorite.
+// Toàn bộ Pokémon yêu thích.
 let favoriteData = [];
 
-
-// Favorite sau khi lọc.
+// Pokémon sau khi lọc.
 let filteredFavorites = [];
 
-
-// Type đang chọn.
+// Hệ đang được chọn.
 let currentFavoriteType = "all";
 
-
-// Keyword.
+// Từ khóa tìm kiếm.
 let searchKeyword = "";
 
-
-// Page hiện tại.
+// Trang hiện tại.
 let currentPage = 1;
 
-
-// 20 Pokémon mỗi page.
+// Mỗi trang có 20 Pokémon.
 const pokemonPerPage = 20;
 
 
 // ======================================================
-// 18 TYPES
+// 18 HỆ POKÉMON
 // ======================================================
-
 
 const pokemonTypes = [
 
@@ -127,14 +81,12 @@ const pokemonTypes = [
     "dark",
     "steel",
     "fairy"
-
 ];
 
 
 // ======================================================
-// TYPE ICONS
+// ICON CÁC HỆ
 // ======================================================
-
 
 const typeIcons = {
 
@@ -156,330 +108,317 @@ const typeIcons = {
     dark: "🌙",
     steel: "⚙️",
     fairy: "✨"
-
 };
 
 
 // ======================================================
-// CAPITALIZE
+// VIẾT HOA TÊN
 // ======================================================
 
-
+// Đổi "mr-mime" thành "Mr Mime".
 function capitalize(text) {
 
-    // Nếu không có text.
     if (!text) {
-
         return "";
-
     }
 
-
-    // Viết hoa từng phần.
     return text
         .split("-")
         .map(function (word) {
 
             return (
-                word.charAt(0).toUpperCase()
-                + word.slice(1)
+                word.charAt(0).toUpperCase() +
+                word.slice(1)
             );
 
         })
         .join(" ");
-
 }
 
 
 // ======================================================
-// GET TYPE NAMES
+// LẤY TÊN HỆ
 // ======================================================
 
-
+// Lấy danh sách hệ của Pokémon.
 function getTypeNames(pokemon) {
 
-    // Không có types.
+    // Pokémon chưa có thông tin hệ.
     if (!pokemon.types) {
-
         return [];
-
     }
 
-
-    // Chuyển types thành tên.
     return pokemon.types.map(function (type) {
 
-        // Nếu type là string.
+        // Nếu hệ là chuỗi.
         if (typeof type === "string") {
-
             return type;
-
         }
 
-
-        // Nếu type là object.
+        // Nếu hệ là object.
         return type.name;
-
     });
-
 }
 
 
 // ======================================================
-// LOAD FAVORITE FROM FIRESTORE
+// LẤY FAVORITE TỪ LOCAL STORAGE
 // ======================================================
 
+// Đọc Pokémon yêu thích đã lưu.
+function loadFavoriteData() {
 
-async function loadFavoriteData() {
+    const savedFavorites =
+        localStorage.getItem("pokemonFavorite");
 
-    // Không có user.
-    if (!currentUser) {
+    // Chưa có dữ liệu.
+    if (!savedFavorites) {
+        return [];
+    }
+
+    try {
+
+        const data =
+            JSON.parse(savedFavorites);
+
+        // Kiểm tra dữ liệu có phải mảng không.
+        if (Array.isArray(data)) {
+            return data;
+        }
 
         return [];
 
-    }
+    } catch (error) {
 
-
-    // Trỏ tới:
-    // users/{uid}/favorites
-    const favoritesRef =
-        collection(
-            db,
-            "users",
-            currentUser.uid,
-            "favorites"
+        console.error(
+            "Lỗi đọc Favorite:",
+            error
         );
 
-
-    // Lấy documents.
-    const snapshot =
-        await getDocs(favoritesRef);
-
-
-    // Chuyển thành array.
-    return snapshot.docs.map(
-        function (docSnap) {
-
-            return docSnap.data();
-
-        }
-    );
-
+        return [];
+    }
 }
 
 
 // ======================================================
-// ĐẾM THEO TYPE
+// SỬA DỮ LIỆU FAVORITE CŨ
 // ======================================================
 
+// Một số Pokémon cũ có thể chưa lưu types.
+// Hàm này lấy lại types từ PokéAPI.
+async function repairFavoriteTypes() {
 
-function getFavoriteCountByType(type) {
+    // Kiểm tra Pokémon nào đang thiếu types.
+    const needRepair =
+        favoriteData.filter(function (pokemon) {
 
-    // Tất cả.
-    if (type === "all") {
+            return (
+                !pokemon.types ||
+                pokemon.types.length === 0
+            );
+        });
 
-        return favoriteData.length;
-
+    // Nếu không có Pokémon nào cần sửa.
+    if (needRepair.length === 0) {
+        return;
     }
 
+    // Lấy lại types cho từng Pokémon.
+    for (const pokemon of needRepair) {
 
-    // Lọc theo type.
-    return favoriteData.filter(
-        function (pokemon) {
+        try {
 
-            const types =
-                getTypeNames(pokemon);
+            // Gọi PokéAPI bằng ID Pokémon.
+            const response =
+                await fetch(
+                    `https://pokeapi.co/api/v2/pokemon/${pokemon.id}`
+                );
 
-            return types.includes(type);
+            // Nếu API lỗi thì bỏ qua Pokémon này.
+            if (!response.ok) {
+                continue;
+            }
 
+            // Chuyển dữ liệu sang JSON.
+            const data =
+                await response.json();
+
+            // Lưu lại tên các hệ.
+            pokemon.types =
+                data.types.map(function (item) {
+
+                    return item.type.name;
+                });
+
+        } catch (error) {
+
+            // Nếu không lấy được dữ liệu thì ghi lỗi.
+            console.error(
+                `Không thể cập nhật types cho ${pokemon.name}:`,
+                error
+            );
         }
-    ).length;
+    }
 
+    // Lưu dữ liệu mới vào localStorage.
+    localStorage.setItem(
+        "pokemonFavorite",
+        JSON.stringify(favoriteData)
+    );
 }
 
 
 // ======================================================
-// RENDER TYPE BUTTONS
+// TẠO CÁC NÚT LỌC HỆ
 // ======================================================
-
 
 function renderFavoriteTypeButtons() {
 
-    // Không có filter.
+    // Không có khung filter.
     if (!favoriteTypeFilters) {
-
         return;
-
     }
-
 
     // Nút Tất cả.
     let html = `
+
         <button
             type="button"
             class="favorite-type-button
             ${currentFavoriteType === "all" ? "active" : ""}"
-            data-type="all">
+            data-type="all"
+        >
 
             <span class="type-icon">
                 🌐
             </span>
 
             <span>
-                Tất cả (${getFavoriteCountByType("all")})
+                Tất cả
             </span>
 
         </button>
+
     `;
 
+    // Tạo 18 nút hệ.
+    pokemonTypes.forEach(function (type) {
 
-    // Tạo 18 type.
-    pokemonTypes.forEach(
-        function (type) {
+        // Kiểm tra nút có đang được chọn không.
+        const isActive =
+            currentFavoriteType === type;
 
-            // Kiểm tra active.
-            const isActive =
-                currentFavoriteType === type;
+        html += `
 
+            <button
+                type="button"
+                class="favorite-type-button
+                ${isActive ? "active" : ""}"
+                data-type="${type}"
+            >
 
-            // Lấy số lượng.
-            const count =
-                getFavoriteCountByType(type);
+                <span class="type-icon">
+                    ${typeIcons[type]}
+                </span>
 
+                <span>
+                    ${capitalize(type)}
+                </span>
 
-            // Tạo button.
-            html += `
-                <button
-                    type="button"
-                    class="favorite-type-button
-                    ${isActive ? "active" : ""}"
-                    data-type="${type}">
+            </button>
 
-                    <span class="type-icon">
-                        ${typeIcons[type]}
-                    </span>
+        `;
+    });
 
-                    <span>
-                        ${capitalize(type)}
-                        (${count})
-                    </span>
+    // Hiển thị các nút.
+    favoriteTypeFilters.innerHTML = html;
 
-                </button>
-            `;
-
-        }
-    );
-
-
-    // Hiển thị.
-    favoriteTypeFilters.innerHTML =
-        html;
-
-
-    // Gắn event.
+    // Gắn sự kiện click.
     addFavoriteTypeEvents();
-
 }
 
 
 // ======================================================
-// TYPE EVENTS
+// SỰ KIỆN CHO NÚT LỌC HỆ
 // ======================================================
-
 
 function addFavoriteTypeEvents() {
 
-    // Lấy button.
+    // Lấy tất cả nút hệ.
     const buttons =
         document.querySelectorAll(
             ".favorite-type-button"
         );
 
+    // Gắn sự kiện cho từng nút.
+    buttons.forEach(function (button) {
 
-    // Duyệt button.
-    buttons.forEach(
-        function (button) {
+        button.addEventListener(
+            "click",
+            function () {
 
-            // Click.
-            button.addEventListener(
-                "click",
-                function () {
+                // Lấy hệ được chọn.
+                currentFavoriteType =
+                    button.dataset.type;
 
-                    // Lấy type.
-                    currentFavoriteType =
-                        button.dataset.type;
+                // Quay về trang đầu.
+                currentPage = 1;
 
+                // Cập nhật nút đang chọn.
+                renderFavoriteTypeButtons();
 
-                    // Về page 1.
-                    currentPage = 1;
-
-
-                    // Render button.
-                    renderFavoriteTypeButtons();
-
-
-                    // Apply filter.
-                    applyFavoriteFilters();
-
-                }
-            );
-
-        }
-    );
-
+                // Lọc lại danh sách.
+                applyFavoriteFilters();
+            }
+        );
+    });
 }
 
 
 // ======================================================
-// UPDATE INFO
+// CẬP NHẬT TIÊU ĐỀ + SỐ LƯỢNG
 // ======================================================
-
 
 function updateFavoriteInfo() {
 
-    // Update title.
+    // Cập nhật tiêu đề.
     if (favoriteTitle) {
 
-        // Tất cả.
+        // Đang xem tất cả.
         if (currentFavoriteType === "all") {
 
             favoriteTitle.textContent =
                 "Tất cả Pokémon";
 
-        }
-        else {
+        } else {
 
-            // Theo type.
+            // Đang xem một hệ cụ thể.
             favoriteTitle.textContent =
                 `Tất cả Pokémon hệ ${capitalize(currentFavoriteType)}`;
-
         }
-
     }
 
-
-    // Update count.
+    // Cập nhật số lượng sau khi lọc.
     if (favoriteCount) {
 
         favoriteCount.textContent =
             `${filteredFavorites.length} Pokémon`;
-
     }
-
 }
 
 
 // ======================================================
-// RENDER FAVORITE CARDS
+// HIỂN THỊ CARD
 // ======================================================
-
 
 function renderFavoriteList(pokemons) {
 
     // Không có Pokémon.
     if (pokemons.length === 0) {
 
+        // Xóa card cũ.
         favoriteList.innerHTML = `
+
             <div class="favorite-empty">
 
                 <i class="bi bi-heart"></i>
@@ -493,207 +432,193 @@ function renderFavoriteList(pokemons) {
                 </p>
 
             </div>
+
         `;
 
         return;
-
     }
-
 
     // Tạo card.
     const html =
-        pokemons.map(
-            function (pokemon) {
+        pokemons.map(function (pokemon) {
 
-                // Lấy ảnh.
-                const image =
-                    pokemon.image ||
-                    "./Image/logo.png";
+            // Lấy ảnh.
+            const image =
+                pokemon.image ||
+                "./Image/logo.png";
 
+            // Lấy hệ.
+            const types =
+                getTypeNames(pokemon);
 
-                // Lấy types.
-                const types =
-                    getTypeNames(pokemon);
+            // Tạo badge hệ.
+            const typeHTML =
+                types.map(function (type) {
 
-
-                // Tạo badge type.
-                const typeHTML =
-                    types.map(
-                        function (type) {
-
-                            return `
-                                <span
-                                    class="favorite-card-type
-                                    type-${type}">
-
-                                    ${capitalize(type)}
-
-                                </span>
-                            `;
-
-                        }
-                    ).join("");
-
-
-                // Tạo card.
-                return `
-                    <article
-                        class="favorite-pokemon-card"
-                        data-id="${pokemon.id}">
+                    return `
 
                         <span
-                            class="favorite-card-id">
+                            class="
+                            favorite-card-type
+                            type-${type}
+                            "
+                        >
 
-                            #${String(pokemon.id).padStart(3, "0")}
+                            ${capitalize(type)}
 
                         </span>
 
+                    `;
 
-                        <div
-                            class="favorite-card-image-box">
+                }).join("");
 
-                            <img
-                                src="${image}"
-                                alt="${capitalize(pokemon.name)}"
-                                onerror="this.src='./Image/logo.png'">
+            // Tạo card Pokémon.
+            return `
 
-                        </div>
+                <article
+                    class="favorite-pokemon-card"
+                    data-id="${pokemon.id}"
+                >
 
+                    <span class="favorite-card-id">
 
-                        <h3>
-                            ${capitalize(pokemon.name)}
-                        </h3>
+                        #${String(
+                            pokemon.id
+                        ).padStart(3, "0")}
 
+                    </span>
 
-                        <div
-                            class="favorite-card-types">
+                    <div
+                        class="
+                        favorite-card-image-box
+                        "
+                    >
 
-                            ${typeHTML}
+                        <img
+                            src="${image}"
+                            alt="${capitalize(pokemon.name)}"
+                            onerror="this.src='./Image/logo.png'"
+                        >
 
-                        </div>
+                    </div>
 
-                    </article>
-                `;
+                    <h3>
 
-            }
-        ).join("");
+                        ${capitalize(
+                            pokemon.name
+                        )}
 
+                    </h3>
+
+                    <div
+                        class="
+                        favorite-card-types
+                        "
+                    >
+
+                        ${typeHTML}
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
 
     // Hiển thị card.
-    favoriteList.innerHTML =
-        html;
-
+    favoriteList.innerHTML = html;
 
     // Gắn click.
     addFavoriteCardEvents();
-
 }
 
 
 // ======================================================
-// CARD CLICK
+// CLICK CARD → DETAIL
 // ======================================================
-
 
 function addFavoriteCardEvents() {
 
-    // Lấy card.
+    // Lấy tất cả card.
     const cards =
         document.querySelectorAll(
             ".favorite-pokemon-card"
         );
 
+    // Gắn sự kiện click.
+    cards.forEach(function (card) {
 
-    // Duyệt card.
-    cards.forEach(
-        function (card) {
+        card.addEventListener(
+            "click",
+            function () {
 
-            // Click.
-            card.addEventListener(
-                "click",
-                function () {
-
-                    // Lấy ID.
-                    const id =
-                        card.dataset.id;
-
-
-                    // Chuyển Detail.
-                    window.location.href =
-                        `detail.html?id=${id}`;
-
-                }
-            );
-
-        }
-    );
-
+                // Chuyển sang trang Detail.
+                window.location.href =
+                    `detail.html?id=${card.dataset.id}`;
+            }
+        );
+    });
 }
 
 
 // ======================================================
-// FILTER FAVORITE
+// LỌC FAVORITE
 // ======================================================
-
 
 function applyFavoriteFilters() {
 
-    // Copy data.
+    // Bắt đầu với toàn bộ Favorite.
     let result =
         [...favoriteData];
 
 
-    // Filter type.
+    // ------------------------------
+    // LỌC THEO HỆ
+    // ------------------------------
+
     if (currentFavoriteType !== "all") {
 
         result =
-            result.filter(
-                function (pokemon) {
+            result.filter(function (pokemon) {
 
-                    const types =
-                        getTypeNames(pokemon);
+                const types =
+                    getTypeNames(pokemon);
 
-                    return types.includes(
-                        currentFavoriteType
-                    );
-
-                }
-            );
-
+                return types.includes(
+                    currentFavoriteType
+                );
+            });
     }
 
 
-    // Filter search.
+    // ------------------------------
+    // LỌC THEO TÌM KIẾM
+    // ------------------------------
+
     if (searchKeyword !== "") {
 
         result =
-            result.filter(
-                function (pokemon) {
+            result.filter(function (pokemon) {
 
-                    // Tên.
-                    const name =
-                        String(
-                            pokemon.name || ""
-                        ).toLowerCase();
+                // Tên Pokémon.
+                const name =
+                    String(
+                        pokemon.name || ""
+                    ).toLowerCase();
 
-
-                    // ID.
-                    const id =
-                        String(
-                            pokemon.id || ""
-                        );
-
-
-                    // Search.
-                    return (
-                        name.includes(searchKeyword)
-                        ||
-                        id.includes(searchKeyword)
+                // ID Pokémon.
+                const id =
+                    String(
+                        pokemon.id || ""
                     );
 
-                }
-            );
-
+                // Tìm theo tên hoặc ID.
+                return (
+                    name.includes(searchKeyword) ||
+                    id.includes(searchKeyword)
+                );
+            });
     }
 
 
@@ -702,463 +627,346 @@ function applyFavoriteFilters() {
         result;
 
 
-    // Tổng page.
+    // Về trang đầu sau khi lọc.
     const totalPages =
         Math.ceil(
             filteredFavorites.length /
             pokemonPerPage
         );
 
-
-    // Nếu vượt page.
+    // Nếu trang hiện tại vượt quá số trang.
     if (
-        totalPages > 0
-        &&
+        totalPages > 0 &&
         currentPage > totalPages
     ) {
 
         currentPage =
             totalPages;
-
     }
 
-
-    // Không có dữ liệu.
+    // Không có kết quả.
     if (totalPages === 0) {
 
         currentPage = 1;
-
     }
 
 
-    // Render.
+    // Hiển thị lại danh sách.
     renderCurrentFavoritePage();
-
 }
 
 
 // ======================================================
-// RENDER CURRENT PAGE
+// HIỂN THỊ TRANG HIỆN TẠI
 // ======================================================
-
 
 function renderCurrentFavoritePage() {
 
-    // Start.
+    // Vị trí bắt đầu.
     const start =
-        (currentPage - 1)
-        * pokemonPerPage;
+        (currentPage - 1) *
+        pokemonPerPage;
 
-
-    // End.
+    // Vị trí kết thúc.
     const end =
-        start + pokemonPerPage;
+        start +
+        pokemonPerPage;
 
-
-    // Lấy data page hiện tại.
+    // Lấy Pokémon của trang hiện tại.
     const currentFavorites =
         filteredFavorites.slice(
             start,
             end
         );
 
-
-    // Render card.
+    // Hiển thị card.
     renderFavoriteList(
         currentFavorites
     );
 
-
-    // Update info.
+    // Cập nhật tiêu đề + số lượng.
     updateFavoriteInfo();
 
-
-    // Update pagination.
+    // Cập nhật phân trang.
     updateFavoritePagination();
-
 }
 
 
 // ======================================================
-// CREATE PAGINATION
+// TẠO KHUNG PHÂN TRANG
 // ======================================================
-
 
 function createFavoritePagination() {
 
-    // Nếu đã có.
+    // Nếu đã có phân trang thì không tạo lại.
     if (
         document.querySelector(
             "#favoritePagination"
         )
     ) {
-
         return;
-
     }
 
-
-    // Tạo section.
+    // Tạo khung phân trang.
     const pagination =
-        document.createElement(
-            "section"
-        );
+        document.createElement("section");
 
-
-    // ID.
+    // Gắn ID + class.
     pagination.id =
         "favoritePagination";
 
-
-    // Class.
     pagination.className =
         "favorite-pagination";
 
-
-    // HTML.
+    // Tạo nội dung phân trang.
     pagination.innerHTML = `
+
         <button
             type="button"
-            id="favoritePrevPage">
-
+            id="favoritePrevPage"
+        >
             <i class="bi bi-chevron-left"></i>
             Trước
-
         </button>
-
 
         <span id="favoritePageInfo">
             Trang 1 / 1
         </span>
 
-
         <button
             type="button"
-            id="favoriteNextPage">
-
+            id="favoriteNextPage"
+        >
             Sau
             <i class="bi bi-chevron-right"></i>
-
         </button>
+
     `;
 
+    // Đặt phân trang sau danh sách card.
+    favoriteList.after(pagination);
 
-    // Đặt sau list.
-    favoriteList.after(
-        pagination
-    );
-
-
-    // Gắn event.
+    // Gắn sự kiện cho nút.
     addFavoritePaginationEvents();
-
 }
 
 
 // ======================================================
-// UPDATE PAGINATION
+// CẬP NHẬT PHÂN TRANG
 // ======================================================
-
 
 function updateFavoritePagination() {
 
-    // Lấy pagination.
+    // Lấy khung phân trang.
     const pagination =
         document.querySelector(
             "#favoritePagination"
         );
 
-
-    // Previous.
+    // Lấy nút trước.
     const prevButton =
         document.querySelector(
             "#favoritePrevPage"
         );
 
-
-    // Next.
+    // Lấy nút sau.
     const nextButton =
         document.querySelector(
             "#favoriteNextPage"
         );
 
-
-    // Page info.
+    // Lấy thông tin trang.
     const pageInfo =
         document.querySelector(
             "#favoritePageInfo"
         );
 
-
-    // Tổng page.
+    // Tính tổng số trang.
     const totalPages =
         Math.ceil(
             filteredFavorites.length /
             pokemonPerPage
         );
 
-
-    // Không cần pagination.
+    // Không có kết quả.
     if (
-        !pagination
-        ||
+        !pagination ||
         totalPages <= 1
     ) {
 
         if (pagination) {
-
-            pagination.hidden =
-                true;
-
+            pagination.hidden = true;
         }
 
         return;
-
     }
 
+    // Hiện phân trang.
+    pagination.hidden = false;
 
-    // Hiện pagination.
-    pagination.hidden =
-        false;
-
-
-    // Hiển thị page.
+    // Hiển thị số trang.
     pageInfo.textContent =
         `Trang ${currentPage} / ${totalPages}`;
 
-
-    // Disable Previous.
+    // Khóa nút trước ở trang đầu.
     prevButton.disabled =
         currentPage === 1;
 
-
-    // Disable Next.
+    // Khóa nút sau ở trang cuối.
     nextButton.disabled =
         currentPage === totalPages;
-
 }
 
 
 // ======================================================
-// PAGINATION EVENTS
+// EVENT PHÂN TRANG
 // ======================================================
-
 
 function addFavoritePaginationEvents() {
 
-    // Previous.
+    // Nút trang trước.
     const prevButton =
         document.querySelector(
             "#favoritePrevPage"
         );
 
-
-    // Next.
+    // Nút trang sau.
     const nextButton =
         document.querySelector(
             "#favoriteNextPage"
         );
 
-
-    // Previous event.
+    // Click Previous.
     if (prevButton) {
 
         prevButton.addEventListener(
             "click",
             function () {
 
-                // Không lùi được.
+                // Không cho lùi ở trang 1.
                 if (currentPage <= 1) {
-
                     return;
-
                 }
 
-
-                // Lùi page.
+                // Lùi trang.
                 currentPage--;
 
-
-                // Render.
+                // Hiển thị lại.
                 renderCurrentFavoritePage();
-
             }
         );
-
     }
 
-
-    // Next event.
+    // Click Next.
     if (nextButton) {
 
         nextButton.addEventListener(
             "click",
             function () {
 
-                // Tổng page.
+                // Tính tổng số trang.
                 const totalPages =
                     Math.ceil(
                         filteredFavorites.length /
                         pokemonPerPage
                     );
 
-
-                // Không tiến được.
+                // Không cho vượt quá trang cuối.
                 if (
                     currentPage >= totalPages
                 ) {
-
                     return;
-
                 }
 
-
-                // Sang page.
+                // Sang trang tiếp theo.
                 currentPage++;
 
-
-                // Render.
+                // Hiển thị lại.
                 renderCurrentFavoritePage();
-
             }
         );
-
     }
-
 }
 
 
 // ======================================================
-// SEARCH
+// TÌM KIẾM
 // ======================================================
-
 
 function searchFavorites() {
 
-    // Lấy keyword.
+    // Lấy từ khóa.
     searchKeyword =
         favoriteInput.value
-            .trim()
-            .toLowerCase();
+        .trim()
+        .toLowerCase();
 
-
-    // Về page đầu.
+    // Về trang đầu.
     currentPage = 1;
 
-
-    // Apply filter.
+    // Lọc lại.
     applyFavoriteFilters();
-
 }
 
 
 // ======================================================
-// SEARCH EVENTS
+// EVENT TÌM KIẾM
 // ======================================================
 
-
-// Click search.
+// Click nút tìm kiếm.
 if (favoriteSearch) {
 
     favoriteSearch.addEventListener(
         "click",
         searchFavorites
     );
-
 }
 
 
-// Enter.
+// Nhấn Enter để tìm kiếm.
 if (favoriteInput) {
 
     favoriteInput.addEventListener(
         "keydown",
         function (event) {
 
-            // Kiểm tra Enter.
             if (event.key === "Enter") {
 
                 searchFavorites();
-
             }
-
         }
     );
-
 }
 
 
 // ======================================================
-// INIT FAVORITE
+// KHỞI ĐỘNG FAVORITE
 // ======================================================
-
 
 async function initFavorite() {
 
-    try {
+    // Đọc Favorite từ localStorage.
+    favoriteData =
+        loadFavoriteData();
 
-        // Lấy Favorite từ Firestore.
-        favoriteData =
-            await loadFavoriteData();
+    // Sửa dữ liệu cũ nếu thiếu types.
+    await repairFavoriteTypes();
 
+    // Sao chép dữ liệu ban đầu.
+    filteredFavorites =
+        [...favoriteData];
 
-        // Copy data.
-        filteredFavorites =
-            [...favoriteData];
+    // Tạo các nút hệ.
+    renderFavoriteTypeButtons();
 
+    // Tạo phân trang.
+    createFavoritePagination();
 
-        // Render type.
-        renderFavoriteTypeButtons();
-
-
-        // Tạo pagination.
-        createFavoritePagination();
-
-
-        // Render.
-        applyFavoriteFilters();
-
-    }
-    catch (error) {
-
-        // Console error.
-        console.error(
-            "Lỗi tải Favorite từ Firestore:",
-            error
-        );
-
-    }
-
+    // Hiển thị danh sách.
+    applyFavoriteFilters();
 }
 
 
-// ======================================================
-// AUTH STATE
-// ======================================================
+// Chạy trang Favorite.
+initFavorite();
 
-
-onAuthStateChanged(
-    auth,
-    async function (user) {
-
-        // Nếu chưa đăng nhập.
-        if (!user) {
-
-            // Chuyển Login.
-            window.location.href =
-                "./login.html";
-
-            return;
-
-        }
-
-
-        // Lưu user.
-        currentUser = user;
-
-
-        // Khởi động Favorite.
-        await initFavorite();
-
-    }
-);
