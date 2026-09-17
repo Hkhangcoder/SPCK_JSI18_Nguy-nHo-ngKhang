@@ -6,7 +6,8 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-import { firebaseConfig } from "./firebase-config.js";
+// import { firebaseConfig } from "./firebase-config.js";
+import { auth, firebaseConfig } from "./firebase-config.js";
 
 // Firebase
 const app = initializeApp(firebaseConfig);

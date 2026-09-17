@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bộ sưu tập - Yêu thích | Pokémon Hub</title>
+    <title>Pokemon của bạn - Yêu thích | Pokémon Hub</title>
     <!-- Logo web -->
     <link rel="icon" type="image/png" href="./Image/logo.png">
     <!-- Tích hợp Bootstrap -->
@@ -31,15 +31,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./collection.html">Giới thiệu web</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./intro-web.html">Giới thiệu web</a></li>
                     <!-- Pokédex -->
                     <li class="nav-item"><a class="nav-link" href="./list.html">Pokédex</a></li>
-                    <!-- Bộ sưu tập -->
+                    <!-- Pokemon của bạn -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Bộ sưu tập</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pokemon của bạn</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="./collection.html"><i class="bi bi-grid-3x3-gap-fill"></i> Tất cả</a></li>
+                            <li><a class="dropdown-item" href="./collection.html"><i class="bi bi-grid-3x3-gap-fill"></i> Bộ sưu tập</a></li>
                             <li><a class="dropdown-item" href="./favorite.html">❤️ Yêu thích</a></li>                        
+                            <li><a class="dropdown-item" href="./create-poke.html"><i class="bi bi-stars"></i>Tạo Pokemon</a></li>                        
                         </ul>
                     </li>
                     <!-- Cài đặt -->
@@ -63,7 +64,7 @@
         <div class="breadcrumb-custom">
             <a href="index.html">🏠 Trang chủ</a>
             <i class="bi bi-chevron-right"></i>
-            <a href="./favorite.html">Bộ sưu tập - Yêu thích</a>
+            <a href="./favorite.html">Pokemon của bạn - Yêu thích</a>
         </div>
     </div>
     <!-- Main -->
@@ -102,6 +103,7 @@
             </div>
             <!-- Phân trang Favorite -->
             <section id="favoritePagination" class="favorite-pagination">
+            
             </section>
         </div>
     </main>
@@ -135,9 +137,10 @@
                 </div>
                 <!-- Cột bộ sưu tập -->
                 <div class="footer-column">
-                    <h3>Bộ sưu tập</h3>
+                    <h3>Pokemon của bạn</h3>
                     <a href="./collection.html">Tất cả Pokémon</a>
                     <a href="./favorite.html">Pokémon yêu thích</a>
+                    <a href="./create-poke.html">Tạo pokemon</a>
                 </div>
                 <!-- Cột hỗ trợ -->
                 <div class="footer-column">
@@ -155,7 +158,7 @@
         </div>
     </footer>
 
-    <script src="./js/favorite.js"></script>
+    <script type="module" src="./js/favorite.js"></script>
     <script type="module" src="./js/auth.js"></script>
     <script type="module" src="./js/home.js"></script>
     <script>

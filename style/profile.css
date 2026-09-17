@@ -1,0 +1,764 @@
+/* ========================================= */
+/* PROFILE.CSS - TRANG HỒ SƠ POKÉMON HUB */
+/* ========================================= */
+
+
+/* ========================================= */
+/* PROFILE PAGE */
+/* ========================================= */
+
+.profile-page {
+    /* Đặt Profile làm khu vực chính */
+    position: relative;
+
+    /* Khoảng cách phía dưới */
+    padding-bottom: 40px;
+}
+
+
+/* ========================================= */
+/* WELCOME */
+/* ========================================= */
+
+.profile-welcome {
+    /* Khoảng cách trên dưới */
+    padding: 20px 0 30px;
+
+    /* Căn giữa */
+    text-align: center;
+}
+
+
+.profile-welcome h1 {
+    /* Kích thước tiêu đề */
+    font-size: 34px;
+
+    /* Độ đậm */
+    font-weight: 700;
+
+    /* Khoảng cách */
+    margin: 0 0 10px;
+}
+
+
+.profile-welcome h1 span {
+    /* Màu username */
+    color: #e53935;
+}
+
+
+.profile-welcome p {
+    /* Xóa margin mặc định */
+    margin: 0;
+
+    /* Màu chữ phụ */
+    color: #6c757d;
+
+    /* Kích thước chữ */
+    font-size: 16px;
+}
+
+
+/* ========================================= */
+/* PROFILE LAYOUT */
+/* ========================================= */
+
+.profile-layout {
+    /* Dùng Grid */
+    display: grid;
+
+    /* Chia thành hai cột */
+    grid-template-columns: 300px minmax(0, 1fr);
+
+    /* Khoảng cách giữa hai card */
+    gap: 25px;
+
+    /* Không kéo card nhỏ theo chiều cao card lớn */
+    align-items: start;
+}
+
+
+/* ========================================= */
+/* AVATAR CARD */
+/* ========================================= */
+
+.profile-avatar-card {
+    /* Nền */
+    background: #ffffff;
+
+    /* Bo góc */
+    border-radius: 18px;
+
+    /* Khoảng cách bên trong */
+    padding: 30px 25px;
+
+    /* Căn giữa nội dung */
+    text-align: center;
+
+    /* Viền */
+    border: 1px solid #e9ecef;
+
+    /* Bóng */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+    /* Không cho card bị kéo cao */
+    align-self: center;
+
+    /* Giữ kích thước theo nội dung */
+    height: fit-content;
+}
+
+
+/* ========================================= */
+/* AVATAR */
+/* ========================================= */
+
+.avatar-wrapper {
+    /* Kích thước avatar */
+    width: 180px;
+    height: 180px;
+
+    /* Căn giữa */
+    margin: 0 auto 20px;
+
+    /* Hình tròn */
+    border-radius: 50%;
+
+    /* Không cho ảnh tràn */
+    overflow: hidden;
+
+    /* Viền */
+    border: 5px solid #f1f3f5;
+
+    /* Nền */
+    background: #f1f3f5;
+}
+
+
+.profile-avatar {
+    /* Chiếm toàn bộ khung */
+    width: 100%;
+    height: 100%;
+
+    /* Không méo ảnh */
+    object-fit: cover;
+
+    /* Hiển thị block */
+    display: block;
+}
+
+
+/* ========================================= */
+/* NÚT ĐỔI AVATAR */
+/* ========================================= */
+
+.avatar-button {
+    /* Xóa border mặc định */
+    border: none;
+
+    /* Màu nền */
+    background: #212529;
+
+    /* Màu chữ */
+    color: #ffffff;
+
+    /* Khoảng cách */
+    padding: 10px 18px;
+
+    /* Bo góc */
+    border-radius: 10px;
+
+    /* Con trỏ */
+    cursor: pointer;
+
+    /* Hiệu ứng */
+    transition: 0.2s;
+}
+
+
+.avatar-button:hover {
+    /* Nâng nút */
+    transform: translateY(-2px);
+
+    /* Màu hover */
+    background: #000000;
+}
+
+
+.avatar-button i {
+    /* Khoảng cách icon */
+    margin-right: 5px;
+}
+
+
+/* ========================================= */
+/* TRẠNG THÁI AVATAR */
+/* ========================================= */
+
+.avatar-status {
+    /* Chiều cao tối thiểu để layout không nhảy */
+    min-height: 22px;
+
+    /* Khoảng cách */
+    margin: 10px 0;
+
+    /* Kích thước */
+    font-size: 14px;
+
+    /* Màu */
+    color: #198754;
+}
+
+
+/* ========================================= */
+/* USERNAME / EMAIL */
+/* ========================================= */
+
+.profile-avatar-card h3 {
+    /* Kích thước */
+    font-size: 22px;
+
+    /* Độ đậm */
+    font-weight: 700;
+
+    /* Khoảng cách */
+    margin: 8px 0 5px;
+}
+
+
+.profile-avatar-card > p:last-child {
+    /* Màu email */
+    color: #6c757d;
+
+    /* Nếu email dài thì tự xuống dòng */
+    overflow-wrap: anywhere;
+
+    /* Xóa margin dưới */
+    margin-bottom: 0;
+}
+
+
+/* ========================================= */
+/* INFORMATION CARD */
+/* ========================================= */
+
+.profile-info-card {
+    /* Nền */
+    background: #ffffff;
+
+    /* Bo góc */
+    border-radius: 18px;
+
+    /* Khoảng cách */
+    padding: 30px;
+
+    /* Viền */
+    border: 1px solid #e9ecef;
+
+    /* Bóng */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+    /* Giữ card theo nội dung */
+    height: fit-content;
+}
+
+
+/* ========================================= */
+/* TIÊU ĐỀ CARD */
+/* ========================================= */
+
+.profile-card-title {
+    /* Hiển thị ngang */
+    display: flex;
+
+    /* Căn giữa */
+    align-items: center;
+
+    /* Khoảng cách icon - chữ */
+    gap: 10px;
+
+    /* Khoảng cách dưới */
+    margin-bottom: 25px;
+}
+
+
+.profile-card-title i {
+    /* Kích thước icon */
+    font-size: 25px;
+
+    /* Màu */
+    color: #e53935;
+}
+
+
+.profile-card-title h2 {
+    /* Xóa margin */
+    margin: 0;
+
+    /* Kích thước */
+    font-size: 24px;
+
+    /* Độ đậm */
+    font-weight: 700;
+}
+
+
+/* ========================================= */
+/* FORM */
+/* ========================================= */
+
+#profileForm {
+    /* Dùng Grid */
+    display: grid;
+
+    /* Hai cột */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    /* Khoảng cách hàng/cột */
+    gap: 18px;
+}
+
+
+/* ========================================= */
+/* FORM GROUP */
+/* ========================================= */
+
+.profile-form-group {
+    /* Không cho nội dung làm vỡ grid */
+    min-width: 0;
+}
+
+
+.profile-form-group label {
+    /* Hiển thị block */
+    display: block;
+
+    /* Khoảng cách */
+    margin-bottom: 8px;
+
+    /* Độ đậm */
+    font-weight: 600;
+
+    /* Kích thước */
+    font-size: 14px;
+
+    /* Màu */
+    color: #343a40;
+}
+
+
+.profile-form-group label i {
+    /* Khoảng cách icon */
+    margin-right: 6px;
+
+    /* Màu icon */
+    color: #e53935;
+}
+
+
+/* ========================================= */
+/* INPUT / SELECT / TEXTAREA */
+/* ========================================= */
+
+.profile-form-group input,
+.profile-form-group select,
+.profile-form-group textarea {
+    /* Chiếm hết chiều rộng */
+    width: 100%;
+
+    /* Viền */
+    border: 1px solid #dee2e6;
+
+    /* Bo góc */
+    border-radius: 10px;
+
+    /* Khoảng cách */
+    padding: 11px 13px;
+
+    /* Kích thước chữ */
+    font-size: 15px;
+
+    /* Nền */
+    background: #ffffff;
+
+    /* Màu chữ */
+    color: #212529;
+
+    /* Hiệu ứng */
+    transition: 0.2s;
+}
+
+
+/* ========================================= */
+/* FOCUS */
+/* ========================================= */
+
+.profile-form-group input:focus,
+.profile-form-group select:focus,
+.profile-form-group textarea:focus {
+    /* Xóa outline mặc định */
+    outline: none;
+
+    /* Viền xanh */
+    border-color: #86b7fe;
+
+    /* Bóng focus */
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+}
+
+
+/* ========================================= */
+/* EMAIL */
+/* ========================================= */
+
+#email {
+    /* Làm mờ vì không chỉnh sửa được */
+    background: #f1f3f5;
+
+    /* Màu chữ */
+    color: #6c757d;
+
+    /* Con trỏ */
+    cursor: not-allowed;
+}
+
+
+/* ========================================= */
+/* TEXTAREA */
+/* ========================================= */
+
+.profile-form-group textarea {
+    /* Chỉ cho kéo chiều cao */
+    resize: vertical;
+
+    /* Chiều cao tối thiểu */
+    min-height: 110px;
+}
+
+
+/* ========================================= */
+/* MÔ TẢ FULL WIDTH */
+/* ========================================= */
+
+.profile-bio-group {
+    /* Chiếm cả 2 cột */
+    grid-column: 1 / -1;
+}
+
+
+/* ========================================= */
+/* KHU VỰC NÚT LƯU */
+/* ========================================= */
+
+.profile-save-area {
+    /* Chiếm cả 2 cột */
+    grid-column: 1 / -1;
+
+    /* Hiển thị ngang */
+    display: flex;
+
+    /* Căn giữa theo chiều dọc */
+    align-items: center;
+
+    /* Khoảng cách */
+    gap: 15px;
+
+    /* Khoảng cách phía trên */
+    margin-top: 5px;
+}
+
+
+/* ========================================= */
+/* NÚT LƯU */
+/* ========================================= */
+
+.save-profile-btn {
+    /* Xóa border */
+    border: none;
+
+    /* Màu */
+    background: #e53935;
+
+    /* Chữ */
+    color: #ffffff;
+
+    /* Khoảng cách */
+    padding: 11px 20px;
+
+    /* Bo góc */
+    border-radius: 10px;
+
+    /* Kích thước */
+    font-size: 15px;
+
+    /* Độ đậm */
+    font-weight: 600;
+
+    /* Con trỏ */
+    cursor: pointer;
+
+    /* Hiệu ứng */
+    transition: 0.2s;
+}
+
+
+.save-profile-btn:hover {
+    /* Nâng nút */
+    transform: translateY(-2px);
+
+    /* Màu hover */
+    background: #c62828;
+}
+
+
+.save-profile-btn:disabled {
+    /* Làm mờ */
+    opacity: 0.6;
+
+    /* Không cho click */
+    cursor: not-allowed;
+
+    /* Không nâng */
+    transform: none;
+}
+
+
+.save-profile-btn i {
+    /* Khoảng cách icon */
+    margin-right: 6px;
+}
+
+
+/* ========================================= */
+/* TRẠNG THÁI LƯU */
+/* ========================================= */
+
+#saveStatus {
+    /* Kích thước */
+    font-size: 14px;
+
+    /* Màu */
+    color: #198754;
+}
+
+
+/* ========================================= */
+/* THỐNG KÊ */
+/* ========================================= */
+
+.profile-stats {
+    /* Grid */
+    display: grid;
+
+    /* 2 card */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    /* Khoảng cách */
+    gap: 25px;
+
+    /* Khoảng cách với phần trên */
+    margin-top: 25px;
+}
+
+
+/* ========================================= */
+/* STAT CARD */
+/* ========================================= */
+
+.stat-card {
+    /* Nền */
+    background: #ffffff;
+
+    /* Bo góc */
+    border-radius: 18px;
+
+    /* Khoảng cách bên trong */
+    padding: 22px 25px;
+
+    /* Hiển thị ngang */
+    display: flex;
+
+    /* Căn giữa */
+    align-items: center;
+
+    /* Khoảng cách */
+    gap: 18px;
+
+    /* Viền */
+    border: 1px solid #e9ecef;
+
+    /* Bóng */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+
+    /* Hiệu ứng */
+    transition: 0.2s;
+}
+
+
+.stat-card:hover {
+    /* Nâng card */
+    transform: translateY(-3px);
+
+    /* Bóng rõ hơn */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ========================================= */
+/* STAT ICON */
+/* ========================================= */
+
+.stat-icon {
+    /* Kích thước */
+    width: 55px;
+    height: 55px;
+
+    /* Không bị co */
+    min-width: 55px;
+
+    /* Căn giữa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Bo góc */
+    border-radius: 14px;
+
+    /* Icon */
+    font-size: 24px;
+}
+
+
+.collection-icon {
+    /* Nền */
+    background: #e7f1ff;
+
+    /* Icon */
+    color: #0d6efd;
+}
+
+
+.favorite-icon {
+    /* Nền */
+    background: #ffe7e7;
+
+    /* Icon */
+    color: #e53935;
+}
+
+
+/* ========================================= */
+/* STAT TEXT */
+/* ========================================= */
+
+.stat-card h3 {
+    /* Xóa margin */
+    margin: 0 0 3px;
+
+    /* Kích thước */
+    font-size: 26px;
+
+    /* Độ đậm */
+    font-weight: 700;
+}
+
+
+.stat-card p {
+    /* Xóa margin */
+    margin: 0;
+
+    /* Màu phụ */
+    color: #6c757d;
+
+    /* Kích thước */
+    font-size: 14px;
+}
+
+
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+
+/* Tablet */
+@media (max-width: 900px) {
+
+    .profile-layout {
+        /* Chuyển thành một cột */
+        grid-template-columns: 1fr;
+    }
+
+    .profile-avatar-card {
+        /* Khi chỉ còn một cột thì căn giữa ngang */
+        justify-self: center;
+
+        /* Không cần căn giữa theo chiều dọc */
+        align-self: start;
+
+        /* Không vượt quá chiều rộng */
+        width: 100%;
+
+        /* Giới hạn chiều rộng card */
+        max-width: 360px;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .profile-welcome h1 {
+        /* Giảm kích thước tiêu đề */
+        font-size: 28px;
+    }
+
+    .profile-welcome p {
+        /* Giảm kích thước mô tả */
+        font-size: 14px;
+    }
+
+    .profile-info-card {
+        /* Giảm padding */
+        padding: 22px 18px;
+    }
+
+    #profileForm {
+        /* Chuyển form thành một cột */
+        grid-template-columns: 1fr;
+    }
+
+    .profile-bio-group {
+        /* Bỏ chiếm hai cột */
+        grid-column: auto;
+    }
+
+    .profile-save-area {
+        /* Bỏ chiếm hai cột */
+        grid-column: auto;
+    }
+
+    .profile-stats {
+        /* Chuyển thống kê thành một cột */
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Mobile nhỏ */
+@media (max-width: 400px) {
+
+    .profile-avatar-card {
+        /* Giảm khoảng cách trong card */
+        padding: 25px 18px;
+    }
+
+    .avatar-wrapper {
+        /* Giảm kích thước avatar */
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-card-title h2 {
+        /* Giảm kích thước tiêu đề */
+        font-size: 21px;
+    }
+}

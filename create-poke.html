@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ sưu tập - Tất cả | Pokémon Hub</title>
+    <!-- Logo web -->
+    <link rel="icon" type="image/png" href="./Image/logo.png">
+    <!-- Tích hợp Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/create-poke.css">
+</head>
+<body style="padding-top:70px;"> 
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand logo" href="index.html"> 
+            <img src="./Image/logo.png" alt="Logo">Pokémon Hub</a>
+            <!-- Nút thu gọn -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./intro-web.html">Giới thiệu web</a></li>
+                    <!-- Pokédex -->
+                    <li class="nav-item"><a class="nav-link" href="./list.html">Pokédex</a></li>
+                    <!-- Pokemon của bạn -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pokemon của bạn</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./collection.html"><i class="bi bi-grid-3x3-gap-fill"></i> Bộ sưu tập</a></li>
+                            <li><a class="dropdown-item" href="./favorite.html">❤️ Yêu thích</a></li>                        
+                            <li><a class="dropdown-item" href="./create-poke.html"><i class="bi bi-stars"></i>Tạo Pokemon</a></li>                        
+                        </ul>
+                    </li>
+                    <!-- Cài đặt -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> <i class="bi bi-gear-fill icon-setting"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./profile.html">👤 Hồ sơ</a></li>
+                            <li><a class="dropdown-item" href="./contact.html">📞 Liên hệ</a></li>
+                            <li><a class="dropdown-item" href="./feedback.html">💬 Góp ý</a></li>
+                            <li><a class="dropdown-item text-danger" href="" id="logoutBtn">🚪 Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> 
+    <!-- Icon background -->
+    <img src="./Image/logo.png" class="bg-pokeball">
+    <!-- Back page-->
+    <div class="container mt-3">
+        <div class="breadcrumb-custom">
+            <a href="index.html">🏠 Trang chủ</a>
+            <i class="bi bi-chevron-right"></i>
+            <a href="./create-poke.html">Pokemon của bạn - Tạo Pokemon</a>
+        </div>
+    </div>
+    <!--   MAIN  -->
+    <main class="container create-pokemon-main">
+        <!--    HERO   -->
+        <div class="create-pokemon-hero text-center">
+            <!-- Vòng tròn icon -->
+            <div class="create-hero-icon ">
+                <i class="bi bi-stars"></i>
+            </div>
+            <!-- Nhãn nhỏ -->
+            <span class="create-hero-badge "> POKÉMON CREATOR </span>
+            <!-- Tiêu đề -->
+            <h1 class="create-pokemon-title"> Tạo Pokémon của bạn </h1>
+            <!-- Mô tả -->
+            <p class="create-pokemon-subtitle">
+                Tự tạo một Pokémon theo ý tưởng của bạn
+                và lưu lại trong bộ sưu tập cá nhân.
+            </p>
+        </div>
+        <!-- FORM CARD -->
+        <section class="create-pokemon-form">
+            <!-- Header của form -->
+            <div class="create-form-header">
+                <!-- Icon -->
+                <div class="create-form-heading-icon">
+                    <i class="bi bi-magic"></i>
+                </div>
+                <!-- Nội dung -->
+                <div>
+                    <!-- Nhãn nhỏ -->
+                    <span class="create-form-step">POKÉMON CREATOR </span>
+                    <!-- Tiêu đề -->
+                    <h3 id="formTitle">
+                        <i class="bi bi-pencil-square"></i> Thêm Pokémon
+                    </h3>
+                    <!-- Mô tả -->
+                    <p> Điền thông tin để tạo Pokémon của riêng bạn. </p>
+                </div>
+            </div>
+            <!-- Form -->
+            <form id="createPokemonForm">
+                <!--   THÔNG TIN CƠ BẢN   -->
+                <div class="form-section-box">
+                    <!-- Tiêu đề phần -->
+                    <div class="form-section-title">
+                        <!-- Icon -->
+                        <div class="section-title-icon">
+                            <i class="bi bi-info-circle-fill"></i>
+                        </div>
+                        <!-- Nội dung -->
+                        <div>
+                            <!-- Tên phần -->
+                            <h4> Thông tin cơ bản </h4>
+                            <!-- Mô tả -->
+                            <p> Đặt tên và lựa chọn hệ cho Pokémon. </p>
+                        </div>
+                    </div>
+                    <!-- Hàng input -->
+                    <div class="row g-4">
+                        <!-- Tên Pokémon -->
+                        <div class="col-md-7">
+                            <!-- Label -->
+                            <label for="pokemonName" class="form-label">
+                                Tên Pokémon
+                                <span class="required-star">*</span>
+                            </label>
+                            <!-- Input -->
+                            <input type="text" class="form-control"
+                                id="pokemonName" placeholder="Ví dụ: Pikachu" required>
+                        </div>
+                        <!-- Hệ Pokémon -->
+                        <div class="col-md-5">
+                            <!-- Label -->
+                            <label for="pokemonType" class="form-label">
+                                Hệ Pokémon
+                                <span class="required-star">*</span>
+                            </label>
+                            <!-- Select -->
+                            <select class="form-select" id="pokemonType" required>
+                                <!-- Giá trị mặc định -->
+                                <option value="">-- Chọn hệ --</option>
+                                <!-- Các hệ -->
+                                <option value="normal"> ⚪ Normal</option>
+                                <option value="fire"> 🔥 Fire</option>
+                                <option value="water"> 💧 Water</option>
+                                <option value="electric">⚡ Electric</option>
+                                <option value="grass"> 🌿 Grass</option>
+                                <option value="ice">❄️ Ice</option>
+                                <option value="fighting"> 🥊 Fighting</option>
+                                <option value="poison"> ☠️ Poison</option>
+                                <option value="ground"> 🟫 Ground</option>
+                                <option value="flying"> 🪶 Flying</option>
+                                <option value="psychic"> 🔮 Psychic</option>
+                                <option value="bug"> 🐛 Bug</option>
+                                <option value="rock"> 🪨 Rock</option>
+                                <option value="ghost"> 👻 Ghost</option>
+                                <option value="dragon"> 🐉 Dragon</option>
+                                <option value="dark"> 🌙 Dark</option>
+                                <option value="steel"> ⚙️ Steel</option>
+                                <option value="fairy"> ✨ Fairy</option>
+                                <option value="stellar"> 🌟 Stellar</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--  HÌNH ẢNH   -->
+                <div class="form-section-box">
+                    <!-- Tiêu đề -->
+                    <div class="form-section-title">
+                        <!-- Icon -->
+                        <div class="section-title-icon">
+                            <i class="bi bi-image-fill"></i>
+                        </div>
+                        <!-- Nội dung -->
+                        <div>
+                            <!-- Tên -->
+                            <h4> Ngoại hình </h4>
+                            <!-- Mô tả -->
+                            <p> Chọn hình ảnh và mô tả Pokémon. </p>
+                        </div>
+                    </div>
+                    <!-- Upload ảnh -->
+                    <div class="mb-4">
+                        <!-- Label -->
+                        <label for="pokemonImage" class="form-label">
+                            Hình ảnh Pokémon <span class="required-star">*</span>
+                        </label>
+                        <!-- Khu vực upload -->
+                        <div class="image-upload-area">
+                            <!-- Icon -->
+                            <div class="upload-icon">
+                                <i class="bi bi-cloud-arrow-up-fill"></i>
+                            </div>
+                            <!-- Nội dung -->
+                            <div class="upload-content">
+                                <!-- Tiêu đề -->
+                                <strong> Chọn hình ảnh Pokémon</strong>
+                                <!-- Định dạng -->
+                                <span> PNG, JPG hoặc WEBP </span>
+                            </div>
+                            <!-- Input file -->
+                            <input type="file" class="form-control"
+                                id="pokemonImage" accept="image/png, image/jpeg, image/webp">
+                        </div>
+                        <!-- Tên file -->
+                        <div id="imageFileName" class="image-file-name">
+                            Chưa chọn hình ảnh
+                        </div>
+                        <!-- Gợi ý -->
+                        <div class="upload-tip">
+                            <!-- Icon -->
+                            <i class="bi bi-lightbulb-fill"></i>
+                            <!-- Nội dung -->
+                            <span> Bạn có thể chọn ảnh mới khi chỉnh sửa Pokémon. </span>
+                        </div>
+                    </div>
+                    <!-- Preview -->
+                    <div id="imagePreviewBox" class="image-preview-box d-none">
+                        <!-- Nhãn -->
+                        <span class="preview-label"> Xem trước </span>
+                        <!-- Ảnh -->
+                        <img id="imagePreview" src="" alt="Xem trước Pokémon">
+                    </div>
+                    <!-- Mô tả -->
+                    <div>
+                        <!-- Label -->
+                        <label for="pokemonDescription" class="form-label">
+                            Mô tả Pokémon <span class="required-star">*</span>
+                        </label>
+                        <!-- Textarea -->
+                        <textarea class="form-control" id="pokemonDescription"
+                            rows="5" placeholder="Mô tả đặc điểm, khả năng hoặc câu chuyện của Pokémon..." required>
+                        </textarea>
+                    </div>
+                </div>
+                <!--  CHỈ SỐ   -->
+                <div class="form-section-box">
+                    <!-- Tiêu đề -->
+                    <div class="form-section-title">
+                        <!-- Icon -->
+                        <div class="section-title-icon">
+                            <i class="bi bi-bar-chart-fill"></i>
+                        </div>
+                        <!-- Nội dung -->
+                        <div>
+                            <!-- Tên -->
+                            <h4> Chỉ số cơ bản </h4>
+                            <!-- Mô tả -->
+                            <p> Thiết lập kích thước cơ bản của Pokémon.</p>
+                        </div>
+                    </div>
+                    <!-- Hàng chỉ số -->
+                    <div class="row g-4">
+                        <!-- Chiều cao -->
+                        <div class="col-md-6">
+                            <!-- Label -->
+                            <label for="pokemonHeight" class="form-label">
+                                Chiều cao
+                            </label>
+                            <!-- Input có đơn vị -->
+                            <div class="input-unit-wrap">
+                                <!-- Input --> 
+                                <input type="number" class="form-control"
+                                    id="pokemonHeight" placeholder="Ví dụ: 1.5"
+                                    min="0" step="0.1">
+                                <!-- Đơn vị -->
+                                <span class="input-unit"> m </span>
+                            </div>
+                        </div>
+                        <!-- Cân nặng -->
+                        <div class="col-md-6">
+                            <!-- Label -->
+                            <label for="pokemonWeight" class="form-label">
+                                Cân nặng
+                            </label>
+                            <!-- Input có đơn vị -->
+                            <div class="input-unit-wrap">
+                                <!-- Input -->
+                                <input type="number" class="form-control"
+                                    id="pokemonWeight" placeholder="Ví dụ: 50"
+                                    min="0" step="0.1">
+                                <!-- Đơn vị -->
+                                <span class="input-unit"> kg </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  MESSAGE -->
+                <div id="formMessage"class="alert d-none">
+
+                </div>
+                <!--  BUTTON  -->
+                <div class="create-form-actions">
+                    <!-- Nút lưu -->
+                    <button type="submit" id="savePokemonBtn" class="create-save-btn">
+                        <i class="bi bi-plus-circle"></i> Thêm Pokémon
+                    </button>
+                    <!-- Nút hủy -->
+                    <button type="button" id="cancelEditBtn" class="create-cancel-btn d-none">
+                        <i class="bi bi-x-circle"></i> Hủy sửa
+                    </button>
+                </div>
+            </form>
+        </section>
+        <!--    DANH SÁCH POKÉMON  -->
+        <section class="custom-pokemon-section">
+            <!-- Header -->
+            <div class="pokemon-list-header">
+                <!-- Bên trái -->
+                <div class="pokemon-list-heading">
+                    <!-- Icon -->
+                    <div class="pokemon-list-icon">
+                        <i class="bi bi-collection-fill"></i>
+                    </div>
+                    <!-- Nội dung -->
+                    <div>
+                        <!-- Tiêu đề -->
+                        <h2 class="custom-pokemon-title"> Pokémon của bạn </h2>
+                        <!-- Mô tả -->
+                        <p> Danh sách Pokémon bạn đã tạo. </p>
+                    </div>
+                </div>
+                <!-- Số lượng -->
+                <span id="pokemonCount" class="pokemon-count"> 0 Pokémon </span>
+            </div>
+            <!--   LOADING -->
+            <div id="pokemonLoading" class="pokemon-loading text-center">
+                <!-- Spinner -->
+                <div class="spinner-border text-primary" role="status">
+
+                </div>
+                <!-- Nội dung -->
+                <p> Đang tải Pokémon...</p>
+            </div>
+            <!--   EMPTY -->
+            <div id="pokemonEmpty" class="pokemon-empty text-center d-none">
+                <!-- Icon -->
+                <div class="empty-icon-box">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+                <!-- Tiêu đề -->
+                <h4> Chưa có Pokémon nào </h4>
+                <!-- Mô tả -->
+                <p> Hãy tạo Pokémon đầu tiên của bạn ở phía trên. </p>
+            </div>
+            <!--   DANH SÁCH CARD  -->
+            <div id="customPokemonList" class="row g-4">
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <!-- Footer dùng chung -->
+    <footer class="main-footer">
+        <!-- Container footer -->
+        <div class="container">
+            <!-- Grid các cột -->
+            <div class="footer-grid">
+                <!-- Cột thương hiệu -->
+                <div class="footer-brand">
+                    <!-- Logo footer -->
+                    <a href="index.html" class="footer-logo">
+                        <img src="./Image/logo.png" alt="Pokémon Hub Logo">
+                        <span>Pokémon Hub</span>
+                    </a>
+                    <!-- Mô tả -->
+                    <p>
+                        Khám phá thế giới Pokémon, xây dựng bộ sưu tập
+                        và tìm hiểu thêm về những Pokémon yêu thích.
+                    </p>
+                </div>
+                <!-- Cột khám phá -->
+                <div class="footer-column">
+                    <h3>Khám phá</h3>
+                    <a href="index.html">Trang chủ</a>
+                    <a href="./intro-web.html">Giới thiệu</a>
+                    <a href="./list.html">Pokédex</a>
+                </div>
+                <!-- Cột bộ sưu tập -->
+                <div class="footer-column">
+                    <h3>Pokemon của bạn</h3>
+                    <a href="./collection.html">Tất cả Pokémon</a>
+                    <a href="./favorite.html">Pokémon yêu thích</a>
+                    <a href="./create-poke.html">Tạo pokemon</a>
+                </div>
+                <!-- Cột hỗ trợ -->
+                <div class="footer-column">
+                    <h3>Hỗ trợ</h3>
+                    <a href="./profile.html">Hồ sơ</a>
+                    <a href="./contact.html">Liên hệ</a>
+                    <a href="./feedback.html">Góp ý</a>
+                </div>
+            </div>
+            <!-- Phần cuối footer -->
+            <div class="footer-bottom">
+                <p> © 2026 Pokémon Hub. All rights reserved. </p>
+                <p> Dự án sản phẩm cuối khóa JSI - Trung tâm MindX </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script type="module" src="./js/create-poke.js"></script>
+    <script type="module" src="./js/auth.js"></script>
+    <script type="module" src="./js/home.js"></script>
+    <script>
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="v2Z13ueAslLe-hNsM6IUq";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+</body>
+
+</html>

@@ -3,18 +3,20 @@
 /* ========================================= */
 
 
-/* ===== KHUNG CHÍNH CỦA TRANG ===== */
+/* ========================================= */
+/* KHUNG CHÍNH CỦA TRANG */
+/* ========================================= */
 
-/* Khu vực chính chứa toàn bộ nội dung trang liên hệ */
 .contact-page {
     /* Tạo khoảng cách phía trên và phía dưới */
     padding: 40px 0 70px;
 }
 
 
-/* ===== PHẦN TIÊU ĐỀ ===== */
+/* ========================================= */
+/* PHẦN TIÊU ĐỀ */
+/* ========================================= */
 
-/* Khung chứa tiêu đề của trang */
 .contact-heading {
     /* Căn giữa nội dung */
     text-align: center;
@@ -23,7 +25,7 @@
     margin-bottom: 30px;
 }
 
-/* Tiêu đề chính */
+
 .contact-heading h1 {
     /* Thiết lập kích thước chữ linh hoạt */
     font-size: clamp(30px, 5vw, 46px);
@@ -38,13 +40,13 @@
     margin-bottom: 10px;
 }
 
-/* Icon trong tiêu đề */
+
 .contact-heading h1 i {
     /* Đặt màu xanh Pokémon */
     color: #2a75bb;
 }
 
-/* Phần mô tả dưới tiêu đề */
+
 .contact-heading p {
     /* Đặt màu chữ xám */
     color: #64748b;
@@ -64,18 +66,17 @@
 /* KHUNG NỘI DUNG CHÍNH */
 /* ========================================= */
 
-/* Khung chứa phần thông tin và form */
 .contact-wrapper {
     /* Sử dụng Grid */
     display: grid;
 
-    /* Chia thành hai cột */
-    grid-template-columns: 1fr 1fr;
+    /* Chia thành hai cột bằng nhau */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
-    /* Tạo khoảng cách giữa hai phần */
+    /* Tạo khoảng cách giữa hai card */
     gap: 25px;
 
-    /* Căn các phần tử theo chiều dọc */
+    /* Hai card sẽ có cùng chiều cao */
     align-items: stretch;
 }
 
@@ -84,9 +85,8 @@
 /* PHẦN THÔNG TIN LIÊN HỆ */
 /* ========================================= */
 
-/* Khung thông tin bên trái */
 .contact-info {
-    /* Màu nền trắng */
+    /* Đặt nền trắng */
     background: #ffffff;
 
     /* Thêm đường viền */
@@ -100,12 +100,22 @@
 
     /* Tạo bóng nhẹ */
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+    /* Dùng Flexbox để phân bố nội dung */
+    display: flex;
+
+    /* Xếp nội dung theo chiều dọc */
+    flex-direction: column;
+
+    /* Đảm bảo card có thể giãn đầy chiều cao */
+    height: 100%;
 }
 
 
-/* ===== HEADER CỦA PHẦN THÔNG TIN ===== */
+/* ========================================= */
+/* HEADER CỦA PHẦN THÔNG TIN */
+/* ========================================= */
 
-/* Khung chứa icon và tiêu đề */
 .contact-info-header {
     /* Sử dụng Flexbox */
     display: flex;
@@ -120,7 +130,7 @@
     margin-bottom: 25px;
 }
 
-/* Khung icon chính */
+
 .contact-icon {
     /* Thiết lập chiều rộng */
     width: 55px;
@@ -153,7 +163,7 @@
     font-size: 24px;
 }
 
-/* Tiêu đề trong phần thông tin */
+
 .contact-info-header h2 {
     /* Xóa margin mặc định */
     margin: 0 0 5px;
@@ -168,7 +178,7 @@
     font-size: 22px;
 }
 
-/* Mô tả trong phần thông tin */
+
 .contact-info-header p {
     /* Xóa margin mặc định */
     margin: 0;
@@ -188,7 +198,6 @@
 /* DANH SÁCH THÔNG TIN */
 /* ========================================= */
 
-/* Khung chứa danh sách thông tin */
 .contact-info-list {
     /* Sử dụng Flexbox */
     display: flex;
@@ -196,14 +205,21 @@
     /* Xếp theo chiều dọc */
     flex-direction: column;
 
-    /* Tạo khoảng cách giữa các mục */
+    /* Các mục sẽ cùng phân bố chiều cao */
+    flex: 1;
+
+    /* Không cho danh sách quá sát header */
     gap: 15px;
 
-    /* Tạo khoảng cách phía dưới */
+    /* Xóa margin dưới cũ */
     margin-bottom: 25px;
 }
 
-/* Một mục thông tin */
+
+/* ========================================= */
+/* MỘT MỤC THÔNG TIN */
+/* ========================================= */
+
 .contact-info-item {
     /* Sử dụng Flexbox */
     display: flex;
@@ -217,6 +233,9 @@
     /* Tạo khoảng cách bên trong */
     padding: 15px;
 
+    /* Cho các item giãn đều */
+    flex: 1;
+
     /* Đặt nền xám nhạt */
     background: #f8fafc;
 
@@ -226,11 +245,11 @@
     /* Bo tròn góc */
     border-radius: 15px;
 
-    /* Tạo hiệu ứng chuyển động */
+    /* Tạo hiệu ứng */
     transition: 0.2s ease;
 }
 
-/* Hiệu ứng khi di chuột vào */
+
 .contact-info-item:hover {
     /* Đổi màu viền */
     border-color: #2a75bb;
@@ -243,9 +262,10 @@
 }
 
 
-/* ===== ICON CỦA TỪNG MỤC ===== */
+/* ========================================= */
+/* ICON CỦA TỪNG MỤC */
+/* ========================================= */
 
-/* Khung chứa icon */
 .info-item-icon {
     /* Thiết lập chiều rộng */
     width: 45px;
@@ -268,7 +288,7 @@
     /* Đặt nền xanh nhạt */
     background: #eaf4ff;
 
-    /* Bo tròn thành hình tròn */
+    /* Bo tròn */
     border-radius: 50%;
 
     /* Đặt màu icon */
@@ -279,9 +299,6 @@
 }
 
 
-/* ===== NỘI DUNG CỦA MỖI MỤC ===== */
-
-/* Phần tiêu đề nhỏ */
 .contact-info-item span {
     /* Hiển thị trên một dòng riêng */
     display: block;
@@ -296,7 +313,7 @@
     margin-bottom: 3px;
 }
 
-/* Nội dung chính */
+
 .contact-info-item strong {
     /* Hiển thị trên một dòng riêng */
     display: block;
@@ -316,7 +333,6 @@
 /* PHẦN GỢI Ý */
 /* ========================================= */
 
-/* Khung lời nhắn */
 .contact-tip {
     /* Sử dụng Flexbox */
     display: flex;
@@ -326,6 +342,9 @@
 
     /* Tạo khoảng cách */
     gap: 12px;
+
+    /* Không cho tip bị co */
+    flex-shrink: 0;
 
     /* Tạo khoảng cách bên trong */
     padding: 15px;
@@ -340,7 +359,7 @@
     border-radius: 15px;
 }
 
-/* Icon bóng đèn */
+
 .contact-tip i {
     /* Đặt màu vàng */
     color: #f59e0b;
@@ -352,7 +371,7 @@
     flex-shrink: 0;
 }
 
-/* Nội dung lời nhắn */
+
 .contact-tip p {
     /* Xóa margin mặc định */
     margin: 0;
@@ -372,7 +391,6 @@
 /* FORM LIÊN HỆ */
 /* ========================================= */
 
-/* Khung chứa form */
 .contact-form-card {
     /* Đặt nền trắng */
     background: #ffffff;
@@ -388,9 +406,12 @@
 
     /* Tạo bóng */
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+    /* Giúp card luôn chiếm toàn bộ chiều cao */
+    height: 100%;
 }
 
-/* Tiêu đề form */
+
 .contact-form-card h2 {
     /* Xóa margin phía trên */
     margin-top: 0;
@@ -405,7 +426,7 @@
     color: #1f2937;
 }
 
-/* Mô tả form */
+
 .contact-form-description {
     /* Đặt màu chữ */
     color: #64748b;
@@ -419,13 +440,12 @@
 /* CÁC NHÓM INPUT */
 /* ========================================= */
 
-/* Khung chứa từng nhóm nhập dữ liệu */
 .contact-form-card .form-group {
     /* Tạo khoảng cách giữa các nhóm */
     margin-bottom: 20px;
 }
 
-/* Label của form */
+
 .contact-form-card .form-group label {
     /* Hiển thị thành block */
     display: block;
@@ -440,7 +460,7 @@
     margin-bottom: 8px;
 }
 
-/* Icon trong label */
+
 .contact-form-card .form-group label i {
     /* Đặt màu xanh */
     color: #2a75bb;
@@ -454,7 +474,6 @@
 /* INPUT, SELECT VÀ TEXTAREA */
 /* ========================================= */
 
-/* Áp dụng giao diện cho input, select và textarea */
 .contact-form-card .form-control,
 .contact-form-card .form-select {
     /* Tạo đường viền */
@@ -472,11 +491,11 @@
     /* Tạo khoảng cách bên trong */
     padding: 12px 14px;
 
-    /* Tạo hiệu ứng chuyển đổi */
+    /* Tạo hiệu ứng */
     transition: 0.2s ease;
 }
 
-/* Thiết lập chiều cao textarea */
+
 .contact-form-card textarea {
     /* Không cho phép kéo ngang */
     resize: vertical;
@@ -485,7 +504,7 @@
     min-height: 140px;
 }
 
-/* Khi click vào input */
+
 .contact-form-card .form-control:focus,
 .contact-form-card .form-select:focus {
     /* Đổi màu viền */
@@ -503,7 +522,6 @@
 /* NÚT GỬI */
 /* ========================================= */
 
-/* Nút gửi liên hệ */
 .contact-submit-btn {
     /* Chiếm toàn bộ chiều rộng */
     width: 100%;
@@ -536,13 +554,13 @@
     transition: 0.25s ease;
 }
 
-/* Icon trong nút */
+
 .contact-submit-btn i {
     /* Tạo khoảng cách bên phải */
     margin-right: 7px;
 }
 
-/* Khi di chuột vào nút */
+
 .contact-submit-btn:hover {
     /* Đổi màu nền */
     background: #1f5f99;
@@ -554,7 +572,7 @@
     box-shadow: 0 8px 20px rgba(42, 117, 187, 0.25);
 }
 
-/* Khi nhấn nút */
+
 .contact-submit-btn:active {
     /* Đưa nút về vị trí cũ */
     transform: translateY(0);
@@ -565,7 +583,6 @@
 /* MODAL THÀNH CÔNG */
 /* ========================================= */
 
-/* Khung modal */
 .contact-modal {
     /* Xóa đường viền */
     border: none;
@@ -577,7 +594,7 @@
     overflow: hidden;
 }
 
-/* Icon thành công */
+
 .contact-success-icon {
     /* Thiết lập chiều rộng */
     width: 70px;
@@ -610,7 +627,7 @@
     font-size: 32px;
 }
 
-/* Tiêu đề modal */
+
 .contact-modal h3 {
     /* Làm chữ đậm */
     font-weight: 800;
@@ -619,7 +636,7 @@
     color: #1f2937;
 }
 
-/* Nội dung modal */
+
 .contact-modal p {
     /* Đặt màu chữ */
     color: #64748b;
@@ -628,7 +645,7 @@
     line-height: 1.6;
 }
 
-/* Nút modal */
+
 .contact-modal-btn {
     /* Xóa viền */
     border: none;
@@ -636,7 +653,7 @@
     /* Đặt nền xanh */
     background: #2a75bb;
 
-    /* Đặt màu chữ trắng */
+    /* Đặt màu chữ */
     color: #ffffff;
 
     /* Tạo khoảng cách */
@@ -654,90 +671,29 @@
 
 
 /* ========================================= */
-/* RESPONSIVE - TABLET */
+/* RESPONSIVE */
 /* ========================================= */
 
 @media (max-width: 768px) {
 
-    /* Chuyển bố cục thành một cột */
     .contact-wrapper {
+        /* Chuyển thành một cột trên màn hình nhỏ */
         grid-template-columns: 1fr;
     }
 
-    /* Giảm khoảng cách của trang */
-    .contact-page {
-        padding: 30px 0 50px;
-    }
-
-    /* Giảm padding phần thông tin */
-    .contact-info {
-        padding: 25px;
-    }
-
-    /* Giảm padding form */
+    .contact-info,
     .contact-form-card {
-        padding: 25px;
-    }
-}
-
-
-/* ========================================= */
-/* RESPONSIVE - MOBILE */
-/* ========================================= */
-
-@media (max-width: 480px) {
-
-    /* Giảm kích thước tiêu đề */
-    .contact-heading h1 {
-        font-size: 30px;
+        /* Không ép chiều cao trên điện thoại */
+        height: auto;
     }
 
-    /* Giảm padding phần thông tin */
-    .contact-info {
-        padding: 20px 15px;
-
-        /* Giảm độ bo góc */
-        border-radius: 15px;
+    .contact-info-list {
+        /* Không cần flex giãn trên điện thoại */
+        flex: none;
     }
 
-    /* Giảm padding form */
-    .contact-form-card {
-        padding: 20px 15px;
-
-        /* Giảm độ bo góc */
-        border-radius: 15px;
-    }
-
-    /* Điều chỉnh header */
-    .contact-info-header {
-        align-items: flex-start;
-    }
-
-    /* Giảm kích thước icon chính */
-    .contact-icon {
-        width: 48px;
-
-        height: 48px;
-
-        font-size: 20px;
-    }
-
-    /* Giảm padding mục thông tin */
     .contact-info-item {
-        padding: 12px;
-    }
-
-    /* Giảm kích thước icon */
-    .info-item-icon {
-        width: 40px;
-
-        height: 40px;
-
-        font-size: 18px;
-    }
-
-    /* Điều chỉnh nút gửi */
-    .contact-submit-btn {
-        padding: 12px 15px;
+        /* Không giãn chiều cao */
+        flex: none;
     }
 }

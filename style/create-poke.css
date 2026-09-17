@@ -1,0 +1,1548 @@
+/* ========================================================= */
+/*              CREATE POKEMON - CSS RIÊNG                  */
+/* ========================================================= */
+
+
+/* ========================================================= */
+/*                    KHU VỰC CHÍNH                          */
+/* ========================================================= */
+
+/* Khu vực nội dung chính của trang Create Pokémon */
+.create-pokemon-main {
+    /* Tạo khoảng cách phía trên */
+    padding-top: 30px;
+
+    /* Tạo khoảng cách phía dưới */
+    padding-bottom: 70px;
+}
+
+
+/* ========================================================= */
+/*                         HERO                              */
+/* ========================================================= */
+
+/* Khu vực tiêu đề đầu trang */
+.create-pokemon-hero {
+    /* Cho phép sử dụng các phần tử position bên trong */
+    position: relative;
+
+    /* Tạo khoảng cách bên trong hero */
+    padding: 25px 20px 35px;
+
+    /* Ẩn nội dung nếu vượt ra ngoài hero */
+    overflow: hidden;
+}
+
+
+/* Icon lớn phía trên tiêu đề */
+.create-hero-icon {
+    /* Đặt chiều rộng icon */
+    width: 68px;
+
+    /* Đặt chiều cao icon */
+    height: 68px;
+
+    /* Căn icon ra giữa và tạo khoảng cách phía dưới */
+    margin: 0 auto 14px;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn nội dung theo chiều ngang */
+    justify-content: center;
+
+    /* Căn nội dung theo chiều dọc */
+    align-items: center;
+
+    /* Bo tròn icon thành hình tròn */
+    border-radius: 50%;
+
+    /* Tạo nền chuyển màu */
+    background: linear-gradient(
+        135deg,
+        #4da3ff,
+        #6c63ff
+    );
+
+    /* Đặt màu cho icon bên trong */
+    color: white;
+
+    /* Đặt kích thước icon */
+    font-size: 30px;
+
+    /* Tạo bóng phía dưới icon */
+    box-shadow:
+        0 10px 25px rgba(65, 105, 225, 0.25);
+
+    /* Tạo hiệu ứng chuyển động mượt */
+    transition: 0.3s ease;
+}
+
+
+/* Hiệu ứng khi đưa chuột vào icon */
+.create-hero-icon:hover {
+    /* Đẩy icon lên một chút và xoay nhẹ */
+    transform: translateY(-4px) rotate(4deg);
+
+    /* Tăng độ lớn của bóng */
+    box-shadow:
+        0 15px 30px rgba(65, 105, 225, 0.30);
+}
+
+
+/* Badge nhỏ nằm phía trên tiêu đề */
+.create-hero-badge {
+    /* Cho phép badge nằm theo kích thước nội dung */
+    display: inline-block;
+
+    /* Tạo khoảng cách bên trong badge */
+    padding: 6px 13px;
+
+    /* Bo tròn badge */
+    border-radius: 30px;
+
+    /* Đặt màu nền */
+    background: #e8f4ff;
+
+    /* Đặt màu chữ */
+    color: #2878c8;
+
+    /* Đặt kích thước chữ */
+    font-size: 12px;
+
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Tạo khoảng cách giữa các chữ */
+    letter-spacing: 1.5px;
+
+    /* Tạo khoảng cách phía dưới badge */
+    margin-bottom: 10px;
+}
+
+
+/* Tiêu đề chính của trang */
+.create-pokemon-title {
+    /* Kích thước chữ thay đổi theo kích thước màn hình */
+    font-size: clamp(30px, 4vw, 43px);
+
+    /* Làm tiêu đề đậm */
+    font-weight: 800;
+
+    /* Xóa margin mặc định và tạo khoảng cách phía dưới */
+    margin: 0 0 10px;
+
+    /* Đặt màu chữ */
+    color: #182433;
+
+    /* Điều chỉnh khoảng cách giữa các chữ */
+    letter-spacing: -0.5px;
+}
+
+
+/* Phần mô tả bên dưới tiêu đề */
+.create-pokemon-subtitle {
+    /* Giới hạn chiều rộng để dòng chữ không quá dài */
+    max-width: 650px;
+
+    /* Căn giữa phần mô tả */
+    margin: 0 auto;
+
+    /* Đặt màu chữ */
+    color: #6c7a89;
+
+    /* Đặt kích thước chữ */
+    font-size: 16px;
+
+    /* Tạo khoảng cách giữa các dòng */
+    line-height: 1.7;
+}
+
+
+/* ========================================================= */
+/*                       FORM CARD                           */
+/* ========================================================= */
+
+/* Card lớn chứa form tạo Pokémon */
+.create-pokemon-form {
+    /* Giới hạn chiều rộng của form */
+    max-width: 960px;
+
+    /* Căn form ra giữa và tạo khoảng cách phía dưới */
+    margin: 0 auto 60px;
+
+    /* Đặt nền trắng hơi trong suốt */
+    background: rgba(255, 255, 255, 0.96);
+
+    /* Tạo đường viền nhẹ */
+    border: 1px solid rgba(80, 130, 180, 0.12);
+
+    /* Bo tròn các góc */
+    border-radius: 25px;
+
+    /* Ẩn phần nội dung bị tràn ra ngoài */
+    overflow: hidden;
+
+    /* Tạo bóng cho card */
+    box-shadow:
+        0 15px 45px rgba(35, 80, 120, 0.10);
+}
+
+
+/* ========================================================= */
+/*                     HEADER FORM                           */
+/* ========================================================= */
+
+/* Phần header phía trên form */
+.create-form-header {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn các phần tử theo chiều dọc */
+    align-items: center;
+
+    /* Tạo khoảng cách giữa icon và nội dung */
+    gap: 18px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 28px 32px;
+
+    /* Tạo nền chuyển màu nhẹ */
+    background:
+        linear-gradient(
+            135deg,
+            #f3faff,
+            #ffffff
+        );
+
+    /* Tạo đường viền phía dưới */
+    border-bottom: 1px solid #e7eef5;
+}
+
+
+/* Icon trong header form */
+.create-form-heading-icon {
+    /* Đặt chiều rộng icon */
+    width: 55px;
+
+    /* Đặt chiều cao icon */
+    height: 55px;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn icon theo chiều ngang */
+    justify-content: center;
+
+    /* Căn icon theo chiều dọc */
+    align-items: center;
+
+    /* Bo tròn icon */
+    border-radius: 16px;
+
+    /* Đặt màu nền */
+    background: #e8f4ff;
+
+    /* Đặt màu icon */
+    color: #2d83d6;
+
+    /* Đặt kích thước icon */
+    font-size: 24px;
+
+    /* Không cho icon bị co lại */
+    flex-shrink: 0;
+}
+
+
+/* Dòng nhỏ phía trên tiêu đề form */
+.create-form-step {
+    /* Hiển thị thành một dòng riêng */
+    display: block;
+
+    /* Đặt kích thước chữ */
+    font-size: 11px;
+
+    /* Làm chữ đậm */
+    font-weight: 800;
+
+    /* Tạo khoảng cách giữa các chữ */
+    letter-spacing: 1.4px;
+
+    /* Đặt màu chữ */
+    color: #5a9ed5;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 3px;
+}
+
+
+/* Tiêu đề trong header form */
+.create-form-header h3 {
+    /* Xóa margin mặc định */
+    margin: 0;
+
+    /* Làm tiêu đề đậm */
+    font-weight: 750;
+
+    /* Đặt màu chữ */
+    color: #202b38;
+}
+
+
+/* Icon nằm trong tiêu đề form */
+.create-form-header h3 i {
+    /* Tạo khoảng cách giữa icon và chữ */
+    margin-right: 5px;
+
+    /* Đặt màu icon */
+    color: #388bd2;
+}
+
+
+/* Mô tả trong header form */
+.create-form-header p {
+    /* Đặt màu chữ */
+    color: #7a8794;
+
+    /* Đặt kích thước chữ */
+    font-size: 14px;
+}
+
+
+/* ========================================================= */
+/*                     FORM BÊN TRONG                        */
+/* ========================================================= */
+
+/* Phần form thực tế có id createPokemonForm */
+#createPokemonForm {
+    /* Tạo khoảng cách bên trong form */
+    padding: 30px 32px;
+}
+
+
+/* Box chứa từng nhóm thông tin */
+.form-section-box {
+    /* Đặt nền hơi xanh */
+    background: #fbfdff;
+
+    /* Tạo đường viền */
+    border: 1px solid #e6edf4;
+
+    /* Bo tròn box */
+    border-radius: 18px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 23px;
+
+    /* Tạo khoảng cách với box tiếp theo */
+    margin-bottom: 22px;
+
+    /* Tạo hiệu ứng chuyển động */
+    transition: 0.25s ease;
+}
+
+
+/* Hiệu ứng khi đưa chuột vào box */
+.form-section-box:hover {
+    /* Đổi màu đường viền */
+    border-color: #d4e5f3;
+
+    /* Thêm bóng nhẹ */
+    box-shadow:
+        0 8px 22px rgba(50, 100, 150, 0.05);
+}
+
+
+/* Tiêu đề của từng nhóm */
+.form-section-title {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn các phần tử về phía trên */
+    align-items: flex-start;
+
+    /* Tạo khoảng cách giữa icon và chữ */
+    gap: 13px;
+
+    /* Tạo khoảng cách phía dưới tiêu đề */
+    margin-bottom: 22px;
+}
+
+
+/* Icon của tiêu đề nhóm */
+.section-title-icon {
+    /* Đặt chiều rộng */
+    width: 42px;
+
+    /* Đặt chiều cao */
+    height: 42px;
+
+    /* Không cho icon bị co */
+    flex-shrink: 0;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn icon theo chiều ngang */
+    justify-content: center;
+
+    /* Căn icon theo chiều dọc */
+    align-items: center;
+
+    /* Bo tròn icon */
+    border-radius: 12px;
+
+    /* Đặt màu nền */
+    background: #eaf6ff;
+
+    /* Đặt màu icon */
+    color: #378bcf;
+
+    /* Đặt kích thước icon */
+    font-size: 18px;
+}
+
+
+/* Tên của nhóm */
+.form-section-title h4 {
+    /* Xóa margin mặc định */
+    margin: 0 0 3px;
+
+    /* Đặt kích thước chữ */
+    font-size: 18px;
+
+    /* Đặt màu chữ */
+    color: #263544;
+
+    /* Làm chữ đậm */
+    font-weight: 750;
+}
+
+
+/* Mô tả của nhóm */
+.form-section-title p {
+    /* Xóa margin mặc định */
+    margin: 0;
+
+    /* Đặt màu chữ */
+    color: #8793a0;
+
+    /* Đặt kích thước chữ */
+    font-size: 13px;
+}
+
+
+/* ========================================================= */
+/*                       LABEL                               */
+/* ========================================================= */
+
+/* Label của các ô nhập */
+#createPokemonForm .form-label {
+    /* Làm label đậm */
+    font-weight: 650;
+
+    /* Đặt màu chữ */
+    color: #354454;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 8px;
+}
+
+
+/* Dấu * của trường bắt buộc */
+.required-star {
+    /* Đặt màu đỏ */
+    color: #e55353;
+
+    /* Tạo khoảng cách nhỏ với chữ */
+    margin-left: 2px;
+}
+
+
+/* ========================================================= */
+/*                  INPUT + SELECT + TEXTAREA               */
+/* ========================================================= */
+
+/* Các ô input và select */
+#createPokemonForm .form-control,
+#createPokemonForm .form-select {
+    /* Đặt chiều cao tối thiểu */
+    min-height: 47px;
+
+    /* Bo tròn ô nhập */
+    border-radius: 11px;
+
+    /* Tạo đường viền */
+    border: 1px solid #d8e2eb;
+
+    /* Đặt nền trắng */
+    background: #ffffff;
+
+    /* Tạo hiệu ứng chuyển đổi */
+    transition: 0.2s ease;
+}
+
+
+/* Ô textarea */
+#createPokemonForm textarea.form-control {
+    /* Đặt chiều cao tối thiểu */
+    min-height: 125px;
+
+    /* Cho phép người dùng kéo thay đổi chiều cao */
+    resize: vertical;
+
+    /* Tạo khoảng cách phía trên bên trong */
+    padding-top: 13px;
+}
+
+
+/* Hiệu ứng khi click vào input hoặc select */
+#createPokemonForm .form-control:focus,
+#createPokemonForm .form-select:focus {
+    /* Đổi màu đường viền */
+    border-color: #62a9df;
+
+    /* Tạo vòng sáng nhẹ */
+    box-shadow:
+        0 0 0 4px rgba(72, 157, 220, 0.10);
+
+    /* Giữ nền trắng */
+    background: white;
+}
+
+
+/* Chữ gợi ý bên trong input */
+#createPokemonForm .form-control::placeholder {
+    /* Đặt màu chữ placeholder */
+    color: #a5afb9;
+}
+
+
+/* ========================================================= */
+/*                     UPLOAD ẢNH                            */
+/* ========================================================= */
+
+/* Khu vực chọn ảnh */
+.image-upload-area {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn nội dung theo chiều dọc */
+    align-items: center;
+
+    /* Tạo khoảng cách giữa các phần tử */
+    gap: 15px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 18px;
+
+    /* Tạo viền nét đứt */
+    border: 2px dashed #c9deed;
+
+    /* Bo tròn khu vực upload */
+    border-radius: 15px;
+
+    /* Đặt nền */
+    background: #f8fcff;
+
+    /* Tạo hiệu ứng chuyển đổi */
+    transition: 0.25s ease;
+}
+
+
+/* Hiệu ứng khi đưa chuột vào khu vực upload */
+.image-upload-area:hover {
+    /* Đổi màu nền */
+    background: #f1f9ff;
+
+    /* Đổi màu đường viền */
+    border-color: #79b7df;
+}
+
+
+/* Icon upload */
+.upload-icon {
+    /* Đặt chiều rộng */
+    width: 48px;
+
+    /* Đặt chiều cao */
+    height: 48px;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn icon ngang */
+    justify-content: center;
+
+    /* Căn icon dọc */
+    align-items: center;
+
+    /* Bo tròn icon */
+    border-radius: 13px;
+
+    /* Đặt màu nền */
+    background: #e4f3ff;
+
+    /* Đặt màu icon */
+    color: #398ed1;
+
+    /* Đặt kích thước icon */
+    font-size: 23px;
+
+    /* Không cho icon bị co */
+    flex-shrink: 0;
+}
+
+
+/* Phần nội dung bên cạnh icon upload */
+.upload-content {
+    /* Cho phép nội dung chiếm phần không gian còn lại */
+    flex: 1;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Xếp nội dung theo chiều dọc */
+    flex-direction: column;
+
+    /* Tạo khoảng cách giữa các dòng */
+    gap: 3px;
+}
+
+
+/* Tên phần upload */
+.upload-content strong {
+    /* Đặt màu chữ */
+    color: #344454;
+
+    /* Đặt kích thước chữ */
+    font-size: 14px;
+}
+
+
+/* Dòng định dạng ảnh */
+.upload-content span {
+    /* Đặt màu chữ */
+    color: #8b98a5;
+
+    /* Đặt kích thước chữ */
+    font-size: 12px;
+}
+
+
+/* Input chọn file */
+#pokemonImage {
+    /* Hiển thị con trỏ bàn tay khi rê chuột */
+    cursor: pointer;
+
+    /* Đặt chiều cao tối thiểu */
+    min-height: 43px;
+
+    /* Giới hạn chiều rộng */
+    max-width: 300px;
+}
+
+
+/* Tên file sau khi người dùng chọn */
+.image-file-name {
+    /* Tạo khoảng cách phía trên */
+    margin-top: 8px;
+
+    /* Đặt màu chữ */
+    color: #6f7d8a;
+
+    /* Đặt kích thước chữ */
+    font-size: 13px;
+}
+
+
+/* Dòng hướng dẫn upload */
+.upload-tip {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Tạo khoảng cách giữa icon và chữ */
+    gap: 7px;
+
+    /* Căn nội dung về phía trên */
+    align-items: flex-start;
+
+    /* Tạo khoảng cách phía trên */
+    margin-top: 10px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 10px 12px;
+
+    /* Đặt màu nền */
+    background: #fffaf0;
+
+    /* Tạo đường viền */
+    border: 1px solid #f4e3bc;
+
+    /* Bo tròn */
+    border-radius: 10px;
+
+    /* Đặt màu chữ */
+    color: #92733b;
+
+    /* Đặt kích thước chữ */
+    font-size: 12px;
+}
+
+
+/* Icon trong dòng hướng dẫn */
+.upload-tip i {
+    /* Căn icon xuống một chút */
+    margin-top: 1px;
+}
+
+
+/* ========================================================= */
+/*                     IMAGE PREVIEW                         */
+/* ========================================================= */
+
+/* Khung xem trước ảnh */
+.image-preview-box {
+    /* Cho phép đặt label tuyệt đối bên trong */
+    position: relative;
+
+    /* Đặt chiều cao tối thiểu */
+    min-height: 250px;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn ảnh theo chiều ngang */
+    justify-content: center;
+
+    /* Căn ảnh theo chiều dọc */
+    align-items: center;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 30px;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 22px;
+
+    /* Tạo nền chuyển màu */
+    background:
+        linear-gradient(
+            145deg,
+            #f5fbff,
+            #ffffff
+        );
+
+    /* Tạo đường viền */
+    border: 1px solid #dfeaf2;
+
+    /* Bo tròn */
+    border-radius: 18px;
+
+    /* Ẩn phần ảnh bị tràn */
+    overflow: hidden;
+}
+
+
+/* Nhãn "Preview" */
+.preview-label {
+    /* Đặt label theo vị trí tuyệt đối */
+    position: absolute;
+
+    /* Cách phía trên 13px */
+    top: 13px;
+
+    /* Cách bên trái 15px */
+    left: 15px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 5px 9px;
+
+    /* Bo tròn label */
+    border-radius: 20px;
+
+    /* Đặt màu nền */
+    background: #e8f4ff;
+
+    /* Đặt màu chữ */
+    color: #3988c7;
+
+    /* Đặt kích thước chữ */
+    font-size: 11px;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+}
+
+
+/* Ảnh xem trước */
+#imagePreview {
+    /* Giới hạn chiều rộng */
+    max-width: 250px;
+
+    /* Giới hạn chiều cao */
+    max-height: 250px;
+
+    /* Giữ nguyên tỷ lệ ảnh */
+    object-fit: contain;
+
+    /* Bo tròn ảnh */
+    border-radius: 15px;
+
+    /* Tạo bóng nhẹ quanh ảnh */
+    filter: drop-shadow(
+        0 12px 15px rgba(0, 0, 0, 0.10)
+    );
+}
+
+
+/* ========================================================= */
+/*                     ĐƠN VỊ CHỈ SỐ                        */
+/* ========================================================= */
+
+/* Wrapper bao quanh input có đơn vị */
+.input-unit-wrap {
+    /* Cho phép đặt đơn vị bằng position absolute */
+    position: relative;
+}
+
+
+/* Input có đơn vị bên phải */
+.input-unit-wrap .form-control {
+    /* Chừa khoảng trống cho chữ kg/cm */
+    padding-right: 55px;
+}
+
+
+/* Chữ đơn vị */
+.input-unit {
+    /* Đặt vị trí tuyệt đối */
+    position: absolute;
+
+    /* Cách bên phải 16px */
+    right: 16px;
+
+    /* Đặt ở giữa theo chiều dọc */
+    top: 50%;
+
+    /* Điều chỉnh chính xác vị trí giữa */
+    transform: translateY(-50%);
+
+    /* Đặt màu chữ */
+    color: #6d7e8d;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Đặt kích thước chữ */
+    font-size: 13px;
+
+    /* Không cho người dùng click vào đơn vị */
+    pointer-events: none;
+}
+
+
+/* ========================================================= */
+/*                       MESSAGE                             */
+/* ========================================================= */
+
+/* Khu vực thông báo */
+#formMessage {
+    /* Bo tròn thông báo */
+    border-radius: 11px;
+
+    /* Tạo khoảng cách phía dưới */
+    margin-bottom: 20px;
+}
+
+
+/* ========================================================= */
+/*                       BUTTONS                             */
+/* ========================================================= */
+
+/* Khu vực chứa các nút */
+.create-form-actions {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Tạo khoảng cách giữa các nút */
+    gap: 10px;
+
+    /* Đẩy các nút về bên phải */
+    justify-content: flex-end;
+
+    /* Tạo khoảng cách phía trên */
+    margin-top: 10px;
+}
+
+
+/* Nút thêm / cập nhật Pokémon */
+.create-save-btn {
+    /* Xóa đường viền mặc định */
+    border: none;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 12px 21px;
+
+    /* Bo tròn nút */
+    border-radius: 11px;
+
+    /* Tạo nền chuyển màu */
+    background:
+        linear-gradient(
+            135deg,
+            #398fd5,
+            #5869db
+        );
+
+    /* Đặt màu chữ trắng */
+    color: white;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Tạo bóng cho nút */
+    box-shadow:
+        0 8px 18px rgba(65, 111, 200, 0.22);
+
+    /* Tạo hiệu ứng chuyển động */
+    transition: 0.2s ease;
+}
+
+
+/* Hiệu ứng hover nút lưu */
+.create-save-btn:hover {
+    /* Đẩy nút lên nhẹ */
+    transform: translateY(-2px);
+
+    /* Tăng bóng */
+    box-shadow:
+        0 12px 24px rgba(65, 111, 200, 0.28);
+
+    /* Giữ chữ màu trắng */
+    color: white;
+}
+
+
+/* Icon trong nút lưu */
+.create-save-btn i {
+    /* Tạo khoảng cách giữa icon và chữ */
+    margin-right: 5px;
+}
+
+
+/* Nút hủy */
+.create-cancel-btn {
+    /* Tạo khoảng cách bên trong */
+    padding: 12px 20px;
+
+    /* Bo tròn nút */
+    border-radius: 11px;
+
+    /* Đặt nền trắng */
+    background: white;
+
+    /* Tạo đường viền */
+    border: 1px solid #d5dde5;
+
+    /* Đặt màu chữ */
+    color: #667482;
+
+    /* Làm chữ hơi đậm */
+    font-weight: 650;
+
+    /* Tạo hiệu ứng */
+    transition: 0.2s ease;
+}
+
+
+/* Hiệu ứng hover nút hủy */
+.create-cancel-btn:hover {
+    /* Đổi màu nền */
+    background: #f5f7f9;
+
+    /* Đẩy nút lên nhẹ */
+    transform: translateY(-1px);
+}
+
+
+/* ========================================================= */
+/*                 DANH SÁCH POKÉMON                         */
+/* ========================================================= */
+
+/* Khu vực chứa danh sách Pokémon tự tạo */
+.custom-pokemon-section {
+    /* Cho section chiếm toàn bộ chiều rộng */
+    width: 100%;
+
+    /* Không tạo khoảng cách bên trái */
+    margin-left: 0;
+
+    /* Không tạo khoảng cách bên phải */
+    margin-right: 0;
+}
+
+
+/* Header của danh sách Pokémon */
+.pokemon-list-header {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn các phần tử theo chiều dọc */
+    align-items: center;
+
+    /* Đẩy hai phía ra xa nhau */
+    justify-content: space-between;
+
+    /* Tạo khoảng cách giữa các phần tử */
+    gap: 20px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 19px 22px;
+
+    /* Đặt nền trắng hơi trong suốt */
+    background: rgba(255, 255, 255, 0.94);
+
+    /* Tạo đường viền */
+    border: 1px solid rgba(70, 110, 150, 0.10);
+
+    /* Bo tròn */
+    border-radius: 17px;
+
+    /* Tạo khoảng cách với danh sách card */
+    margin-bottom: 23px;
+
+    /* Tạo bóng nhẹ */
+    box-shadow:
+        0 7px 22px rgba(40, 80, 120, 0.06);
+}
+
+
+/* Phần bên trái của header danh sách */
+.pokemon-list-heading {
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn icon và chữ theo chiều dọc */
+    align-items: center;
+
+    /* Tạo khoảng cách giữa icon và chữ */
+    gap: 13px;
+}
+
+
+/* Icon danh sách */
+.pokemon-list-icon {
+    /* Đặt chiều rộng */
+    width: 45px;
+
+    /* Đặt chiều cao */
+    height: 45px;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn icon theo chiều ngang */
+    justify-content: center;
+
+    /* Căn icon theo chiều dọc */
+    align-items: center;
+
+    /* Bo tròn */
+    border-radius: 13px;
+
+    /* Đặt màu nền */
+    background: #eaf6ff;
+
+    /* Đặt màu icon */
+    color: #398dce;
+
+    /* Đặt kích thước icon */
+    font-size: 19px;
+}
+
+
+/* Tiêu đề danh sách */
+.custom-pokemon-title {
+    /* Xóa margin trái và tạo khoảng cách nhỏ phía dưới */
+    margin: 0 0 3px;
+
+    /* Đặt kích thước chữ */
+    font-size: 23px;
+
+    /* Làm chữ đậm */
+    font-weight: 750;
+
+    /* Đặt màu chữ */
+    color: #253443;
+}
+
+
+/* Mô tả danh sách */
+.pokemon-list-heading p {
+    /* Đặt kích thước chữ */
+    font-size: 13px;
+
+    /* Đặt màu chữ */
+    color: #82909d;
+}
+
+
+/* Badge hiển thị số lượng Pokémon */
+.pokemon-count {
+    /* Sử dụng Flexbox nhưng vẫn giữ kích thước theo nội dung */
+    display: inline-flex;
+
+    /* Căn nội dung theo chiều dọc */
+    align-items: center;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 8px 13px;
+
+    /* Bo tròn */
+    border-radius: 30px;
+
+    /* Đặt màu nền */
+    background: #eaf4ff;
+
+    /* Đặt màu chữ */
+    color: #347fbd;
+
+    /* Làm chữ đậm */
+    font-size: 13px;
+
+    /* Không cho nội dung xuống dòng */
+    white-space: nowrap;
+}
+
+
+/* ========================================================= */
+/*                   LOADING                                 */
+/* ========================================================= */
+
+/* Khu vực loading */
+.pokemon-loading {
+    /* Tạo khoảng cách trên dưới */
+    padding: 60px 20px;
+}
+
+
+/* Dòng chữ loading */
+.pokemon-loading p {
+    /* Tạo khoảng cách phía trên */
+    margin-top: 14px;
+
+    /* Đặt màu chữ */
+    color: #7e8b98;
+
+    /* Đặt kích thước chữ */
+    font-size: 14px;
+}
+
+
+/* ========================================================= */
+/*                    EMPTY STATE                            */
+/* ========================================================= */
+
+/* Khu vực hiển thị khi chưa có Pokémon */
+.pokemon-empty {
+    /* Tạo khoảng cách bên trong */
+    padding: 55px 20px;
+
+    /* Đặt nền */
+    background: rgba(255, 255, 255, 0.80);
+
+    /* Tạo đường viền nét đứt */
+    border: 1px dashed #ccdbe7;
+
+    /* Bo tròn */
+    border-radius: 18px;
+}
+
+
+/* Khung icon của empty state */
+.empty-icon-box {
+    /* Đặt chiều rộng */
+    width: 65px;
+
+    /* Đặt chiều cao */
+    height: 65px;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Căn icon ngang */
+    justify-content: center;
+
+    /* Căn icon dọc */
+    align-items: center;
+
+    /* Căn cả khung ra giữa */
+    margin: 0 auto 14px;
+
+    /* Bo tròn thành hình tròn */
+    border-radius: 50%;
+
+    /* Đặt nền */
+    background: #edf6fc;
+
+    /* Đặt màu icon */
+    color: #6b9abb;
+
+    /* Đặt kích thước icon */
+    font-size: 28px;
+}
+
+
+/* Tiêu đề khi chưa có Pokémon */
+.pokemon-empty h4 {
+    /* Làm chữ đậm */
+    font-weight: 750;
+
+    /* Đặt màu chữ */
+    color: #344454;
+}
+
+
+/* Mô tả khi chưa có Pokémon */
+.pokemon-empty p {
+    /* Đặt màu chữ */
+    color: #87939e;
+}
+
+
+/* ========================================================= */
+/*              CARD POKÉMON - RIÊNG TRANG NÀY              */
+/* ========================================================= */
+
+/* Card Pokémon chỉ áp dụng trong khu vực custom Pokémon */
+.custom-pokemon-section .pokemon-card {
+    /* Cho card có chiều cao bằng nhau */
+    height: 100%;
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Xếp nội dung từ trên xuống dưới */
+    flex-direction: column;
+
+    /* Tạo hiệu ứng chuyển động */
+    transition: 0.25s ease;
+}
+
+
+/* Hiệu ứng khi rê chuột vào card */
+.custom-pokemon-section .pokemon-card:hover {
+    /* Đẩy card lên 5px */
+    transform: translateY(-5px);
+}
+
+
+/* Nội dung đoạn văn trong card */
+.custom-pokemon-section .pokemon-card p {
+    /* Tạo khoảng cách dòng dễ đọc */
+    line-height: 1.55;
+}
+
+
+/* Khu vực chứa nút Sửa và Xóa */
+.custom-pokemon-section .pokemon-card .d-flex {
+    /* Đẩy khu vực button xuống cuối card */
+    margin-top: auto;
+
+    /* Tạo khoảng cách phía trên button */
+    padding-top: 14px;
+}
+
+
+/* Các button bên trong card */
+.custom-pokemon-section .card-btn {
+    /* Cho các button chia đều chiều rộng */
+    flex: 1;
+
+    /* Không cho chữ trong button xuống dòng */
+    white-space: nowrap;
+}
+
+
+/* ========================================================= */
+/*                    TIÊU ĐỀ CARD                           */
+/* ========================================================= */
+
+/* Tên Pokémon trong card */
+.custom-pokemon-section .pokemon-card h4 {
+    /* Căn chữ ra giữa */
+    text-align: center;
+
+    /* Cho tiêu đề chiếm toàn bộ chiều rộng */
+    width: 100%;
+
+    /* Căn chính phần tử ra giữa */
+    margin-left: auto;
+
+    /* Căn chính phần tử ra giữa */
+    margin-right: auto;
+}
+
+
+/* ========================================================= */
+/*                 TYPE POKÉMON TRONG CARD                   */
+/* ========================================================= */
+
+/* Khung hiển thị hệ Pokémon */
+.custom-pokemon-section .pokemon-card .type {
+    /* Cho icon và chữ nằm cùng một hàng */
+    display: inline-flex;
+
+    /* Căn nội dung theo chiều dọc */
+    align-items: center;
+
+    /* Căn nội dung theo chiều ngang */
+    justify-content: center;
+
+    /* Tạo khoảng cách giữa icon và tên hệ */
+    gap: 6px;
+
+    /* Đặt chiều rộng tối thiểu */
+    min-width: 90px;
+
+    /* Tạo khoảng cách bên trong */
+    padding: 6px 14px;
+
+    /* Bo tròn thành dạng viên thuốc */
+    border-radius: 999px;
+
+    /* Màu chữ mặc định là trắng */
+    color: white;
+
+    /* Đặt kích thước chữ */
+    font-size: 14px;
+
+    /* Làm chữ đậm */
+    font-weight: 700;
+
+    /* Viết hoa chữ cái đầu theo cách hiển thị */
+    text-transform: capitalize;
+
+    /* Căn type ra giữa */
+    margin: 4px auto 10px;
+}
+
+
+/* Icon nằm bên trong type */
+.custom-pokemon-section .pokemon-card .type-icon {
+    /* Đặt kích thước icon */
+    font-size: 16px;
+
+    /* Không tạo khoảng cách dòng thừa */
+    line-height: 1;
+}
+
+
+/* ========================================================= */
+/*                    HỆ NORMAL                              */
+/* ========================================================= */
+
+/* Màu của hệ Normal */
+.type-normal {
+    /* Màu xám đặc trưng */
+    background: #a8a878;
+}
+
+
+/* ========================================================= */
+/*                     HỆ FIRE                               */
+/* ========================================================= */
+
+/* Màu của hệ Fire */
+.type-fire {
+    /* Màu cam đỏ */
+    background: #f08030;
+}
+
+
+/* ========================================================= */
+/*                    HỆ WATER                               */
+/* ========================================================= */
+
+/* Màu của hệ Water */
+.type-water {
+    /* Màu xanh nước */
+    background: #6890f0;
+}
+
+
+/* ========================================================= */
+/*                    HỆ GRASS                               */
+/* ========================================================= */
+
+/* Màu của hệ Grass */
+.type-grass {
+    /* Màu xanh lá */
+    background: #78c850;
+}
+
+
+/* ========================================================= */
+/*                   HỆ ELECTRIC                             */
+/* ========================================================= */
+
+/* Màu của hệ Electric */
+.type-electric {
+    /* Màu vàng */
+    background: #f8d030;
+
+    /* Dùng chữ tối để dễ đọc trên nền vàng */
+    color: #333 !important;
+}
+
+
+/* ========================================================= */
+/*                      HỆ ICE                               */
+/* ========================================================= */
+
+/* Màu của hệ Ice */
+.type-ice {
+    /* Màu xanh nhạt */
+    background: #98d8d8;
+
+    /* Dùng chữ tối để dễ đọc */
+    color: #333 !important;
+}
+
+
+/* ========================================================= */
+/*                   HỆ FIGHTING                             */
+/* ========================================================= */
+
+/* Màu của hệ Fighting */
+.type-fighting {
+    /* Màu đỏ */
+    background: #c03028;
+}
+
+
+/* ========================================================= */
+/*                    HỆ POISON                              */
+/* ========================================================= */
+
+/* Màu của hệ Poison */
+.type-poison {
+    /* Màu tím */
+    background: #a040a0;
+}
+
+
+/* ========================================================= */
+/*                    HỆ GROUND                              */
+/* ========================================================= */
+
+/* Màu của hệ Ground */
+.type-ground {
+    /* Màu nâu vàng */
+    background: #e0c068;
+
+    /* Chữ tối để dễ nhìn */
+    color: #333 !important;
+}
+
+
+/* ========================================================= */
+/*                    HỆ FLYING                              */
+/* ========================================================= */
+
+/* Màu của hệ Flying */
+.type-flying {
+    /* Màu tím xanh */
+    background: #a890f0;
+}
+
+
+/* ========================================================= */
+/*                    HỆ PSYCHIC                             */
+/* ========================================================= */
+
+/* Màu của hệ Psychic */
+.type-psychic {
+    /* Màu hồng */
+    background: #f85888;
+}
+
+
+/* ========================================================= */
+/*                      HỆ BUG                               */
+/* ========================================================= */
+
+/* Màu của hệ Bug */
+.type-bug {
+    /* Màu xanh vàng */
+    background: #a8b820;
+}
+
+
+/* ========================================================= */
+/*                     HỆ ROCK                               */
+/* ========================================================= */
+
+/* Màu của hệ Rock */
+.type-rock {
+    /* Màu nâu vàng */
+    background: #b8a038;
+}
+
+
+/* ========================================================= */
+/*                     HỆ GHOST                              */
+/* ========================================================= */
+
+/* Màu của hệ Ghost */
+.type-ghost {
+    /* Màu tím đậm */
+    background: #705898;
+}
+
+
+/* ========================================================= */
+/*                    HỆ DRAGON                              */
+/* ========================================================= */
+
+/* Màu của hệ Dragon */
+.type-dragon {
+    /* Màu tím xanh */
+    background: #7038f8;
+}
+
+
+/* ========================================================= */
+/*                     HỆ DARK                               */
+/* ========================================================= */
+
+/* Màu của hệ Dark */
+.type-dark {
+    /* Màu nâu xám */
+    background: #705848;
+}
+
+
+/* ========================================================= */
+/*                     HỆ STEEL                              */
+/* ========================================================= */
+
+/* Màu của hệ Steel */
+.type-steel {
+    /* Màu xám bạc */
+    background: #b8b8d0;
+
+    /* Chữ tối để dễ đọc */
+    color: #333 !important;
+}
+
+
+/* ========================================================= */
+/*                    HỆ FAIRY                               */
+/* ========================================================= */
+
+/* Màu của hệ Fairy */
+.type-fairy {
+    /* Màu hồng nhạt */
+    background: #ee99ac;
+}

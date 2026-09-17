@@ -7,7 +7,6 @@
 /* KHUNG CHÍNH CỦA TRANG */
 /* ========================================= */
 
-/* Khu vực chính của trang góp ý */
 .feedback-page {
     /* Tạo khoảng cách phía trên */
     padding-top: 35px;
@@ -21,7 +20,6 @@
 /* PHẦN TIÊU ĐỀ */
 /* ========================================= */
 
-/* Khung chứa tiêu đề */
 .feedback-heading {
     /* Căn giữa nội dung */
     text-align: center;
@@ -30,7 +28,7 @@
     margin-bottom: 35px;
 }
 
-/* Tiêu đề chính */
+
 .feedback-heading h1 {
     /* Thiết lập kích thước chữ */
     font-size: clamp(32px, 5vw, 46px);
@@ -45,7 +43,7 @@
     margin-bottom: 10px;
 }
 
-/* Icon trong tiêu đề */
+
 .feedback-heading h1 i {
     /* Đặt màu xanh Pokémon */
     color: #2a75bb;
@@ -57,7 +55,7 @@
     display: inline-block;
 }
 
-/* Đoạn mô tả dưới tiêu đề */
+
 .feedback-heading p {
     /* Đặt màu chữ */
     color: #64748b;
@@ -74,19 +72,18 @@
 /* KHUNG NỘI DUNG CHÍNH */
 /* ========================================= */
 
-/* Khung chứa phần giới thiệu và form */
 .feedback-wrapper {
     /* Sử dụng CSS Grid */
     display: grid;
 
     /* Chia thành hai cột */
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
 
-    /* Tạo khoảng cách giữa hai phần */
+    /* Tạo khoảng cách */
     gap: 30px;
 
-    /* Căn các phần tử ở phía trên */
-    align-items: start;
+    /* Hai card có cùng chiều cao */
+    align-items: stretch;
 }
 
 
@@ -94,7 +91,6 @@
 /* PHẦN GIỚI THIỆU */
 /* ========================================= */
 
-/* Card giới thiệu bên trái */
 .feedback-info {
     /* Đặt nền trắng */
     background: #ffffff;
@@ -110,9 +106,22 @@
 
     /* Tạo bóng */
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+    /* Sử dụng Flexbox */
+    display: flex;
+
+    /* Xếp nội dung theo chiều dọc */
+    flex-direction: column;
+
+    /* Chiếm toàn bộ chiều cao của grid */
+    height: 100%;
 }
 
-/* Phần đầu của card giới thiệu */
+
+/* ========================================= */
+/* HEADER PHẦN GIỚI THIỆU */
+/* ========================================= */
+
 .feedback-info-header {
     /* Sử dụng Flexbox */
     display: flex;
@@ -132,7 +141,6 @@
 /* ICON PHẦN GIỚI THIỆU */
 /* ========================================= */
 
-/* Khung chứa icon chính */
 .feedback-icon {
     /* Đặt chiều rộng */
     width: 52px;
@@ -159,7 +167,7 @@
     border-radius: 14px;
 }
 
-/* Icon chính */
+
 .feedback-icon i {
     /* Thiết lập kích thước icon */
     font-size: 25px;
@@ -176,7 +184,6 @@
 /* TIÊU ĐỀ GIỚI THIỆU */
 /* ========================================= */
 
-/* Tiêu đề phần giới thiệu */
 .feedback-info-header h2 {
     /* Đặt kích thước chữ */
     font-size: 20px;
@@ -191,7 +198,7 @@
     margin: 0 0 5px;
 }
 
-/* Mô tả phần giới thiệu */
+
 .feedback-info-header p {
     /* Đặt màu */
     color: #64748b;
@@ -208,13 +215,15 @@
 /* DANH SÁCH THÔNG TIN */
 /* ========================================= */
 
-/* Khung danh sách */
 .feedback-info-list {
     /* Sử dụng Flexbox */
     display: flex;
 
     /* Xếp các phần tử theo chiều dọc */
     flex-direction: column;
+
+    /* Cho danh sách sử dụng phần chiều cao còn lại */
+    flex: 1;
 
     /* Tạo khoảng cách */
     gap: 15px;
@@ -223,7 +232,11 @@
     margin-bottom: 25px;
 }
 
-/* Mỗi mục thông tin */
+
+/* ========================================= */
+/* MỖI MỤC THÔNG TIN */
+/* ========================================= */
+
 .feedback-info-item {
     /* Sử dụng Flexbox */
     display: flex;
@@ -237,6 +250,9 @@
     /* Tạo khoảng cách bên trong */
     padding: 14px;
 
+    /* Các item được giãn đều */
+    flex: 1;
+
     /* Đặt nền */
     background: #f8fafc;
 
@@ -245,6 +261,25 @@
 
     /* Bo tròn góc */
     border-radius: 14px;
+
+    /* Hiệu ứng */
+    transition: 0.2s ease;
+}
+
+
+/* ========================================= */
+/* HOVER ITEM */
+/* ========================================= */
+
+.feedback-info-item:hover {
+    /* Đổi màu viền */
+    border-color: #2a75bb;
+
+    /* Đổi màu nền */
+    background: #f1f8ff;
+
+    /* Di chuyển nhẹ */
+    transform: translateX(3px);
 }
 
 
@@ -252,7 +287,6 @@
 /* ICON CỦA TỪNG MỤC */
 /* ========================================= */
 
-/* Khung chứa icon */
 .info-item-icon {
     /* Đặt chiều rộng */
     width: 42px;
@@ -279,9 +313,9 @@
     border-radius: 12px;
 }
 
-/* Icon bên trong */
+
 .info-item-icon i {
-    /* Đặt kích thước icon */
+    /* Đặt kích thước */
     font-size: 19px;
 
     /* Đặt màu */
@@ -291,7 +325,11 @@
     line-height: 1;
 }
 
-/* Nhãn thông tin */
+
+/* ========================================= */
+/* NỘI DUNG ITEM */
+/* ========================================= */
+
 .feedback-info-item span {
     /* Hiển thị trên một dòng */
     display: block;
@@ -306,7 +344,7 @@
     margin-bottom: 3px;
 }
 
-/* Nội dung chính */
+
 .feedback-info-item strong {
     /* Hiển thị dạng block */
     display: block;
@@ -326,7 +364,6 @@
 /* PHẦN GỢI Ý */
 /* ========================================= */
 
-/* Khung tip */
 .feedback-tip {
     /* Sử dụng Flexbox */
     display: flex;
@@ -336,6 +373,9 @@
 
     /* Tạo khoảng cách */
     gap: 10px;
+
+    /* Không cho tip bị co */
+    flex-shrink: 0;
 
     /* Đặt nền vàng nhạt */
     background: #fff8db;
@@ -350,7 +390,7 @@
     padding: 15px;
 }
 
-/* Icon tip */
+
 .feedback-tip i {
     /* Đặt màu vàng */
     color: #d69e00;
@@ -362,12 +402,12 @@
     flex-shrink: 0;
 }
 
-/* Nội dung tip */
+
 .feedback-tip p {
     /* Xóa margin */
     margin: 0;
 
-    /* Đặt màu */
+    /* Đặt màu chữ */
     color: #665c32;
 
     /* Đặt kích thước chữ */
@@ -382,7 +422,6 @@
 /* CARD FORM */
 /* ========================================= */
 
-/* Card chứa form */
 .feedback-form-card {
     /* Đặt nền trắng */
     background: #ffffff;
@@ -398,9 +437,12 @@
 
     /* Tạo bóng */
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+    /* Card luôn bằng chiều cao card bên trái */
+    height: 100%;
 }
 
-/* Tiêu đề form */
+
 .feedback-form-card h2 {
     /* Đặt màu */
     color: #1f2937;
@@ -418,7 +460,7 @@
     margin-bottom: 8px;
 }
 
-/* Mô tả form */
+
 .feedback-form-description {
     /* Đặt màu */
     color: #64748b;
@@ -432,13 +474,12 @@
 /* NHÓM CÁC Ô FORM */
 /* ========================================= */
 
-/* Mỗi nhóm nhập dữ liệu */
 .form-group {
     /* Tạo khoảng cách giữa các phần */
     margin-bottom: 24px;
 }
 
-/* Label trong form */
+
 .form-group label {
     /* Hiển thị block */
     display: block;
@@ -456,7 +497,7 @@
     font-size: 15px;
 }
 
-/* Icon trong label */
+
 .form-group label i {
     /* Đặt màu xanh */
     color: #2a75bb;
@@ -470,7 +511,6 @@
 /* INPUT VÀ TEXTAREA */
 /* ========================================= */
 
-/* Các ô nhập liệu */
 .form-group .form-control {
     /* Chiếm toàn bộ chiều rộng */
     width: 100%;
@@ -497,7 +537,7 @@
     transition: all 0.2s ease;
 }
 
-/* Khi người dùng nhập vào ô */
+
 .form-group .form-control:focus {
     /* Đổi màu viền */
     border-color: #2a75bb;
@@ -512,7 +552,7 @@
     outline: none;
 }
 
-/* Ô textarea */
+
 #feedbackContent {
     /* Đặt chiều cao tối thiểu */
     min-height: 150px;
@@ -526,7 +566,6 @@
 /* ĐÁNH GIÁ SAO */
 /* ========================================= */
 
-/* Khung chứa các ngôi sao */
 .rating-box {
     /* Sử dụng Flexbox */
     display: flex;
@@ -541,7 +580,7 @@
     margin-bottom: 8px;
 }
 
-/* Nút sao */
+
 .star-btn {
     /* Loại bỏ nền */
     background: transparent;
@@ -559,7 +598,7 @@
     transition: transform 0.2s ease;
 }
 
-/* Icon sao */
+
 .star-btn i {
     /* Đặt kích thước */
     font-size: 28px;
@@ -571,19 +610,19 @@
     transition: color 0.2s ease;
 }
 
-/* Khi rê chuột vào nút sao */
+
 .star-btn:hover {
     /* Phóng to nhẹ */
     transform: scale(1.15);
 }
 
-/* Sao được chọn */
+
 .star-btn.active i {
     /* Đổi thành màu vàng */
     color: #fbbf24;
 }
 
-/* Nội dung đánh giá */
+
 .rating-text {
     /* Đặt màu */
     color: #64748b;
@@ -600,7 +639,6 @@
 /* NÚT GỬI */
 /* ========================================= */
 
-/* Nút gửi góp ý */
 .feedback-submit-btn {
     /* Chiếm toàn bộ chiều rộng */
     width: 100%;
@@ -633,13 +671,13 @@
     transition: all 0.25s ease;
 }
 
-/* Icon trong nút */
+
 .feedback-submit-btn i {
     /* Tạo khoảng cách */
     margin-right: 7px;
 }
 
-/* Khi rê chuột */
+
 .feedback-submit-btn:hover {
     /* Đổi màu */
     background: #1f5f99;
@@ -651,7 +689,7 @@
     box-shadow: 0 8px 20px rgba(42, 117, 187, 0.25);
 }
 
-/* Khi nhấn nút */
+
 .feedback-submit-btn:active {
     /* Đưa nút về vị trí cũ */
     transform: translateY(0);
@@ -662,7 +700,6 @@
 /* MODAL THÀNH CÔNG */
 /* ========================================= */
 
-/* Khung modal */
 .feedback-modal {
     /* Loại bỏ viền */
     border: none;
@@ -674,7 +711,7 @@
     overflow: hidden;
 }
 
-/* Icon thành công */
+
 .feedback-success-icon {
     /* Đặt chiều rộng */
     width: 65px;
@@ -701,7 +738,7 @@
     border-radius: 50%;
 }
 
-/* Icon dấu tích */
+
 .feedback-success-icon i {
     /* Đặt kích thước */
     font-size: 32px;
@@ -710,7 +747,7 @@
     color: #16a34a;
 }
 
-/* Tiêu đề modal */
+
 .feedback-modal h3 {
     /* Làm chữ đậm */
     font-weight: 800;
@@ -719,16 +756,16 @@
     color: #1f2937;
 }
 
-/* Nội dung modal */
+
 .feedback-modal p {
-    /* Đặt màu */
+    /* Đặt màu chữ */
     color: #64748b;
 
     /* Đặt chiều cao dòng */
     line-height: 1.6;
 }
 
-/* Nút đóng modal */
+
 .feedback-modal-btn {
     /* Loại bỏ viền */
     border: none;
@@ -755,56 +792,40 @@
     transition: 0.2s ease;
 }
 
-/* Khi rê chuột vào nút */
+
 .feedback-modal-btn:hover {
     /* Đổi màu nền */
     background: #1f5f99;
+
+    /* Nâng nhẹ nút */
+    transform: translateY(-2px);
 }
 
 
 /* ========================================= */
-/* RESPONSIVE - TABLET */
+/* RESPONSIVE */
 /* ========================================= */
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
 
-    /* Chuyển hai cột thành một cột */
     .feedback-wrapper {
+        /* Chuyển thành một cột */
         grid-template-columns: 1fr;
     }
-}
 
-
-/* ========================================= */
-/* RESPONSIVE - MOBILE */
-/* ========================================= */
-
-@media (max-width: 576px) {
-
-    /* Giảm khoảng cách trang */
-    .feedback-page {
-        padding-top: 25px;
-        padding-bottom: 50px;
-    }
-
-    /* Giảm kích thước tiêu đề */
-    .feedback-heading h1 {
-        font-size: 30px;
-    }
-
-    /* Giảm padding card */
     .feedback-info,
     .feedback-form-card {
-        padding: 20px;
+        /* Không ép chiều cao trên điện thoại */
+        height: auto;
     }
 
-    /* Giảm kích thước icon sao */
-    .star-btn i {
-        font-size: 24px;
+    .feedback-info-list {
+        /* Tắt cơ chế giãn */
+        flex: none;
     }
 
-    /* Giảm khoảng cách giữa sao */
-    .rating-box {
-        gap: 5px;
+    .feedback-info-item {
+        /* Không kéo item cao trên điện thoại */
+        flex: none;
     }
 }

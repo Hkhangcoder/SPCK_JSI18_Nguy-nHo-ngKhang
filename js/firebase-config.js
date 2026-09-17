@@ -16,6 +16,12 @@ import { getAuth } from
 //   appId: "1:18620777519:web:eead10968bc9954925f2da"
 // };
 
+
+export const cloudinaryConfig = {
+    cloudName: "mlgtvlq5",
+    uploadPreset: "JSI-WEB"
+};
+
 // Cấu hình Firebase của project.
 const firebaseConfig = {
     apiKey: "AIzaSyDHqRS9Tv--44j30GLMrzRLDbtOv-Hmoyo",
@@ -33,4 +39,4 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Xuất app và auth để các file khác sử dụng.
-export { app, auth }; 
+export { app, auth, firebaseConfig }; 
