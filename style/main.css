@@ -1097,3 +1097,24 @@ body:not(.modal-open) .card:hover {
     /* Màu chữ */
     color: #94a3b8;
 }
+/* ========================================================= */
+/*                    NAVBAR ACTIVE                         */
+/* ========================================================= */
+
+/* Trang hiện tại */
+.nav-link.active {
+    /* Nền vàng Pokémon */
+    background: #FFCB05 !important;
+
+    /* Chữ xanh Pokémon */
+    color: #2A75BB !important;
+
+    /* Bo góc nhẹ */
+    border-radius: 12px;
+
+    /* Chữ đậm hơn một chút */
+    font-weight: 700;
+
+    /* Tạo bóng nhẹ */
+    box-shadow: 0 4px 10px rgba(255, 203, 5, 0.3);
+}

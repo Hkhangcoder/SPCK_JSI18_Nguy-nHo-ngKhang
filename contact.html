@@ -36,11 +36,11 @@
                     <li class="nav-item"><a class="nav-link" href="./list.html">Pokédex</a></li>
                     <!-- Pokemon của bạn -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pokemon của bạn</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pokémon của bạn</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="./collection.html"><i class="bi bi-grid-3x3-gap-fill"></i> Bộ sưu tập</a></li>
                             <li><a class="dropdown-item" href="./favorite.html">❤️ Yêu thích</a></li>                        
-                            <li><a class="dropdown-item" href="./create-poke.html"><i class="bi bi-stars"></i>Tạo Pokemon</a></li>                        
+                            <li><a class="dropdown-item" href="./create-poke.html"><i class="bi bi-stars"></i>Tạo Pokémon</a></li>                        
                         </ul>
                     </li>
                     <!-- Cài đặt -->
@@ -273,10 +273,10 @@
                 </div>
                 <!-- Cột bộ sưu tập -->
                 <div class="footer-column">
-                    <h3>Pokemon của bạn</h3>
+                    <h3>Pokémon của bạn</h3>
                     <a href="./collection.html">Tất cả Pokémon</a>
                     <a href="./favorite.html">Pokémon yêu thích</a>
-                    <a href="./create-poke.html">Tạo pokemon</a>
+                    <a href="./create-poke.html">Tạo pokémon</a>
                 </div>
                 <!-- Cột hỗ trợ -->
                 <div class="footer-column">
@@ -296,7 +296,7 @@
     <!-- Contact JS -->
     <script src="./js/contact.js"></script>
     <!-- Auth -->
-    <script type="module" src="./js/auth.js"></script>
+    <script src="./js/nav-active.js"></script>
     <script type="module" src="./js/home.js"></script>
     <script>
         (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...args)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="v2Z13ueAslLe-hNsM6IUq";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
