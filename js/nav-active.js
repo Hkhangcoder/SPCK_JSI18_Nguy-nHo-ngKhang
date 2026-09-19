@@ -1,49 +1,114 @@
-// =========================================================
-//                 NAVBAR ACTIVE
-// =========================================================
+// // =========================================================
+// //                  NAVBAR ACTIVE
+// // =========================================================
 
 
-// Lấy tên file của trang hiện tại.
-let currentPage = window.location.pathname.split("/").pop();
+// // Lấy tên file của trang hiện tại.
+// let currentPage = window.location.pathname.split("/").pop();
 
 
-// Nếu không lấy được tên file,
-// mặc định trang hiện tại là index.html.
-if (currentPage === "") {
-    currentPage = "index.html";
-}
+// // Nếu không có tên file,
+// // mặc định là trang chủ.
+// if (currentPage === "") {
+//     currentPage = "index.html";
+// }
 
 
-// Lấy tất cả link trong navbar.
-const navLinks = document.querySelectorAll(".navbar .nav-link");
+// // =========================================================
+// //              ACTIVE LINK TRÊN NAVBAR
+// // =========================================================
 
 
-// Duyệt qua từng link.
-navLinks.forEach(function (link) {
-
-    // Lấy đường dẫn của link.
-    const href = link.getAttribute("href");
+// // Lấy các link chính trên navbar.
+// const navLinks = document.querySelectorAll(".navbar .nav-link");
 
 
-    // Nếu link không có href
-    // hoặc href là #
-    // thì bỏ qua.
-    if (!href || href === "#") {
-        return;
-    }
+// // Duyệt qua từng link.
+// navLinks.forEach(function (link) {
+
+//     // Lấy đường dẫn của link.
+//     const href = link.getAttribute("href");
 
 
-    // Lấy tên file cuối cùng trong href.
-    //
-    // "./list.html" → "list.html"
-    const linkPage = href.split("/").pop();
+//     // Nếu link không có href hoặc href="#"
+//     // thì bỏ qua.
+//     if (!href || href === "#") {
+//         return;
+//     }
 
 
-    // Nếu link trùng với trang hiện tại.
-    if (linkPage === currentPage) {
+//     // Lấy tên file từ href.
+//     //
+//     // Ví dụ:
+//     // "./list.html"
+//     // sẽ thành:
+//     // "list.html"
+//     const linkPage = href.split("/").pop();
 
-        // Thêm class active.
-        link.classList.add("active");
-    }
 
-});
+//     // Nếu link trùng với trang hiện tại.
+//     if (linkPage === currentPage) {
+
+//         // Thêm class active.
+//         link.classList.add("active");
+//     }
+
+// });
+
+
+// // =========================================================
+// //              ACTIVE CHO DROPDOWN
+// // =========================================================
+
+
+// // Lấy tất cả item bên trong dropdown.
+// const dropdownItems = document.querySelectorAll(".navbar .dropdown-item");
+
+
+// // Duyệt qua từng dropdown item.
+// dropdownItems.forEach(function (item) {
+
+//     // Lấy đường dẫn của item.
+//     const href = item.getAttribute("href");
+
+
+//     // Nếu không có href hoặc href="#"
+//     // thì bỏ qua.
+//     if (!href || href === "#") {
+//         return;
+//     }
+
+
+//     // Lấy tên file của dropdown item.
+//     const itemPage = href.split("/").pop();
+
+
+//     // Nếu dropdown item trùng với trang hiện tại.
+//     if (itemPage === currentPage) {
+
+//         // Thêm class active cho item.
+//         item.classList.add("active");
+
+
+//         // Tìm dropdown cha của item.
+//         const dropdown = item.closest(".nav-item.dropdown");
+
+
+//         // Nếu tìm thấy dropdown cha.
+//         if (dropdown) {
+
+//             // Tìm nút dropdown.
+//             const dropdownLink =
+//                 dropdown.querySelector(".nav-link.dropdown-toggle");
+
+
+//             // Nếu tìm thấy nút dropdown.
+//             if (dropdownLink) {
+
+//                 // Thêm active cho nút dropdown.
+//                 dropdownLink.classList.add("active");
+//             }
+//         }
+//     }
+
+// });

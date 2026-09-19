@@ -824,3 +824,136 @@
     /* Khoảng cách phía trên */
     margin-top: 30px;
 }
+
+/* ======================================================
+   TRẠNG THÁI KHI CHƯA CÓ POKÉMON YÊU THÍCH
+   ====================================================== */
+
+/* Khung thông báo */
+.favorite-empty {
+    /* Cho khung chiếm toàn bộ chiều rộng Grid */
+    grid-column: 1 / -1;
+
+    /* Căn giữa nội dung */
+    text-align: center;
+
+    /* Nền trắng */
+    background: #ffffff;
+
+    /* Viền nét đứt */
+    border: 1px dashed #cbd5e1;
+
+    /* Bo góc */
+    border-radius: 18px;
+
+    /* Khoảng cách bên trong */
+    padding: 55px 20px;
+
+    /* Màu chữ */
+    color: #64748b;
+}
+
+
+/* Icon trái tim */
+.favorite-empty > i {
+    /* Kích thước icon */
+    font-size: 55px;
+
+    /* Màu đỏ */
+    color: #e53935;
+
+    /* Hiển thị thành block */
+    display: block;
+
+    /* Khoảng cách với tiêu đề */
+    margin-bottom: 15px;
+}
+
+
+/* Tiêu đề trạng thái rỗng */
+.favorite-empty h3 {
+    /* Không để margin mặc định */
+    margin: 0 0 10px;
+
+    /* Màu chữ */
+    color: #1f2937;
+
+    /* Kích thước chữ */
+    font-size: 24px;
+
+    /* Chữ đậm */
+    font-weight: 800;
+}
+
+
+/* Nội dung mô tả */
+.favorite-empty p {
+    /* Xóa margin trên */
+    margin: 0 auto 25px;
+
+    /* Giới hạn chiều rộng */
+    max-width: 500px;
+
+    /* Chiều cao dòng */
+    line-height: 1.6;
+
+    /* Màu chữ */
+    color: #64748b;
+}
+
+
+/* Nút chuyển sang Pokédex */
+.favorite-empty-button {
+    /* Hiển thị dạng inline-flex */
+    display: inline-flex;
+
+    /* Căn giữa icon và chữ */
+    align-items: center;
+
+    /* Căn giữa nội dung */
+    justify-content: center;
+
+    /* Khoảng cách icon và chữ */
+    gap: 8px;
+
+    /* Khoảng cách bên trong */
+    padding: 11px 22px;
+
+    /* Không gạch chân */
+    text-decoration: none;
+
+    /* Màu nền */
+    background: #e53935;
+
+    /* Màu chữ */
+    color: #ffffff;
+
+    /* Chữ đậm */
+    font-size: 15px;
+
+    /* Chữ đậm */
+    font-weight: 700;
+
+    /* Bo góc */
+    border-radius: 10px;
+
+    /* Hiệu ứng */
+    transition: 0.2s ease;
+}
+
+
+/* Hover nút */
+.favorite-empty-button:hover {
+    /* Giữ màu chữ trắng */
+    color: #ffffff;
+
+    /* Đậm màu hơn */
+    background: #c62828;
+
+    /* Nút nhô lên */
+    transform: translateY(-2px);
+
+    /* Tạo bóng */
+    box-shadow:
+        0 8px 18px rgba(198, 40, 40, 0.2);
+}

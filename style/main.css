@@ -1096,25 +1096,64 @@ body:not(.modal-open) .card:hover {
 
     /* Màu chữ */
     color: #94a3b8;
-}
-/* ========================================================= */
-/*                    NAVBAR ACTIVE                         */
+}/* ========================================================= */
+/*                 NAVBAR ACTIVE - POKÉMON                  */
 /* ========================================================= */
 
-/* Trang hiện tại */
+/* Link navbar đang ở trang hiện tại */
 .nav-link.active {
-    /* Nền vàng Pokémon */
-    background: #FFCB05 !important;
+    /* Cho phép đặt gạch bên dưới link */
+    position: relative;
 
-    /* Chữ xanh Pokémon */
-    color: #2A75BB !important;
+    /* Giữ màu chữ trắng */
+    color: white !important;
 
-    /* Bo góc nhẹ */
-    border-radius: 12px;
+    /* Giữ độ đậm giống navbar hiện tại */
+    font-weight: 500;
+}
 
-    /* Chữ đậm hơn một chút */
-    font-weight: 700;
 
-    /* Tạo bóng nhẹ */
-    box-shadow: 0 4px 10px rgba(255, 203, 5, 0.3);
+/* Gạch vàng bên dưới link đang active */
+.nav-link.active::after {
+    /* Bắt buộc pseudo-element phải có content */
+    content: "";
+
+    /* Đặt gạch theo vị trí của link */
+    position: absolute;
+
+    /* Cách mép trái của link */
+    left: 15%;
+
+    /* Cách mép phải của link */
+    right: 15%;
+
+    /* Đặt gạch ở phía dưới chữ */
+    bottom: 2px;
+
+    /* Độ dày của gạch */
+    height: 3px;
+
+    /* Màu vàng Pokémon */
+    background: #FFCB05;
+
+    /* Bo tròn hai đầu gạch */
+    border-radius: 10px;
+
+    /* Hiệu ứng xuất hiện mượt */
+    transition: all 0.3s ease;
+}
+
+
+/* Khi rê chuột vào link active */
+.nav-link.active:hover {
+    /* Giữ chữ màu trắng */
+    color: white !important;
+}
+
+
+/* Gạch dài hơn một chút khi rê chuột */
+.nav-link.active:hover::after {
+    /* Thu gạch về gần hai đầu hơn */
+    left: 8%;
+    right: 8%;
 }
