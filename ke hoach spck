@@ -1,0 +1,50 @@
+---------- Pokemon Hub ----------
+<--- FORM CHUNG ---> 
+1. Navbar (Header):
+  
+  <--- Navbar --->
+  [LOGO]  Trang chủ  Giới thiệu web  Pokédex  Pokémon của bạn ▼  ⚙️ ▼ 
+
+  # Pokeshop (Cửa hàng bán đồ liên quan đến Pokemon) ▼
+  # ├─ Shop (Cửa hàng)
+  # └─ Storage (Kho đồ đã mua)
+
+  Pokémon của bạn ▼     
+  ├─ Tất cả
+  ├─ Yêu thích
+  └─ Tạo Pokémon   
+
+  ⚙️ (Cài đặt) ▼ 
+  ├─ Hồ sơ
+  ├─ Liên hệ
+  ├─ Góp ý
+  └─ Đăng xuất
+
+2. Footer:
+  - Thêm tên và logo web
+  - Thêm dòng mô tả
+  - Thêm các đường link chuyển sang các trang khác
+
+> Web Pokemon Hub 
+✔ Đăng ký     ✔ Đăng nhập
+✔ Xem toàn bộ Pokémon (API)     ✔ Xem chi tiết Pokémon
+✔ Bắt Pokémon     ✔ Bắt Pokémon     ✔ Tạo Pokémon 
+✔ Pokémon của bạn   ->   ✔ Tất cả   ✔ Yêu thích   ✔ Tạo Pokémon
+✔ Cài đặt   ->   ✔ Hồ sơ   ✔ Liên hệ   ✔ Góp ý   ✔ Đăng xuất
+
+> Các trang trong Web
+login          (đăng nhập)
+register       (đăng ký)
+index          (trang chủ)
+# poke-shop    (bán đồ liên quan đến Pokemon)
+list           (danh sách Pokemon)
+create-poke    (tạo pokémon)
+collection     (tất cả) 
+favorite       (yêu thích)
+profile        (hồ sơ)
+contact        (liên hệ)
+feedback       (góp ý)
+intro-web      (giới thiệu web)
+own      (giới thiệu chủ web)
+detail
+
